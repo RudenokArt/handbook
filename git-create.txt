@@ -1,0 +1,3 @@
+git init
+git remote add origin https://github.com/RudenokArt/classes.git
+git pull -u origin master
