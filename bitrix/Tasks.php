@@ -1,6 +1,6 @@
 <?php 
 
-class Tester_error {
+class Tasks {
   
   public static function get_list($order=[], $filter=[], $select=[]) {
     $res = CTasks::GetList($order, $filter, $select);
