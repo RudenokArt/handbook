@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script src="http://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
+	<script type="module">
+		var database = new Firebase("https://vue-database-8a82a-default-rtdb.firebaseio.com/");
+		database.set({name3: 'value3'});
+		database.on('child_added', function(data){
+			console.log(data.name());
+			console.log(data.val());
+		});
+	</script>
+</body>
+</html>
