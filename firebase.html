@@ -6,12 +6,19 @@
 	<title>Document</title>
 </head>
 <body>
-	<script src="http://cdn.firebase.com/js/client/1.0.6/firebase.js"></script>
-	<script type="module">
+	<!-- <script src="http://cdn.firebase.com/js/client/1.0.6/firebase.js"></script> -->
+	<script src = "https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	<script>
 		var database = new Firebase("https://vue-database-8a82a-default-rtdb.firebaseio.com/");
-		database.set({name3: 'value3'});
+		// перезапись всей базы
+		database.set({data: {
+			user1:{userName:'userName1'},
+			user2:{userName:'userName2'},
+		}}); 
+		// Чтение из базы
 		database.on('child_added', function(data){
-			console.log(data.name());
+			// console.log(data.name()); // v-1.0.6
+			console.log(data.key()); // v-2.4.2
 			console.log(data.val());
 		});
 	</script>
