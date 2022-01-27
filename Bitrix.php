@@ -5,6 +5,13 @@
  */
 class Bitrix {
 
+  public static function js_library () { // js библиотека
+    CJSCore::RegisterExt('Panel_visability_js', array(
+    'js' => '/local/gadgets/custom/panel_visability/main.js',
+  ));
+  CUtil::InitJSCore(array('Panel_visability_js'));
+  }
+
   public static function list_maker($src) {
     $arr = [];
     while ($item = $src->Fetch()) {
