@@ -3,13 +3,67 @@
 /**
  * 
  */
+function reportFilterDate () {
+  if ($_GET['F_DATE_TYPE']=='month') {
+    $interval = [
+      ConvertTimeStamp(strtotime(date('Y-m-01'))),
+      ConvertTimeStamp(strtotime(date('Y-m-t')))
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='month_ago') {
+    $interval = [
+      ConvertTimeStamp(strtotime(date('Y-m-01', strtotime('-1 month')))), 
+      ConvertTimeStamp(strtotime(date('Y-m-t', strtotime('-1 month'))))
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='week') {
+    $interval = [
+      ConvertTimeStamp(strtotime('last monday')),
+      ConvertTimeStamp(strtotime('next monday'))
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='week_ago') {
+    $interval = [
+      ConvertTimeStamp(strtotime('last monday -1 week')), 
+      ConvertTimeStamp(strtotime('next monday -1 week'))
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='days') {
+    $interval = [
+      ConvertTimeStamp(strtotime($_GET['F_DATE_DAYS'].' days')), 
+      ConvertTimeStamp(strtotime('tooday'))
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='after') {
+    $interval = [
+      $_GET['F_DATE_TO'], 
+      ConvertTimeStamp(strtotime('tooday'))
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='before') {
+    $interval = [
+      ConvertTimeStamp(strtotime(date('Y-m-01'))),
+      $_GET['F_DATE_FROM'],
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='interval') {
+    $interval = [
+      $_GET['F_DATE_FROM'],
+      $_GET['F_DATE_TO'],
+    ];
+  }
+  if ($_GET['F_DATE_TYPE']=='all') {
+    $interval = [
+      '01.01.2000',
+      ConvertTimeStamp(strtotime('tooday')),
+    ];
+  }
+  return $interval;
+}
 
 
-
-class Bitrix {
-
-  public static function agentCreate () { // Создать агента
-    CAgent::AddAgent(
+function agentCreate () { // Создать агента
+  CAgent::AddAgent(
     "WorkReport::reportLogging();", // имя функции
     "", // идентификатор модуля
     "N", // агент не критичен к кол-ву запусков
@@ -18,16 +72,16 @@ class Bitrix {
     "Y", // агент активен
     "03.02.2022 16:30:00", // дата первого запуска
     "");
-  }
+}
 
-  public static function js_library () { // js библиотека
+  function js_library () { // js библиотека
     CJSCore::RegisterExt('Panel_visability_js', array(
       'js' => '/local/gadgets/custom/panel_visability/main.js',
     ));
     CUtil::InitJSCore(array('Panel_visability_js'));
   }
 
-  public static function list_maker($src) {
+  function list_maker($src) {
     $arr = [];
     while ($item = $src->Fetch()) {
       array_push($arr, $item);
@@ -35,7 +89,7 @@ class Bitrix {
     return $arr;
   }
 
-  public static function date_filter () {
+  function date_filter () {
     $dateFrom = new \Bitrix\Main\Type\DateTime();
     $dateFrom->add('-10 day');
     $dateTo = new \Bitrix\Main\Type\DateTime();
@@ -47,6 +101,5 @@ class Bitrix {
     $src = CTasks::GetList([],$filter, []);
   }
   
-}
 
 ?>
