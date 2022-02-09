@@ -3,6 +3,23 @@
 /**
  * 
  */
+function get_leads_sourses () {  // получить источники лидов
+  CCrmStatus::GetStatusList('SOURCE');
+}
+
+function getSourceList () { // получить источники лидов через rest
+    $str = file_get_contents('https://crm.maunfeld.by/rest/10/shdvcx5dj3zd289m/crm.status.entity.items.json?entityId=SOURCE');
+    $arr = json_decode($str,true);
+    $list = [];
+    foreach ($arr['result'] as $key => $value) {
+      array_push($list, [
+        'SOURCE_ID' => $value['NAME'], 
+        'SOURCE' => $value['STATUS_ID']
+      ]);
+    }
+    return $list;
+  }
+
 function reportFilterDate () {
   if ($_GET['F_DATE_TYPE']=='month') {
     $interval = [
