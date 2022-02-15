@@ -42,6 +42,10 @@ function agentCreate () { // Создать агента
     "");
 }
 
+function deleteAgent () { // удалить агента
+  CAgent::RemoveAgent('CodeReview::setTask();');
+}
+
 // ========== CRM LEADS ==========
 
 function get_leads_sourses () {  // получить источники лидов
