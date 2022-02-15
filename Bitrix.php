@@ -11,6 +11,12 @@ function getIBlockUFProperties () { // получить пользователь
 
  // ========== HELPERS ==========
 
+function logg () {
+  $str = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/test_agent.html');
+  $str = time().' time: '.date('Y:m:d:H:i:s').'<br>'.$str;
+  file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test_agent.html', $str);
+}
+
 function list_maker($src) {
   $arr = [];
   while ($item = $src->Fetch()) {
