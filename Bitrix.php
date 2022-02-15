@@ -2,19 +2,22 @@
 
 
 
+// ========== INFOBLOCKS ==========
 
-
-
+function getIBlockUFProperties () { // получить пользовательские поля инфоблока
+  $src = CIBlockPropertyEnum::GetList([], ['IBLOCK_ID'=>20]);
+  return list_maker($src);
+}
 
  // ========== HELPERS ==========
 
-  function list_maker($src) {
-    $arr = [];
-    while ($item = $src->Fetch()) {
-      array_push($arr, $item);
-    }
-    return $arr;
+function list_maker($src) {
+  $arr = [];
+  while ($item = $src->Fetch()) {
+    array_push($arr, $item);
   }
+  return $arr;
+}
 
   // ========== JS LIBRARY ==========
 
@@ -28,7 +31,7 @@
   // ========== AGETNS ==========
 
   function agentCreate () { // Создать агента
-  CAgent::AddAgent(
+    CAgent::AddAgent(
     "WorkReport::reportLogging();", // имя функции
     "", // идентификатор модуля
     "N", // агент не критичен к кол-ву запусков
@@ -37,7 +40,7 @@
     "Y", // агент активен
     "03.02.2022 16:30:00", // дата первого запуска
     "");
-}
+  }
 
   // ========== CRM LEADS ==========
 
