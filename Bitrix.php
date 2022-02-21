@@ -17,7 +17,7 @@ function logg () {
   file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test_agent.html', $str);
 }
 
-function list_maker($src) {
+function make_list ($src) {
   $arr = [];
   while ($item = $src->Fetch()) {
     array_push($arr, $item);
