@@ -1,5 +1,26 @@
 <?php 
 
+// ========== USER ==========
+
+function getUserList () {
+    $page = 1;
+    if (isset($_GET['page'])) {
+      $page = $_GET['page'];
+    }
+    $filter = ['ACTIVE' => 'Y'];
+    $select = [
+      'NAV_PARAMS' => ['nPageSize'=>10, 'iNumPage'=>$page],
+      'FIELDS' => ['ID', 'NAME', 'LAST_NAME',],
+      'SELECT' => [],
+    ];
+    $src = CUser::GetList('ID','asc', $filter, $select);
+    $arr = make_list($src);
+    return [
+      'page_count' => $src->NavPageCount, 
+      'page_nuber' => $src->NavPageNomer, 
+      'list' => $arr,
+    ];
+  }
 
 
 // ========== INFOBLOCKS ==========
