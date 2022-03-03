@@ -1,10 +1,10 @@
 <style>
-  .preloader_wrapper {
+.preloader_wrapper {
   position: absolute;
   width: 120%;
   height: 120%;
-  display: flex;
-  background: white;
+  display: none;
+  background: rgba(250, 250, 250, 0.5);
   top: -10%;
   left: -10%;
 }
@@ -22,7 +22,8 @@
 </div>
 
 <script>
+  $('.preloader_wrapper').css({'display':'flex'});
   setTimeout(function () {
-    $('.preloader_wrapper').fadeOut();
+    $('.preloader_wrapper').css({'display':'none'});
   }, 1000);
 </script>
