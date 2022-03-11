@@ -1,5 +1,12 @@
 <?php 
 
+function curlParser () { // Простой curl-парсер
+  $ch = curl_init('https://ya.ru');
+  $html = curl_exec($ch);
+  curl_close($ch); 
+  return $html;
+}
+
 // Простая пагинация: на входе массив статей и количетво на странице
 // на выходе - массив статей на странице и постраничное меню
 function pagination ($arr, $page_size) {
@@ -23,7 +30,7 @@ function pagination ($arr, $page_size) {
 	return ['page'=>$page, 'nav'=>$nav];
 }
 
-function date_interval () { 
+function date_interval () { // выбор интервала дат
   if (isset($_POST['filter'])) {
     if ($_POST['date_filter']=='month') {
       $interval = [
