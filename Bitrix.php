@@ -1,8 +1,17 @@
 <?php 
 
+
+// подключить пролог
+require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+
+// Автозагрузка классов
+Bitrix\Main\Loader::registerAutoLoadClasses(null, [
+    'Classes\Infoblock' => '/local/php_interface/classes/infoblock.php'
+]);
+
 // ========== USER ==========
 
-function getUserList () {
+function getUserList () { // Список пользователей с пагинацией
     $page = 1;
     if (isset($_GET['page'])) {
       $page = $_GET['page'];
@@ -144,39 +153,6 @@ function reportFilterDate () {
   }
   return $interval;
 }
-
-// ========== CRM LEADS ==========
-
-function get_leads_sourses () {  // получить источники лидов
-  CCrmStatus::GetStatusList('SOURCE');
-}
-
-function getSourceList () { // получить источники лидов через rest
-  $str = file_get_contents('https://crm.maunfeld.by/rest/10/shdvcx5dj3zd289m/crm.status.entity.items.json?entityId=SOURCE');
-  $arr = json_decode($str,true);
-  $list = [];
-  foreach ($arr['result'] as $key => $value) {
-    array_push($list, [
-      'SOURCE_ID' => $value['NAME'], 
-      'SOURCE' => $value['STATUS_ID']
-    ]);
-  }
-  return $list;
-}
-
-// ===== B24 REST ====
-
-function rest_request () { // Простой запрос через webhook
-  $web_hook = 'https://b24-k6lwae.bitrix24.by/rest/1/6fac44vzeyp9xcin/'; 
-  $api_method = 'crm.lead.get?'; 
-  $api_query = http_build_query([
-    'ID' => 1,
-  ]); 
-  $json = file_get_contents($web_hook.$api_method.$api_query); 
-  $arr = json_decode( $json, $assoc_array = true ); 
-}
-
-
 
 
 ?>
