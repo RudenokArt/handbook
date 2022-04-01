@@ -1,5 +1,17 @@
 <?php
 
+// ===== Получение файла по id =====
+
+$file=CFile::GetFileArray($id)['SRC'];
+
+// ========== Иммитация сессии ==========
+// запись данных
+$localStorage = \Bitrix\Main\Application::getInstance()->getLocalSession('main_event');
+$localStorage->set('main_event','test-data');
+// получение данных
+$localStorage = \Bitrix\Main\Application::getInstance()->getLocalSession('main_event');
+print_r($localStorage->get('main_event'));
+
 // ========== urlRewrite ==========
 
 [1 => [ 
