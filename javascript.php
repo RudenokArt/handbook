@@ -4,7 +4,7 @@
  <textarea id="editor" name="editor1"></textarea>
  <button>save</button>
  <script>
-  CKEDITOR.replace( 'editor1' );
+  CKEDITOR.replace('editor1', {height: 500});
   $('button').click(function() {
     var text = document.getElementsByTagName("iframe")[0].contentDocument.getElementsByTagName("body")[0].innerHTML;
     console.log(text);
