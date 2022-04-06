@@ -60,6 +60,9 @@ function getIBlockUFProperties () { // получить пользователь
   return list_maker($src);
 }
 
+$GLOBALS['bottom_menu_filter'] = ['SECTION_CODE' => 'bottom_menu',]; // фильтр для компонента (news.list)
+
+
  // ========== HELPERS ==========
 
 function logg () {
