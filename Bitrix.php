@@ -60,7 +60,13 @@ function getIBlockUFProperties () { // получить пользователь
   return list_maker($src);
 }
 
-$GLOBALS['bottom_menu_filter'] = ['SECTION_CODE' => 'bottom_menu',]; // фильтр для компонента (news.list)
+$GLOBALS['bottom_menu_filter'] = [// фильтр для компонента (news.list)
+  'SECTION_CODE' => 'bottom_menu',
+]; 
+$GLOBALS['main_event_filter'] = [ // Фильтр по свойству
+  'ACTIVE'=>'Y', 
+  'PROPERTY_main_event_VALUE'=>'Y'
+];
 
 
  // ========== HELPERS ==========
