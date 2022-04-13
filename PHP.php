@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+// SOAP запрос
+$client = new SoapClient('http://api-tt.belavia.by/TimeTable/Service.asmx?WSDL');
+print_r($client->GetAirportsList()); 
 
 function curlParser () { // Простой curl-парсер
   $ch = curl_init('https://ya.ru');
