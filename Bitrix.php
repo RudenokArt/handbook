@@ -52,6 +52,19 @@ function getUserList () {
   ];
 }
 
+// ========== HIGHLOADBLOCKS ==========
+// получить инфоблоки по фильтру
+$highloadblock = \Bitrix\Highloadblock\HighloadBlockTable::getList([
+  'filter'=>['TABLE_NAME' => 'ts_services',],
+]);
+// получить элементы highload блока
+$items = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock);
+$entity_data_class = $items->getDataClass();
+$rsData = $entity_data_class::getList(['filter'=>[]]);
+$arr = [];
+foreach ($rsData as $key => $value) {
+  array_push($arr, $value);
+}
 
 // ========== INFOBLOCKS ==========
 
@@ -61,11 +74,11 @@ function getIBlockUFProperties () { // получить пользователь
 }
 
 $GLOBALS['bottom_menu_filter'] = [// фильтр для компонента (news.list)
-  'SECTION_CODE' => 'bottom_menu',
+'SECTION_CODE' => 'bottom_menu',
 ]; 
 $GLOBALS['main_event_filter'] = [ // Фильтр по свойству
-  'ACTIVE'=>'Y', 
-  'PROPERTY_main_event_VALUE'=>'Y'
+'ACTIVE'=>'Y', 
+'PROPERTY_main_event_VALUE'=>'Y'
 ];
 
 
