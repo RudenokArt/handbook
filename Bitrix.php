@@ -24,6 +24,9 @@ print_r($localStorage->get('main_event'));
 // подключить пролог
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
+// font-awesome
+$APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
+
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
   'Classes\Infoblock' => '/local/php_interface/classes/infoblock.php'
