@@ -75,3 +75,45 @@ function date_interval () { // выбор интервала дат
 }
 
 ?>
+
+<!-- Простой календарь на PHP -->
+<a href="?year=<?php echo prevMon()['year'];?>&mon=<?php echo prevMon()['mon'];?>">previous</a>
+<a href="?year=<?php echo nextMonth()['year'];?>&mon=<?php echo nextMonth()['mon'];?>">next</a>
+<pre><?php print_r(getCurrentMonth()) ?></pre>
+<?php 
+function nextMonth () {
+  $year = getCurrentMonth()[0]['year'];
+  $mon = getCurrentMonth()[0]['mon'] + 1;
+  if ($mon>12) {
+    $mon = 1;
+    $year = $year + 1;
+  }
+  return ['mon'=>$mon, 'year'=>$year];
+}
+function prevMon () {
+  $year = getCurrentMonth()[0]['year'];
+  $mon = getCurrentMonth()[0]['mon'] - 1;
+  if ($mon < 1) {
+    $mon = 12;
+    $year = $year - 1;
+  }
+  return ['mon'=>$mon, 'year'=>$year];
+}
+function getCurrentMonth() {
+  $current_date = getdate();
+  $mon = $current_date['mon'];
+  if (isset($_GET['mon'])) {
+    $mon = $_GET['mon'];
+  }
+  $year = $current_date['year'];
+  if (isset($_GET['year'])) {
+    $year = $_GET['year'];
+  }
+  $last_day_month = getdate(strtotime(date($year.'-'.$mon.'-'.cal_days_in_month(CAL_GREGORIAN, $mon, $year))));
+  $arr = [];
+  for ($i=1; $i <= $last_day_month['mday']; $i++) { 
+    array_push($arr, getdate(strtotime(date($year.'-'.$mon.'-'.$i))));
+  }
+  return $arr;
+}
+?>
