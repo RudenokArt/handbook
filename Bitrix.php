@@ -26,6 +26,8 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_befo
 
 // font-awesome
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
+// bootstrap
+ \Bitrix\Main\UI\Extension::load("ui.bootstrap4");
 
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
