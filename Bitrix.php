@@ -58,10 +58,12 @@ function getUserList () {
 }
 
 // ========== HIGHLOADBLOCKS ==========
+
 // получить инфоблоки по фильтру
 $highloadblock = \Bitrix\Highloadblock\HighloadBlockTable::getList([
   'filter'=>['TABLE_NAME' => 'ts_services',],
 ]);
+
 // получить элементы highload блока
 $items = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock);
 $entity_data_class = $items->getDataClass();
@@ -70,6 +72,13 @@ $arr = [];
 foreach ($rsData as $key => $value) {
   array_push($arr, $value);
 }
+
+// Перехват события highload-блока
+$highLoadEventManager = \Bitrix\Main\EventManager::getInstance();
+$highLoadEventManager->addEventHandler('', 'BookingsOnAfterAdd', function (\Bitrix\Main\Entity\Event $event) {
+  $id = $event->getParameter("id");
+  file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test.html', 'id-'.$id);
+});
 
 // ========== INFOBLOCKS ==========
 

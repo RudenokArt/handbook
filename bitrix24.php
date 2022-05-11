@@ -25,7 +25,8 @@ function rest_request () { // Простой запрос через webhook
   $web_hook = 'https://b24-k6lwae.bitrix24.by/rest/1/6fac44vzeyp9xcin/'; 
   $api_method = 'crm.lead.get?'; 
   $api_query = http_build_query([
-    'ID' => 1,
+    'filter' => ['ID' => 62959],
+    'select' => ['*', 'UF_*'],
   ]); 
   $json = file_get_contents($web_hook.$api_method.$api_query); 
   $arr = json_decode( $json, $assoc_array = true ); 
