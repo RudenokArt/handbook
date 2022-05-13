@@ -1,5 +1,8 @@
 <?php
 
+// JSON
+$json=json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
 // SOAP запрос
 $client = new SoapClient('http://api-tt.belavia.by/TimeTable/Service.asmx?WSDL');
 print_r($client->GetAirportsList()); 
