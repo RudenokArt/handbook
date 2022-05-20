@@ -213,3 +213,15 @@ function reportFilterDate () {
 
 
 ?>
+
+
+<script> // преопределить битриксовый прелодер
+  BX.ready(function(){
+  BX.showWait = function() {
+    console.log('start');
+  };
+  BX.closeWait = function() {
+    console.log('finish');
+  };
+});
+</script>
