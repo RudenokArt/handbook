@@ -27,7 +27,7 @@ require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_befo
 // font-awesome
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
 // bootstrap
- \Bitrix\Main\UI\Extension::load("ui.bootstrap4");
+\Bitrix\Main\UI\Extension::load("ui.bootstrap4");
 
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
@@ -52,10 +52,18 @@ function getUserList () {
   $arr = make_list($src);
   return [
     'page_count' => $src->NavPageCount, 
-    'page_nuber' => $src->NavPageNomer, 
+    'page_number' => $src->NavPageNomer, 
     'list' => $arr,
   ];
 }
+
+// проверка на принадлежность пользователя к группе exchange_rates:
+in_array(CGroup::GetList(($by="id"), ($order="asc"),['STRING_ID'=>'exchange_rates'])->Fetch()['ID'], $USER->GetUserGroupArray());
+
+// добавить пользователя в группу
+$arGroups = CUser::GetUserGroup($user_id);
+$arGroups[] = $group_id;
+CUser::SetUserGroup($user_id, $arGroups);
 
 // ========== HIGHLOADBLOCKS ==========
 
@@ -85,7 +93,32 @@ $highLoadEventManager->addEventHandler('', 'BookingsOnAfterAdd', function (\Bitr
 function getIBlockUFProperties () { // получить пользовательские поля инфоблока
   $src = CIBlockPropertyEnum::GetList([], ['IBLOCK_ID'=>20]);
   return list_maker($src);
-}
+};
+
+// Простая пагинация для инфоблока
+$pagination = [
+  'page_count' => $src->NavPageCount, 
+  'page_number' => $src->NavPageNomer,
+]; 
+if ($exchange_rates->pagination['page_number']>1): ?>
+  <a href="?page_number=1">1</a>...
+<?php endif ?>
+<?php if ($exchange_rates->pagination['page_number']>2): ?>
+  <a href="?page_number=<?php echo $exchange_rates->pagination['page_number']-1;?>">
+    <?php echo $exchange_rates->pagination['page_number']-1;?>
+  </a>
+<?php endif ?>
+<?php echo $exchange_rates->pagination['page_number'];?>
+<?php if ($exchange_rates->pagination['page_number']<$exchange_rates->pagination['page_count']): ?>
+ <a href="?page_number=<?php echo $exchange_rates->pagination['page_number']+1;?>">
+  <?php echo $exchange_rates->pagination['page_number']+1;?>
+</a> 
+<?php endif ?>
+...
+<a href="?page_number=<?php echo $exchange_rates->pagination['page_count'];?>">
+  <?php echo $exchange_rates->pagination['page_count'];?>
+</a>
+<?php
 
 $GLOBALS['bottom_menu_filter'] = [// фильтр для компонента (news.list)
 'SECTION_CODE' => 'bottom_menu',
@@ -104,7 +137,7 @@ function logg () {
   file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test_agent.html', $str);
 }
 
-function fetch_list_maker ($src) {
+function getList_fetch ($src) {
   $arr = [];
   while ($item = $src->Fetch()) {
     array_push($arr, $item);
@@ -216,7 +249,7 @@ function reportFilterDate () {
 
 
 <script> // преопределить битриксовый прелодер
-  BX.ready(function(){
+BX.ready(function(){
   BX.showWait = function() {
     console.log('start');
   };

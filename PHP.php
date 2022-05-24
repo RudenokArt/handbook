@@ -1,5 +1,7 @@
 <?php
 
+// редирект
+header('Location: ?page_number='.$_GET['page_number']);
 // JSON
 $json=json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
