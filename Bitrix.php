@@ -100,23 +100,23 @@ $pagination = [
   'page_count' => $src->NavPageCount, 
   'page_number' => $src->NavPageNomer,
 ]; 
-if ($exchange_rates->pagination['page_number']>1): ?>
+if ($arResult['pagination']['page_number']>1): ?>
   <a href="?page_number=1">1</a>...
 <?php endif ?>
-<?php if ($exchange_rates->pagination['page_number']>2): ?>
-  <a href="?page_number=<?php echo $exchange_rates->pagination['page_number']-1;?>">
-    <?php echo $exchange_rates->pagination['page_number']-1;?>
+<?php if ($arResult['pagination']['page_number']>2): ?>
+  <a href="?page_number=<?php echo $arResult['pagination']['page_number']-1;?>">
+    <?php echo$arResult['pagination']['page_number']-1;?>
   </a>
 <?php endif ?>
-<?php echo $exchange_rates->pagination['page_number'];?>
-<?php if ($exchange_rates->pagination['page_number']<$exchange_rates->pagination['page_count']): ?>
- <a href="?page_number=<?php echo $exchange_rates->pagination['page_number']+1;?>">
-  <?php echo $exchange_rates->pagination['page_number']+1;?>
+<?php echo $arResult['pagination']['page_number'];?>
+<?php if ($arResult['pagination']['page_number']<$arResult['pagination']['page_count']): ?>
+ <a href="?page_number=<?php echo $arResult['pagination']['page_number']+1;?>">
+  <?php echo $arResult['pagination']['page_number']+1;?>
 </a> 
 <?php endif ?>
 ...
-<a href="?page_number=<?php echo $exchange_rates->pagination['page_count'];?>">
-  <?php echo $exchange_rates->pagination['page_count'];?>
+<a href="?page_number=<?php echo $arResult['pagination']['page_count'];?>">
+  <?php echo $arResult['pagination']['page_count'];?>
 </a>
 <?php
 
