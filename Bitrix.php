@@ -68,9 +68,10 @@ CUser::SetUserGroup($user_id, $arGroups);
 // ========== HIGHLOADBLOCKS ==========
 
 // получить инфоблоки по фильтру
-$highloadblock = \Bitrix\Highloadblock\HighloadBlockTable::getList([
-  'filter'=>['TABLE_NAME' => 'ts_services',],
+$hl = \Bitrix\Highloadblock\HighloadBlockTable::getList([
+  'filter'=>['TABLE_NAME' => 'ts_prices',],
 ]);
+$highloadblock=$hl->Fetch();
 
 // получить элементы highload блока
 $items = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock);
