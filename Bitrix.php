@@ -91,6 +91,12 @@ $highLoadEventManager->addEventHandler('', 'BookingsOnAfterAdd', function (\Bitr
 
 // ========== INFOBLOCKS ==========
 
+// сортировка по двум признакам
+Array(
+ "LOGIC" => "AND",
+ array("ID" => "DESC"),
+ array("DATE_ACTIVE_FROM" => "ASC"));
+
 function getIBlockUFProperties () { // получить пользовательские поля инфоблока
   $src = CIBlockPropertyEnum::GetList([], ['IBLOCK_ID'=>20]);
   return list_maker($src);
