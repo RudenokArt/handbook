@@ -31,6 +31,26 @@ function cUrlGet () { // cUrl - запрос методом GET
   return curl_exec($curl);
 }
 
+function cUrlPost () { // cUrl - запрос методом POST
+  $url = "https://online.vetliva.ru/Vetliva/json_handler.ashx";
+  $curl = curl_init($url);
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_POST, true);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $headers = array(
+   "Accept: application/json",
+   "Content-Type: text/plain",
+ );
+  curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+  $data = '{"method":"get_course","id":"1","params":{"date":"01.06.2022"}}';
+  curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  $resp = curl_exec($curl);
+  curl_close($curl);
+  var_dump($resp);
+}
+
 
 // Простая пагинация: на входе массив статей и количетво на странице
 // на выходе - массив статей на странице и постраничное меню
