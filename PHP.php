@@ -8,6 +8,9 @@ echo '<script>setTimeout(function(){document.location.href="index.php";},2000);<
 // JSON
 $json=json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
+// Разрешить кроссдоменный запрос
+header('Access-Control-Allow-Origin:*');
+
 // SOAP запрос
 $client = new SoapClient('http://api-tt.belavia.by/TimeTable/Service.asmx?WSDL');
 print_r($client->GetAirportsList()); 
