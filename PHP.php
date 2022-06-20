@@ -1,5 +1,17 @@
 <?php
 
+// PHP-IMAP
+// yum install php-imap - установка библиотеки
+$mail_login    = "hotel@vetliva.com";
+$mail_password = "eoe()^72ghc";
+$mail_imap     = "{imap.yandex.ru:993/imap/ssl}";
+$connection = imap_open($mail_imap, $mail_login, $mail_password);
+$arr = imap_search($connection, 'SINCE "7 June 2022"');
+foreach ($arr as $key => $value) {
+  $arr[$key] = imap_headerinfo($connection, $value);
+}
+imap_close($connection);
+
 // редирект
 header('Location: ?page_number='.$_GET['page_number']);
 echo '<meta http-equiv="refresh" content="2; url=index.php" />';
