@@ -71,7 +71,7 @@ CUser::SetUserGroup($user_id, $arGroups);
 
 // ========== HIGHLOADBLOCKS ==========
 
-// получить инфоблоки по фильтру
+// получить highload-блок по фильтру
 $hl = \Bitrix\Highloadblock\HighloadBlockTable::getList([
   'filter'=>['TABLE_NAME' => 'ts_prices',],
 ]);
