@@ -26,3 +26,15 @@
     draw.fill();
   }, 1000);
 </script>
+
+===== УВЕДОМЛЕНИЯ В БРАУЗЕРЕ =====
+<script>
+  console.log(Notification.permission);
+  Notification.requestPermission().then(function (permission) {
+    console.log(permission);
+  });
+  var body = 'text';
+  setTimeout(function () {
+    var test = new Notification('title',{body});
+  }, 2000);
+</script>
