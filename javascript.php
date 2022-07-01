@@ -11,6 +11,22 @@
   });
 </script>
 
+===== AJAX =====
+<script>
+  function ajaxGetData (text,file) {
+   var req = new XMLHttpRequest();
+   req.open('POST','php-get-data.php');
+   req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+   req.send('text='+text+'&file='+file);
+   req.onreadystatechange=function (){
+    if (req.readyState == 4 && req.status == 200) {
+     console.log(req.responseText);
+   }
+ };
+}
+
+</script>
+
 ===== CANVAS =====
 
 <script>
