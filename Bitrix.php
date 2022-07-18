@@ -139,6 +139,17 @@ $GLOBALS['main_event_filter'] = [ // Фильтр по свойству
 'PROPERTY_main_event_VALUE'=>'Y'
 ];
 
+// ========== SQL ==========
+
+function getBookingPrices () {
+  global $DB;
+  $dbRes = $DB->Query('SELECT * FROM `ts_rates_category` WHERE ID = 10');
+  $arr = [];
+  while ($row = $dbRes->Fetch()) {
+    array_push($arr, $row);
+  }
+  return $arr;
+}
 
  // ========== HELPERS ==========
 
