@@ -38,6 +38,12 @@ Bitrix\Main\Loader::registerAutoLoadClasses(null, [
   'Classes\Infoblock' => '/local/php_interface/classes/infoblock.php'
 ]);
 
+// получить путь к компоненту в шаблоне компонента
+$this->getComponent()->getPath();
+
+// получить путь к компоненту в классе компонента
+$this->getPath();
+
 // ========== USER ==========
 
 
@@ -84,6 +90,22 @@ $rsData = $entity_data_class::getList(['filter'=>[]]);
 $arr = [];
 foreach ($rsData as $key => $value) {
   array_push($arr, $value);
+}
+
+// добавить элемент в highload блок
+$entity = \Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock); 
+$entity_data_class = $entity->getDataClass();
+$arr_data = self::postData();
+$data = [
+  'UF_AUTHOR' => $arr_data['author'],
+  'UF_RECIPIENT' => $arr_data['recipient'],
+  'UF_MESSAGE' => $arr_data['message'],
+];
+$result = $entity_data_class::add($data);
+if ($result->isSuccess()) {
+  echo 'успешно добавлен';
+} else {
+  echo 'Ошибка: ' . implode(', ', $result->getErrors()) . "";
 }
 
 // Перехват события highload-блока
