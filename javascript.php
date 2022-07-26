@@ -27,20 +27,11 @@
 
 </script>
 
-===== CANVAS =====
+===== Прокрутка скролла в блоке =====
 
 <script>
-  var example = document.getElementById('example');
-  example.width = 800;
-  example.height = 600;
-  draw = example.getContext('2d');
-  draw.rect(100,100,100,100);
-  draw.fillStyle = 'red';
-  draw.fill();
-  setTimeout(function () {
-    draw.fillStyle = 'blue';
-    draw.fill();
-  }, 1000);
+ var node = document.querySelector('#vetliva_live_chat_tape');
+ node.scrollTop = node.scrollHeight;
 </script>
 
 ===== УВЕДОМЛЕНИЯ В БРАУЗЕРЕ =====
