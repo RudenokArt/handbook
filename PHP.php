@@ -27,7 +27,26 @@ header('Access-Control-Allow-Origin:*');
 $client = new SoapClient('http://api-tt.belavia.by/TimeTable/Service.asmx?WSDL');
 print_r($client->GetAirportsList()); 
 
-function curlParser () { // Простой curl-парсер
+// HTTP запрос через file_get_contents()
+function restApiRequest () {
+  $url = 'http://lintest.fortest.org/local/php_interface/api/user-add.php';
+  $postdata = http_build_query([
+    'name' => 'username',
+    'email' => 'mail@mail.ru',
+  ]);
+  $opts = ['http' =>  [
+    'method'  => 'POST',
+    'header'  => 'Content-type: application/x-www-form-urlencoded',
+    'content' => $postdata]
+  ];
+  $context  = stream_context_create($opts);
+
+  $result = file_get_contents($url, false, $context);
+  $apidata = json_decode($result);
+}
+
+// Простой curl-парсер
+function curlParser () { 
   $ch = curl_init('https://ya.ru');
   $html = curl_exec($ch);
   curl_close($ch); 
