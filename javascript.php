@@ -45,3 +45,23 @@
     var test = new Notification('title',{body});
   }, 2000);
 </script>
+
+
+===== DRAG & DROP =====
+<div class="container">
+   <a href="" class="row">item # 1</a>
+   <a href="" class="row">item # 2</a>
+   <a href="" class="row">item # 3</a>
+ </div>
+<script>
+  var drag, undrag;
+  $('.row').bind('dragover', function(){
+    drag = this;
+    console.log(drag.children[0].innerHTML);
+  });
+  $('.row').bind('dragend', function () {
+    undrag = this;
+    console.log('end'+'~'+undrag.children[0].innerHTML);
+    $(drag).before(undrag);
+  });
+</script>
