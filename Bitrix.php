@@ -44,8 +44,10 @@ $this->getComponent()->getPath();
 // получить путь к компоненту в классе компонента
 $this->getPath();
 
-// ========== USER ==========
+// получить список стран
+print_r(GetCountryArray(LANGUAGE_ID));
 
+// ========== USER ==========
 
 function getUserList () {
   $page = 1;
@@ -66,6 +68,11 @@ function getUserList () {
     'list' => $arr,
   ];
 }
+
+// id текущего пользователя
+global $USER;
+return $USER->GetID();
+
 
 // проверка на принадлежность пользователя к группе exchange_rates:
 in_array(CGroup::GetList(($by="id"), ($order="asc"),['STRING_ID'=>'exchange_rates'])->Fetch()['ID'], $USER->GetUserGroupArray());
