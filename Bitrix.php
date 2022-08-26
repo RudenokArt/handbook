@@ -4,6 +4,19 @@
 
 $file=CFile::GetFileArray($id)['SRC'];
 
+// ===== Загрузка файла на сервер ======
+echo CFile::InputFile("IMAGE_ID", 20, $str_IMAGE_ID); // отрисовать поле для загрузки
+$arr_file=Array( // загрузить файл 
+  "name" => $_FILES[IMAGE_ID][name],
+  "size" => $_FILES[IMAGE_ID][size],
+  "tmp_name" => $_FILES[IMAGE_ID][tmp_name],
+  "type" => "",
+  "old_file" => "",
+  "del" => "Y",
+  "MODULE_ID" => "main");
+$fid = CFile::SaveFile($arr_file, "main");
+$fields['PERSONAL_PHOTO'] = $_FILES[IMAGE_ID];// записать в свойства сущности
+
 // ========== Иммитация сессии ==========
 // запись данных
 $localStorage = \Bitrix\Main\Application::getInstance()->getLocalSession('main_event');
