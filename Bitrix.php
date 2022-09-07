@@ -137,6 +137,29 @@ $highLoadEventManager->addEventHandler('', 'BookingsOnAfterAdd', function (\Bitr
 
 // ========== INFOBLOCKS ==========
 
+// Сложный фильтр 
+
+function getSerarchFilter () {
+  if (isset($_GET['search']) and !empty($_GET['search'])) {
+    $filter = [
+      'IBLOCK_CODE' => 'tours',
+      'SECTION_CODE' => $this->section_code,
+      [
+        "LOGIC" => "OR",
+        ["NAME" => '%'.$_GET['search'].'%'],
+        ["DETAIL_TEXT" => '%'.$_GET['search'].'%'],
+        ["PREVIEW_TEXT" => '%'.$_GET['search'].'%'],
+      ]
+    ];
+  } else {
+    $filter = [
+      'IBLOCK_CODE' => 'tours',
+      'SECTION_CODE' => $this->section_code,
+    ];
+  }
+  return $filter;
+}
+
 // сортировка по двум признакам
 Array(
  "LOGIC" => "AND",
