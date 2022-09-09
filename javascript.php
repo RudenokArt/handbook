@@ -27,6 +27,16 @@
 
 </script>
 
+===== Плавный скролл страницы =====
+<style>
+  html {
+  scroll-behavior: smooth;
+}
+</style>
+<script>
+  window.scrollTo(pageYOffset, 0);
+</script>
+
 ===== Прокрутка скролла в блоке =====
 
 <script>
