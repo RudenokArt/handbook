@@ -32,7 +32,7 @@ class MasterTourApi_OrderList {
     $this->order_list = $this->RestApiRequest(); 
     $this->nav_string = $this->getNavString();
     $this->pagination_query_string = $this->getPaginationQueryString();
-     $this->sorting_query_string = $this->getSortingQueryString();
+    $this->sorting_query_string = $this->getSortingQueryString();
   }
 
   function getSortingQueryString () {
