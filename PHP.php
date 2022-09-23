@@ -1,4 +1,6 @@
 <?php
+// кодировка страницы
+header('Content-type: text/html; charset=utf-8');
 
 // PHP-IMAP
 // yum install php-imap - установка библиотеки
