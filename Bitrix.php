@@ -33,7 +33,7 @@ print_r($localStorage->get('main_event'));
  "PATH" => "/news/index.php",
 ], ];
 
-
+echo SITE_TEMPLATE_PATH; // путь к папке шаблона
 // подключить пролог
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
