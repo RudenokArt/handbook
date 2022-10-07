@@ -33,7 +33,15 @@ print_r($localStorage->get('main_event'));
  "PATH" => "/news/index.php",
 ], ];
 
-echo SITE_TEMPLATE_PATH; // путь к папке шаблона
+// Вставить компонент
+$APPLICATION->IncludeComponent(
+  "vetliva:advertisement_popup",
+  "",
+  Array()
+);
+
+// путь к папке шаблона
+echo SITE_TEMPLATE_PATH; 
 // подключить пролог
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
