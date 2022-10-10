@@ -2,6 +2,11 @@
 // кодировка страницы
 header('Content-type: text/html; charset=utf-8');
 
+// Показ ошибок
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 // PHP-IMAP
 // yum install php-imap - установка библиотеки
 $mail_login    = "hotel@vetliva.com";
