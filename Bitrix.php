@@ -26,6 +26,10 @@ $localStorage = \Bitrix\Main\Application::getInstance()->getLocalSession('main_e
 print_r($localStorage->get('main_event'));
 
 // ========== urlRewrite ==========
+// Для отключения проактивной защиты хостов/доменов в файле:
+// bitrix/modules/main/include.php закоментировать:
+// foreach (GetModuleEvents("main", "OnPageStart", true) as $arEvent)
+//   ExecuteModuleEventEx($arEvent);
 
 [1 => [ 
  "CONDITION" => "#^/news/([A-z-0-9]+)#",
