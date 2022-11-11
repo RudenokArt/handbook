@@ -44,6 +44,20 @@ $APPLICATION->IncludeComponent(
   Array()
 );
 
+// ========= Отложенный вывод контента или компонента ==============
+$APPLICATION->ShowViewContent('rus_bank_approved_order'); // собственно вывод - метка для подстановки ?>
+<?php
+ob_start(); // старт отложенного вывода 
+$APPLICATION->IncludeComponent(
+  "vetliva:bank_russia",
+  "",
+  Array()
+);
+$rus_bank_approved_order = ob_get_contents(); // сложили все в буфер
+ob_end_clean(); // очистили 
+$APPLICATION->AddViewContent("rus_bank_approved_order", $rus_bank_approved_order); // объявили метку и указали что в ней выводить
+// ======================================================================
+
 // путь к папке шаблона
 echo SITE_TEMPLATE_PATH; 
 // подключить пролог
