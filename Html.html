@@ -14,4 +14,31 @@
    <style>
      @media screen and (max-width: 800px){}
      @media (min-width:320) and (max-width: 600px){}
+
+@keyframes move {
+/*  */
+  from { /* исходная позиция */ 
+    margin-left: 0;
+  }
+  to { /* конечная позиция */ 
+    margin-left: 200px;
+    border-color:green;
+  }
+}
+.box{
+  width: 100px;
+  height: 100px;
+  border:1px solid red;
+  animation-name:move; /* привязка анимации */ 
+  animation-duration:10s; /* время анимации */
+  animation-timing-function:ease; /* ускорение анимации */ 
+  animation-delay:2s; /* задержка анимации */ 
+  animation-direction:reverse; /* направление анимации */
+  animation-iteration-count:2; /* кол-во повторов */ 
+}
+
+
+
    </style>
+
+
