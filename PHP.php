@@ -7,6 +7,10 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+// найти путь к файлу по названию класса
+$reflector = new \ReflectionClass(\travelsoft\booking\Utils::class);
+$filename = $reflector->getFileName();
+
 // PHP-IMAP
 // yum install php-imap - установка библиотеки
 $mail_login    = "hotel@vetliva.com";
