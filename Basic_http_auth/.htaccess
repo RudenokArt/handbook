@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Access to the staging site"
+AuthUserFile D:/OpenServer/domains/php-test/.htpasswd
+Require valid-user
