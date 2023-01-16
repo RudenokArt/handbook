@@ -12,8 +12,20 @@
 <!-- ========= -->
 
 <style>
+/*  Медиа запросы*/
  @media screen and (max-width: 800px){}
  @media (min-width:320) and (max-width: 600px){}
+
+/* input[tupe="number"] без стрелок*/
+.booking_mod-tabs_item-input input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+  appearance: textfield;
+}
+.booking_mod-tabs_item-input input[type="number"]::-webkit-outer-spin-button,
+.booking_mod-tabs_item-input input[type="number"]::-webkit-inner-spin-button {
+  display: none;
+}
 
  @keyframes move {
 /*  */
@@ -36,6 +48,11 @@ to { /* конечная позиция */
   animation-direction:reverse; /* направление анимации */
   animation-iteration-count:2; /* кол-во повторов */ 
 }
+
+
+
+
+
 </style>
 
 
