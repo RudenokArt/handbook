@@ -13,8 +13,8 @@
 
 <style>
 /*  Медиа запросы*/
- @media screen and (max-width: 800px){}
- @media (min-width:320) and (max-width: 600px){}
+@media screen and (max-width: 800px){}
+@media (min-width:320) and (max-width: 600px){}
 
 /* input[tupe="number"] без стрелок*/
 .booking_mod-tabs_item-input input[type="number"] {
@@ -27,7 +27,7 @@
   display: none;
 }
 
- @keyframes move {
+@keyframes move {
 /*  */
 from { /* исходная позиция */ 
   margin-left: 0;
@@ -54,6 +54,21 @@ to { /* конечная позиция */
 
 
 </style>
+
+
+Календарь на русском
+<script> 
+  $('input[name="date_from"], input[name="date_to"]').datepicker({
+    monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+    monthNamesShort: ['Янв','Фев','Мар','Апр','Май','Июн','Июл','Авг','Сен','Окт','Ноя','Дек'],
+    dayNames: ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'],
+    dayNamesShort: ['вск','пнд','втр','срд','чтв','птн','сбт'],
+    dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб'],
+    weekHeader: 'Не',
+    dateFormat: 'dd.mm.yy',
+    firstDay: 1,
+  });
+</script>
 
 
 Google reCaptcha
