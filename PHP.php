@@ -2,6 +2,9 @@
 // кодировка страницы
 header('Content-type: text/html; charset=utf-8');
 
+// Разрешить кроссдоменный запрос
+header('Access-Control-Allow-Origin:*');
+
 // Показ ошибок
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -31,8 +34,6 @@ echo '<script>setTimeout(function(){document.location.href="index.php";},2000);<
 // JSON
 $json=json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-// Разрешить кроссдоменный запрос
-header('Access-Control-Allow-Origin:*');
 
 // SOAP запрос
 $client = new SoapClient('http://api-tt.belavia.by/TimeTable/Service.asmx?WSDL');
