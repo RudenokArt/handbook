@@ -33,9 +33,23 @@ function rest_request () { // Простой запрос через webhook
   $json = file_get_contents($web_hook.$api_method.$api_query); 
   $arr = json_decode( $json, $assoc_array = true ); 
 }
-
 ?>
 
+<script> // Javascript (JS) запрос через webhook
+  $(function () {
+    var webHook = '<?php echo $booking_mod_request::WEB_HOOK;?>';
+    $('#booking_mod_request').submit(async function (e) {
+      e.preventDefault();
+      var queryString = new URLSearchParams();
+      queryString.set('fields[ASSIGNED_BY_ID]', 27427);
+      queryString.set('fields[TITLE]', 'Заявка на тур: ');
+      var request = webHook + 'crm.lead.add.json?' + queryString.toString();
+      console.log(request);
+      var result = await $.get(request);
+      console.log(result);
+    });
+  });
+</script>
 
 <script src="//api.bitrix24.com/api/v1/"></script> подключить BX24
 <script>
