@@ -6,6 +6,8 @@ require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 get_template_directory();
 // url темы
 get_stylesheet_directory_uri();
+// Проверка пользователя на админа:
+print_r(current_user_can('manage_options'));
 
 
 // SQL запрос к БД
