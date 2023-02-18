@@ -13,6 +13,9 @@ error_reporting(E_ALL);
 // найти путь к файлу по названию класса
 $reflector = new \ReflectionClass(\travelsoft\booking\Utils::class);
 $filename = $reflector->getFileName();
+// найти путь к файлу по названию функции
+$test = new ReflectionFunction('includeFileModifier');
+print_r($test->getFileName());
 
 // PHP-IMAP
 // yum install php-imap - установка библиотеки

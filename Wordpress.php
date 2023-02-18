@@ -2,6 +2,11 @@
 
 // Подключить пролог без шапки
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
+// Путь до темы (php path);
+get_template_directory();
+// url темы
+get_stylesheet_directory_uri();
+
 
 // SQL запрос к БД
 $sql=$wpdb->get_results('SELECT `post_content` FROM `wp_posts`');

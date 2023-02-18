@@ -231,6 +231,26 @@ $GLOBALS['main_event_filter'] = [ // Фильтр по свойству
 'PROPERTY_main_event_VALUE'=>'Y'
 ];
 
+// ========== D7 ==========
+
+// https://tokmakov.msk.ru/blog/item/217
+
+// Элементы инфоблока
+use \Bitrix\Main\Loader;
+use \Bitrix\Iblock\SectionTable;
+use \Bitrix\Iblock\ElementTable;
+use \Bitrix\Iblock\PropertyTable;
+Loader::includeModule('iblock');
+$result = ElementTable::getList(
+  array(
+    'select' => array('ID', 'NAME', 'CODE'),
+    'filter' => array('IBLOCK_ID' => 5, 'ID' =>  5164),
+  )
+);
+while ($row = $result->fetch()) {
+  print_r($row);
+}
+
 // ========== SQL ==========
 
 function getBookingPrices () {
@@ -239,22 +259,6 @@ function getBookingPrices () {
   $arr = [];
   while ($row = $dbRes->Fetch()) {
     array_push($arr, $row);
-  }
-  return $arr;
-}
-
- // ========== HELPERS ==========
-
-function logg () {
-  $str = file_get_contents($_SERVER['DOCUMENT_ROOT'].'/test_agent.html');
-  $str = time().' time: '.date('Y:m:d:H:i:s').'<br>'.$str;
-  file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test_agent.html', $str);
-}
-
-function getList_fetch ($src) {
-  $arr = [];
-  while ($item = $src->Fetch()) {
-    array_push($arr, $item);
   }
   return $arr;
 }
