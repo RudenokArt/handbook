@@ -124,11 +124,20 @@ CUser::SetUserGroup($user_id, $arGroups);
 
 // ========== HIGHLOADBLOCKS ==========
 
+// подключить модуль highload
+use Bitrix\Main\Loader;
+Loader::IncludeModule('highloadblock');
+
+// создать highload
+$hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
+  'NAME' => 'TasksPremium',
+  'TABLE_NAME' => 'tasks_premium', 
+));
+
 // получить highload-блок по фильтру
-$hl = \Bitrix\Highloadblock\HighloadBlockTable::getList([
+$hl_get = \Bitrix\Highloadblock\HighloadBlockTable::getList([
   'filter'=>['TABLE_NAME' => 'ts_prices',],
-]);
-$highloadblock=$hl->Fetch();
+])->Fetch();
 
 // получить элементы highload блока
 $items = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock);
