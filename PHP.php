@@ -172,3 +172,32 @@ function getCurrentMonth() {
 }
 ?>
 
+Загрузка файла:
+<div class="row pt-5">
+  <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="text-info h5">Логотип:</div>
+    <img src="<?php echo $theme_url.'/ug_ideal-libs/dompdf/img/ug-ideal.png?='.time(); ?>" width="200" alt="">
+  </div>
+  <div class="h5 text-info">Заменить:</div>
+  <form action="" enctype="multipart/form-data" method="post" id="company_logo-form">
+    <input type="file" name="logotip" id="company_logo">
+  </form>
+  <div>(загружать изображение в формате .png на прозрачном фоне)</div>
+</div>
+<script>
+  $('#company_logo').change(function () {
+    $('#company_logo-form')[0].submit();
+  });
+</script>
+<?php
+if (isset($_FILES['logotip'])) {
+  $ext = explode('.', $_FILES['logotip']['name']);
+  $ext = array_pop($ext);
+  if ($ext == 'png') {
+    move_uploaded_file($_FILES['logotip']['tmp_name'], $theme_path.'/ug_ideal-libs/dompdf/img/ug-ideal.png');
+    echo 'Логотип изменен';
+  } else {
+    echo 'Неверный формат файла';
+  }
+}
+?>
