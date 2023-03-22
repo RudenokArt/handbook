@@ -1,3 +1,4 @@
+
 <?php
 
 // ===== Получение файла по id =====
@@ -420,3 +421,12 @@ BX.ready(function(){
   };
 });
 </script>
+
+
+Перенос на другой домен.
+Если сайт редиректит на старый домен...
+Для отключения защиты понадобится доступ к сайту по FTP. Откройте файл:
+bitrix/modules/main/include.php
+Найдите и закомментируйте строки:
+foreach (GetModuleEvents("main", "OnPageStart", true) as $arEvent)
+ExecuteModuleEventEx($arEvent);
