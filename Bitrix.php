@@ -1,9 +1,19 @@
 
+<!-- BITRIX VUE -->
+<?php \Bitrix\Main\UI\Extension::load("ui.vue"); ?>
+<?php define('VUEJS_DEBUG', true); ?>
+<script>
+  BX.Vue.create({
+    el: '#roof_step4_vue_app',
+  });
+</script>
+
 <?php
 
 // ===== Получение файла по id =====
-
 $file=CFile::GetFileArray($id)['SRC'];
+// ===== Получение текущую папку в URL =====
+echo $this->getFolder();
 
 // ===== Загрузка файла на сервер ======
 echo CFile::InputFile("IMAGE_ID", 20, $str_IMAGE_ID); // отрисовать поле для загрузки
