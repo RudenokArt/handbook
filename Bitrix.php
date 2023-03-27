@@ -98,6 +98,24 @@ $this->getPath();
 // получить список стран
 print_r(GetCountryArray(LANGUAGE_ID));
 
+// ========== Custom fields ==========
+
+// Добавить пользовательское поле
+$field_id = (new CUserTypeEntity())->Add([
+ 'ENTITY_ID' => 'CRM_DEAL',
+ 'FIELD_NAME' => 'UF_CRM_DEAL_AWARD',
+ 'USER_TYPE_ID' => 'string',
+]);
+
+// Получить пользовательские поля по фильтру
+$field = CUserTypeEntity::GetList([], [
+   'ENTITY_ID' => 'CRM_DEAL',
+   'FIELD_NAME' => 'UF_CRM_DEAL_AWARD',
+]);
+
+// удалить кастомное поле по ID
+$delete = (new CUserTypeEntity())->Delete($field_id);
+
 // ========== USER ==========
 
 function getUserList () {
@@ -144,6 +162,21 @@ $hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
   'NAME' => 'TasksPremium',
   'TABLE_NAME' => 'tasks_premium', 
 ));
+
+// создать highload с кастомными полями
+$hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
+    'NAME' => 'DealAward',
+    'TABLE_NAME' => 'deal_award', 
+  ));
+  $hl_id = $hl_create->getId();
+  $arFields = Array(
+    "ENTITY_ID" => "HLBLOCK_".$hl_id,
+    "FIELD_NAME" => "UF_TITLE",
+    "USER_TYPE_ID" => "string",
+    "EDIT_FORM_LABEL" => Array("ru"=>"заголовок", "en"=>"title")
+  );
+  $obUserField  = new CUserTypeEntity;
+  $obUserField->Add($arFields);
 
 // Удалить highload по символьному коду
 $hl_get = \Bitrix\Highloadblock\HighloadBlockTable::getList([
