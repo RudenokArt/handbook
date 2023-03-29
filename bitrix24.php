@@ -17,6 +17,8 @@ if($row = $src->Fetch()){
 $products = CAllCrmProductRow::LoadRows($entity_type, $entity_id);
 
 // ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ С КОЛИЧЕСТВОМ И СТОИМОСТЬЮ
+$products = CCrmDeal::LoadProductRows($entity_type, $entity_id);
+
 $prod = CCrmProductRow::GetList([], [
   'OWNER_ID' => $deal_id,
   'OWNER_TYPE' => 'D', // DEAL OR L-LEAD

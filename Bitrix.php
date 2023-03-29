@@ -109,9 +109,14 @@ $field_id = (new CUserTypeEntity())->Add([
 
 // Получить пользовательские поля по фильтру
 $field = CUserTypeEntity::GetList([], [
-   'ENTITY_ID' => 'CRM_DEAL',
-   'FIELD_NAME' => 'UF_CRM_DEAL_AWARD',
+ 'ENTITY_ID' => 'CRM_DEAL',
+ 'FIELD_NAME' => 'UF_CRM_DEAL_AWARD',
 ]);
+
+// получить значение пользовательского поля типа "списаок"
+$rsEnum = CUserFieldEnum::GetList([], ['ID' => $field_id]);
+$arEnum = $rsEnum->Fetch();
+$row['award_type'] = $arEnum['VALUE'];
 
 // удалить кастомное поле по ID
 $delete = (new CUserTypeEntity())->Delete($field_id);
@@ -165,18 +170,18 @@ $hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
 
 // создать highload с кастомными полями
 $hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
-    'NAME' => 'DealAward',
-    'TABLE_NAME' => 'deal_award', 
-  ));
-  $hl_id = $hl_create->getId();
-  $arFields = Array(
-    "ENTITY_ID" => "HLBLOCK_".$hl_id,
-    "FIELD_NAME" => "UF_TITLE",
-    "USER_TYPE_ID" => "string",
-    "EDIT_FORM_LABEL" => Array("ru"=>"заголовок", "en"=>"title")
-  );
-  $obUserField  = new CUserTypeEntity;
-  $obUserField->Add($arFields);
+  'NAME' => 'DealAward',
+  'TABLE_NAME' => 'deal_award', 
+));
+$hl_id = $hl_create->getId();
+$arFields = Array(
+  "ENTITY_ID" => "HLBLOCK_".$hl_id,
+  "FIELD_NAME" => "UF_TITLE",
+  "USER_TYPE_ID" => "string",
+  "EDIT_FORM_LABEL" => Array("ru"=>"заголовок", "en"=>"title")
+);
+$obUserField  = new CUserTypeEntity;
+$obUserField->Add($arFields);
 
 // Удалить highload по символьному коду
 $hl_get = \Bitrix\Highloadblock\HighloadBlockTable::getList([
@@ -215,6 +220,11 @@ if ($result->isSuccess()) {
 } else {
   echo 'Ошибка: ' . implode(', ', $result->getErrors()) . "";
 }
+
+// Удалить элемент highload блока
+$entity = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($hl);
+$entity_data_class = $entity->getDataClass();
+$entity_data_class::delete($item_id);
 
 // Перехват события highload-блока
 $highLoadEventManager = \Bitrix\Main\EventManager::getInstance();
