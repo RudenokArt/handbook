@@ -1,5 +1,35 @@
 <?php 
 
+// ========== CRM DEALS ==========
+
+// получить сделки по фильтру
+$src = CCrmDeal::GetList([], [
+  'ID' => $deal_id,
+], []);
+if($row = $src->Fetch()){
+// code
+}   
+
+// ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ
+// $entity_type - Тип сущности ('D' - сделкa, 'L' - лид) 
+// $entity_id - ID сущности
+// $products - массив товаров
+$products = CAllCrmProductRow::LoadRows($entity_type, $entity_id);
+
+// ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ С КОЛИЧЕСТВОМ И СТОИМОСТЬЮ
+$prod = CCrmProductRow::GetList([], [
+  'OWNER_ID' => $deal_id,
+  'OWNER_TYPE' => 'D', // DEAL OR L-LEAD
+])->Fetch();
+
+$products = \Bitrix\Crm\ProductRowTable::getList([
+  'select' => ['PRICE', 'QUANTITY'],
+  'filter' => [
+    'OWNER_ID' => $deal_id,
+    'OWNER_TYPE' => 'D', // DEAL OR L-LEAD
+  ]
+])->fetchAll();
+
 // ========== CRM LEADS ==========
 
 function get_leads_sourses () {  // получить источники лидов
@@ -36,19 +66,19 @@ function rest_request () { // Простой запрос через webhook
 ?>
 
 <script> // Javascript (JS) запрос через webhook
-  $(function () {
-    var webHook = '<?php echo $booking_mod_request::WEB_HOOK;?>';
-    $('#booking_mod_request').submit(async function (e) {
-      e.preventDefault();
-      var queryString = new URLSearchParams();
-      queryString.set('fields[ASSIGNED_BY_ID]', 27427);
-      queryString.set('fields[TITLE]', 'Заявка на тур: ');
-      var request = webHook + 'crm.lead.add.json?' + queryString.toString();
-      console.log(request);
-      var result = await $.get(request);
-      console.log(result);
-    });
+$(function () {
+  var webHook = '<?php echo $booking_mod_request::WEB_HOOK;?>';
+  $('#booking_mod_request').submit(async function (e) {
+    e.preventDefault();
+    var queryString = new URLSearchParams();
+    queryString.set('fields[ASSIGNED_BY_ID]', 27427);
+    queryString.set('fields[TITLE]', 'Заявка на тур: ');
+    var request = webHook + 'crm.lead.add.json?' + queryString.toString();
+    console.log(request);
+    var result = await $.get(request);
+    console.log(result);
   });
+});
 </script>
 
 <script src="//api.bitrix24.com/api/v1/"></script> подключить BX24
