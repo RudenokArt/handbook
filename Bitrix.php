@@ -113,7 +113,7 @@ $field = CUserTypeEntity::GetList([], [
  'FIELD_NAME' => 'UF_CRM_DEAL_AWARD',
 ]);
 
-// получить значение пользовательского поля типа "списаок"
+// получить значение пользовательского поля типа "список"
 $rsEnum = CUserFieldEnum::GetList([], ['ID' => $field_id]);
 $arEnum = $rsEnum->Fetch();
 $row['award_type'] = $arEnum['VALUE'];
@@ -184,20 +184,20 @@ $obUserField  = new CUserTypeEntity;
 $obUserField->Add($arFields);
 
 // Удалить highload по символьному коду
-$hl_get = \Bitrix\Highloadblock\HighloadBlockTable::getList([
+$hl = \Bitrix\Highloadblock\HighloadBlockTable::getList([
   'filter'=>['TABLE_NAME' => 'tasks_premium',],
 ])->Fetch()['ID'];
-if ($hl_get) {
-  \Bitrix\Highloadblock\HighloadBlockTable::delete($hl_get);
+if ($hl) {
+  \Bitrix\Highloadblock\HighloadBlockTable::delete($hl);
 }
 
 // получить highload-блок по фильтру
-$hl_get = \Bitrix\Highloadblock\HighloadBlockTable::getList([
+$hl = \Bitrix\Highloadblock\HighloadBlockTable::getList([
   'filter'=>['TABLE_NAME' => 'ts_prices',],
 ])->Fetch();
 
 // получить элементы highload блока
-$items = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock);
+$items = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($hl);
 $entity_data_class = $items->getDataClass();
 $rsData = $entity_data_class::getList(['filter'=>[]]);
 $arr = [];
@@ -206,15 +206,13 @@ foreach ($rsData as $key => $value) {
 }
 
 // добавить элемент в highload блок
-$entity = \Bitrix\Highloadblock\HighloadBlockTable::compileEntity($highloadblock); 
+$entity = \Bitrix\Highloadblock\HighloadBlockTable::compileEntity($hl); 
 $entity_data_class = $entity->getDataClass();
-$arr_data = self::postData();
-$data = [
-  'UF_AUTHOR' => $arr_data['author'],
-  'UF_RECIPIENT' => $arr_data['recipient'],
-  'UF_MESSAGE' => $arr_data['message'],
-];
-$result = $entity_data_class::add($data);
+$result = $entity_data_class::add([
+  'UF_USER_ID' => $deal['ASSIGNED_BY_ID'],
+  'UF_DEAL_ID' => $deal['ID'],
+  'UF_AWARD_AMOUNT' => $deal['AWARD_AMOUNT'],
+]);
 if ($result->isSuccess()) {
   echo 'успешно добавлен';
 } else {

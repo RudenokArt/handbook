@@ -1,5 +1,11 @@
 <?php 
 
+// получить id документа в actitivity бизнесс процесса
+ $this->deal_id = $this->GetDocumentId();
+
+// получить ID инфоблока "Торговый каталог"
+$iblock_id = Bitrix\Main\Config\Option::get('crm', 'default_product_catalog_id');
+
 // ========== CRM DEALS ==========
 
 // получить сделки по фильтру
