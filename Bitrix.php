@@ -10,10 +10,6 @@
 
 <?php
 
-// ===== Получение файла по id =====
-$file=CFile::GetFileArray($id)['SRC'];
-// ===== Получение текущую папку в URL =====
-echo $this->getFolder();
 
 // ===== Загрузка файла на сервер ======
 echo CFile::InputFile("IMAGE_ID", 20, $str_IMAGE_ID); // отрисовать поле для загрузки
@@ -68,6 +64,13 @@ $rus_bank_approved_order = ob_get_contents(); // сложили все в буф
 ob_end_clean(); // очистили 
 $APPLICATION->AddViewContent("rus_bank_approved_order", $rus_bank_approved_order); // объявили метку и указали что в ней выводить
 // ======================================================================
+
+
+// ===== Получение файла по id =====
+$file=CFile::GetFileArray($id)['SRC'];
+
+// ===== Получение текущую папку в URL =====
+echo $this->getFolder();
 
 // путь к папке шаблона
 echo SITE_TEMPLATE_PATH; 
