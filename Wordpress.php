@@ -2,10 +2,13 @@
 
 // Подключить пролог без шапки
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
+
 // Путь до темы (php path);
 get_template_directory();
+
 // url темы
 get_stylesheet_directory_uri();
+
 // Проверка пользователя на админа:
 print_r(current_user_can('manage_options'));
 
@@ -42,7 +45,13 @@ function ug_ideal_admin () {
 function ug_ideal_admin_template_size(){
 	include_once 'ug_ideal-includes/admin-template-size.php';
 }
-// ==========================================================
+
+
+// ===== ДОБАВЛЕНИЕ СВОИХ СТРАНИЦ В ПУБЛИЧНУЮ ЧАСТЬ
+
+/*
+Template Name: ug_ideal-catalog
+*/
 
 
 ?>
