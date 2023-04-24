@@ -130,9 +130,52 @@ function date_interval () { // выбор интервала дат
 
 ?>
 
+<!-- BOOTSTRAP ПАГИНАЦИЯ -->
+
+<?php 
+$pages_qty = 10;
+$current_page = 1;
+if ($_GET['page_N']) {
+  $current_page = $_GET['page_N'];
+}
+?>
+<div class="row justify-content-center">
+  <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="page_N=1" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <?php for($i=1; $i <= $pages_qty ; $i++): ?>
+          <?php if ($i >= $current_page-2 and $i <= $current_page+2): ?>
+            <li class="page-item">
+              <a class="page-link <?php if ($current_page == $i): ?>
+              text-danger
+              <?php endif ?>" href="?page_N=<?php echo $i;?>">
+              <?php echo $i ?>
+            </a>
+          </li>
+        <?php endif ?>
+      <?php endfor; ?>
+      <li class="page-item">
+        <a class="page-link" href="?page_N=<?php echo $i-1;?>" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>
+</div>
+
 <!-- Простой календарь на PHP -->
-<a href="?year=<?php echo prevMon()['year'];?>&mon=<?php echo prevMon()['mon'];?>">previous</a>
-<a href="?year=<?php echo nextMonth()['year'];?>&mon=<?php echo nextMonth()['mon'];?>">next</a>
+<a href="?year=<?php echo prevMon()['year'];?>&mon=<?php echo prevMon()['mon'];?>">
+  previous
+</a>
+<a href="?year=<?php echo nextMonth()['year'];?>&mon=<?php echo nextMonth()['mon'];?>">
+  next
+</a>
 <pre><?php print_r(getCurrentMonth()) ?></pre>
 <?php 
 function nextMonth () {
