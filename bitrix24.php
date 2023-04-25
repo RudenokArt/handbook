@@ -1,7 +1,7 @@
 <?php 
 
 // получить id документа в actitivity бизнесс процесса
- $this->deal_id = $this->GetDocumentId();
+$this->deal_id = $this->GetDocumentId();
 
 // получить ID инфоблока "Торговый каталог"
 $iblock_id = Bitrix\Main\Config\Option::get('crm', 'default_product_catalog_id');
@@ -38,6 +38,13 @@ $products = \Bitrix\Crm\ProductRowTable::getList([
   ]
 ])->fetchAll();
 
+// Получить стандартные поля по сделке
+CCrmDeal::GetFieldsInfo();
+// или так:
+CCrmOwnerType::getFieldsInfo(
+  CCrmOwnerType::Deal
+);
+
 // ========== CRM LEADS ==========
 
 function get_leads_sourses () {  // получить источники лидов
@@ -73,34 +80,34 @@ function rest_request () { // Простой запрос через webhook
 }
 ?>
 
-<script> // Javascript (JS) запрос через webhook
-$(function () {
-  var webHook = '<?php echo $booking_mod_request::WEB_HOOK;?>';
-  $('#booking_mod_request').submit(async function (e) {
-    e.preventDefault();
-    var queryString = new URLSearchParams();
-    queryString.set('fields[ASSIGNED_BY_ID]', 27427);
-    queryString.set('fields[TITLE]', 'Заявка на тур: ');
-    var request = webHook + 'crm.lead.add.json?' + queryString.toString();
-    console.log(request);
-    var result = await $.get(request);
-    console.log(result);
+<!-- // Javascript (JS) запрос через webhook -->
+<script>
+  $(function () {
+    var webHook = '<?php echo $booking_mod_request::WEB_HOOK;?>';
+    $('#booking_mod_request').submit(async function (e) {
+      e.preventDefault();
+      var queryString = new URLSearchParams();
+      queryString.set('fields[ASSIGNED_BY_ID]', 27427);
+      queryString.set('fields[TITLE]', 'Заявка на тур: ');
+      var request = webHook + 'crm.lead.add.json?' + queryString.toString();
+      console.log(request);
+      var result = await $.get(request);
+      console.log(result);
+    });
   });
-});
 </script>
 
 <script src="//api.bitrix24.com/api/v1/"></script> подключить BX24
 <script>
+$(function(){ // создать пользовательское поле
+  BX24.callMethod('userfieldtype.add', {
+    USER_TYPE_ID: 'test',
+    HANDLER: 'https://b24.phpdev.org/test/b24uf.php',
+    TITLE: 'Test type',
+    DESCRIPTION: 'Test userfield type for documentation'
+  });
 
-    $(function(){ // создать пользовательское поле
-      BX24.callMethod('userfieldtype.add', {
-        USER_TYPE_ID: 'test',
-        HANDLER: 'https://b24.phpdev.org/test/b24uf.php',
-        TITLE: 'Test type',
-        DESCRIPTION: 'Test userfield type for documentation'
-      });
-
-      $('#slider-show').click(function () { 
+  $('#slider-show').click(function () { 
         BX24.openApplication({ // Открыть серверное приложение в слайдере
           'opened': true,
         },
@@ -109,7 +116,7 @@ $(function () {
         });
       });
 
-      $('#slider-show').click(function () {
+  $('#slider-show').click(function () {
         BX24.init( // Открыть страницу в слайдере
           function() {
             BX24.openPath(
@@ -120,22 +127,44 @@ $(function () {
           });
       });
 
-    });
-  </script>
+});
+</script>
 
-  <?php // селект для сделок, лидов и т.п.
-  CModule::IncludeModule('crm');
-  $fieldIdentifier='COMPANY_ID';
-  $GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
-    '',
-    array(
-      'ENTITY_TYPE' => ['COMPANY','LEAD'],
-      'INPUT_NAME' => $fieldIdentifier,
-      'INPUT_VALUE' => 'company',
-      'FORM_NAME' => "",
-      'MULTIPLE' => 'N',
-      'FILTER'=>'Y',
-    ),
-    false,
-    array('HIDE_ICONS' => 'Y')
-    ); ?>
+<?php 
+
+// селект для сделок, лидов и т.п.
+CModule::IncludeModule('crm');
+$fieldIdentifier='COMPANY_ID';
+$GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
+  '',
+  array(
+    'ENTITY_TYPE' => ['COMPANY','LEAD'],
+    'INPUT_NAME' => $fieldIdentifier,
+    'INPUT_VALUE' => 'company',
+    'FORM_NAME' => "",
+    'MULTIPLE' => 'N',
+    'FILTER'=>'Y',
+  ),
+  false,
+  array('HIDE_ICONS' => 'Y')
+); 
+
+
+
+// Вызов Rest методов на php
+// для CRM
+CCrmRestService::onRestServiceMethod([], false, new CRestServer(['METHOD' => 'crm.deal.fields']));
+// для остальных
+class BitrixRest {
+ public function checkAuth($query) {
+  if ($query['initiator'] === self::class) return true;
+}
+public static function call($method, $params) {
+  addEventHandler('rest', 'onRestCheckAuth', ['BitrixRest', 'checkAuth']);
+  return (new CRestServer(['CLASS' => 'CRestProvider', 'METHOD' => $method, 'QUERY' => array_merge($params, ['initiator' => self::class])]))->process()['result'];
+}
+
+}
+print_r(
+ BitrixRest::call('crm.contact.get', ['id' => 187])
+);
