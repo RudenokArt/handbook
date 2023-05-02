@@ -5,6 +5,7 @@ include_once $_SERVER['DOCUMENT_ROOT'].'/local/php_interface/phpword/autoload.ph
 $phpWord = new  \PhpOffice\PhpWord\PhpWord(); 
 $_doc = new \PhpOffice\PhpWord\TemplateProcessor($_SERVER['DOCUMENT_ROOT'].'/local/components/vetliva/partner_contract/template.docx');
 $_doc->setValue('partner', 'Санаторий Юность');
+$_doc->setImageValue('sig','sig.png'); // вставить изображение
 $_doc->saveAs($_SERVER['DOCUMENT_ROOT'].'/local/components/vetliva/partner_contract/contract.docx');
 
 ?>
