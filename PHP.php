@@ -10,6 +10,9 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+// перенос строки в txt
+PHP_EOL.date('H:i:s-d.m.Y');
+
 // найти путь к файлу по названию класса
 $reflector = new \ReflectionClass(\travelsoft\booking\Utils::class);
 $filename = $reflector->getFileName();

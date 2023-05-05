@@ -64,6 +64,17 @@ function getSourceList () { // получить источники лидов ч
   return $list;
 }
 
+// ===== TIME LINE ====
+
+// Добавить запись в timeline
+\Bitrix\Main\Loader::includeModule('crm');
+$resId = \Bitrix\Crm\Timeline\CommentEntry::create([
+  'TEXT' => 'test2',
+  'SETTINGS' => [],
+  'AUTHOR_ID' => 1,
+  'BINDINGS' => array(array('ENTITY_TYPE_ID' => CCrmOwnerType::Deal, 'ENTITY_ID' => $deal_id))
+]);
+
 // ===== B24 REST ====
 // https://bitrix.vetliva.by/rest/1/1hfn9tdkh923zrq6/im.message.add.json?DIALOG_ID=27427&MESSAGE=Hello%2C%20world!
 // https://bitrix.vetliva.by/rest/1/1hfn9tdkh923zrq6/tasks.task.add.json?fields[TITLE]=test%2C%20task&fields[RESPONSIBLE_ID]=27427
