@@ -58,18 +58,6 @@ function getSourceList () { // получить источники лидов ч
   return $list;
 }
 
-// ===== TIME LINE ====
-
-// Добавить запись в timeline
-\Bitrix\Main\Loader::includeModule('crm');
-$resId = \Bitrix\Crm\Timeline\CommentEntry::create([
-  'TEXT' => 'test2',
-  'SETTINGS' => [],
-  'AUTHOR_ID' => 1,
-  'BINDINGS' => array(array('ENTITY_TYPE_ID' => CCrmOwnerType::Deal, 'ENTITY_ID' => $deal_id))
-]);
-
-
 // селект для сделок, лидов и т.п.
 CModule::IncludeModule('crm');
 $fieldIdentifier='COMPANY_ID';
@@ -86,6 +74,34 @@ $GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
   false,
   array('HIDE_ICONS' => 'Y')
 ); 
+
+
+// ===== TIME LINE ====
+
+// Добавить запись в timeline
+\Bitrix\Main\Loader::includeModule('crm');
+$resId = \Bitrix\Crm\Timeline\CommentEntry::create([
+  'TEXT' => 'test2',
+  'SETTINGS' => [],
+  'AUTHOR_ID' => 1,
+  'BINDINGS' => array(array('ENTITY_TYPE_ID' => CCrmOwnerType::Deal, 'ENTITY_ID' => $deal_id))
+]);
+
+
+// ПЕРЕЗАПИСЬ ПОЛЕЙ ДОКУМЕНТА В МОМЕНТ ГЕНЕРАЦИИ
+\Bitrix\Main\EventManager::getInstance()->addEventHandler('documentgenerator', 'onBeforeProcessDocument', 'onBeforeProcessDocument');
+function onBeforeProcessDocument($event) {
+  $document = $event->getParameter('document');
+  lib\Debugger::singleLog_txt(json_encode(get_class_methods($document)));
+  $document->setValues(['sig' => '${sig}']);
+  /** @var \Bitrix\DocumentGenerator\Document $document */
+    // добавить дополнительные описания полей
+    // $document->setFields($newFields);
+    // добавить значения полей
+    //$document->setValues(['someField' => 'myCustomValue']);
+    // получить список полей и их текущих значений
+    //$fields = $document->getFields();
+}
 
 
 ?>
