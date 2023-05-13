@@ -4,6 +4,8 @@
 // отключить авторизацию на странице
 define('NOT_CHECK_PERMISSIONS', true);
 
+// МОДУЛЬ DOCUMENTGENERATOR
+\Bitrix\Main\Loader::includeModule('documentgenerator');
 // классы для таблицы b_documentgenerator_template
 print_r(get_class_methods('Bitrix\DocumentGenerator\Model\TemplateTable'));
 print_r(get_class_methods('Bitrix\DocumentGenerator\Template'));

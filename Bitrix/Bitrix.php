@@ -1,17 +1,15 @@
 <?php
 
-
-// ===== Получение файла по id =====
-$file=CFile::GetFileArray($id)['SRC'];
-
 // ===== Получение текущую папку в URL =====
 echo $this->getFolder();
 
 // путь к папке шаблона
 echo SITE_TEMPLATE_PATH; 
 
-// подключить пролог
+// подключить пролог и эпилог
 require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");
+
 
 // footer & header 
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
@@ -39,6 +37,24 @@ $this->getPath();
 // получить список стран
 print_r(GetCountryArray(LANGUAGE_ID));
 
+// Регистрация события при установке модуля
+registerModuleDependences('documentgenerator', 'onBeforeProcessDocument', $this->MODULE_ID, 'DocumentGeneratorHandler', 'customizeDocument');
+class DocumentGeneratorHandler {
+  public static function customizeDocument($event)
+  { 
+    $event->setValues(['signature' => '${signature}']);
+    // // // добавить дополнительные описания полей
+    // // // $document->setFields($newFields);
+    // // // добавить значения полей
+    // $document->setValues(['signature' => '${signature}']);
+    // // // получить список полей и их текущих значений
+    // // //$fields = $document->getFields();
+  }
+}
+
+
+// ===== Получение файла по id =====
+$file=CFile::GetFileArray($id)['SRC'];
 
 // ===== Загрузка файла на сервер ======
 echo CFile::InputFile("IMAGE_ID", 20, $str_IMAGE_ID); // отрисовать поле для загрузки
