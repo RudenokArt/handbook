@@ -39,3 +39,6 @@ function passwordGenerator(){
     }
     return $string;
   }
+
+  // PHPMailer
+  // composer require phpmailer/phpmailer - установка
