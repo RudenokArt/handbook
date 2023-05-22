@@ -1,5 +1,12 @@
 <?php 
 
+// РЕГИСТРАЦИЯ ТЕМЫ В STYLE.CSS
+/**
+ * Theme Name:  theme1
+ Author: art
+ */
+
+
 // Подключить пролог без шапки
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 
