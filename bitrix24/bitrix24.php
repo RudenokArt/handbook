@@ -13,7 +13,7 @@ print_r(get_class_methods('Bitrix\DocumentGenerator\Template'));
 Bitrix\DocumentGenerator\Model\FileTable();
 // Класс для работы с таблицей b_documentgenerator_document
 Bitrix\DocumentGenerator\Model\DocumentTable();
-// Получить элемент из таблицы b_file по полю FILE_ID таблицы b_documentgenerator_template
+// Получить элемент таблицы b_file по полю FILE_ID таблицы b_documentgenerator_template
 Bitrix\DocumentGenerator\Model\FileTable::getBFileId($file_id);
 
 // получить id документа в actitivity бизнесс процесса
