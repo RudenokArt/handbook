@@ -39,3 +39,13 @@ class BitrixRest {
 print_r(
  BitrixRest::call('crm.contact.get', ['id' => 187])
 );
+
+?>
+
+<script>
+
+  BX.SidePanel.Instance.open('add_faq_form.php?update='+item_id, {
+    allowChangeHistory: false,
+  });
+  
+</script>

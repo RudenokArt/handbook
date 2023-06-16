@@ -22,4 +22,20 @@ function getBookingPrices () {
   return $arr;
 }
 
+/**
+ * 
+ */
+class ClassName extends DataManager
+{
+
+  // Валидация средствами SQL
+  public static function validatedAdd(array $arFields) {
+    try {
+      return parent::add($arFields)->getId();
+    } catch (\Bitrix\Main\DB\SqlQueryException $e) {
+      return $e->getMessage();
+    }
+  }
+}
+
 ?>

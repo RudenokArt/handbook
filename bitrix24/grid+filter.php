@@ -75,3 +75,17 @@ Toolbar::addFilter([
 
 
 ?>
+
+<script>
+	// перезагрузить грид
+	var gridObject = BX.Main.gridManager.getById('tinkoff_operations_list');
+	if (gridObject.hasOwnProperty('instance')){
+		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
+	}
+
+	// перезагрузить родительский грид из слайдера
+	var gridObject = top.BX.Main.gridManager.getById('tinkoff_operations_list');
+	if (gridObject.hasOwnProperty('instance')){
+		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
+	}
+</script>
