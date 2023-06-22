@@ -17,11 +17,11 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
 
 // jQuery
 CJSCore::Init(array("jquery"));
-
-// font-awesome
-$APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
 // bootstrap
 \Bitrix\Main\UI\Extension::load("ui.bootstrap4");
+// font-awesome
+$APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
+
 
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
@@ -84,7 +84,7 @@ print_r($localStorage->get('main_event'));
 //   ExecuteModuleEventEx($arEvent);
 
 [1 => [ 
- "CONDITION" => "#^/news/([A-z-0-9]+)#",
+ "CONDITION" => "#^/news/([A-z-0-9]+)/?#",
  "RULE" => "SECTION_ID=$1",
  "PATH" => "/news/index.php",
 ], ];

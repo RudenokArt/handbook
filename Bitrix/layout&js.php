@@ -1,3 +1,4 @@
+
 <!-- BITRIX VUE -->
 <?php \Bitrix\Main\UI\Extension::load("ui.vue"); ?>
 <?php define('VUEJS_DEBUG', true); ?>
@@ -8,6 +9,8 @@
 </script>
 
 <?php 
+// url шаблона сайта
+SITE_TEMPLATE_PATH
 // ========== JS LIBRARY ==========
 
 function js_library () { // js библиотека
