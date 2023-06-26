@@ -38,6 +38,28 @@ CCrmDeal::GetFieldsInfo();
 CCrmOwnerType::getFieldsInfo(
   CCrmOwnerType::Deal
 );
+// пользовательские поля сделок 
+Bitrix\Main\UserFieldTable::getList(['filter' => ['ENTITY_ID' => 'CRM_DEAL']])->fetchAll();
+
+function getDealFieldsArr () { // все поля сделок с именами
+  foreach (CCrmDeal::getFieldsInfo() as $id => $field) {
+    $fields[] = [
+      'FIELD_NAME' => $id,
+      'MAIN_USER_FIELD_LANG_EDIT_FORM_LABEL' => CCrmDeal::getFieldCaption($id)
+    ];
+  }
+  $uFields = Bitrix\Main\UserFieldTable::getList([
+    'select' => ['FIELD_NAME', 'LANG.EDIT_FORM_LABEL'],
+    'filter' => ['ENTITY_ID' => 'CRM_DEAL', 'LANG.LANGUAGE_ID' => LANGUAGE_ID],
+    'runtime' => [
+      'LANG' => [
+        'data_type' => Bitrix\Main\UserFieldLangTable::getEntity(),
+        'reference' => ['this.ID' => 'ref.USER_FIELD_ID']
+      ]
+    ]
+  ])->fetchAll();
+  return [$fields, $uFields];
+}
 
 // ========== CRM LEADS ==========
 
