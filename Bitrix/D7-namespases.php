@@ -14,6 +14,9 @@ Bitrix\Crm\StatusTable::getList();
 // Категории сделок
 Bitrix\Crm\Category\DealCategory::getAll(true);
 
+// Все сделки по контакту: 
+\Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
+
 // ИНФОБЛОКИ
 \Bitrix\Iblock\TypeTable::getList(); // списки типов инфоблоков
 \Bitrix\Iblock\IblockTable::getList(); // списки инфоблоков

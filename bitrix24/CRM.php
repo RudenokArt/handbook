@@ -10,6 +10,12 @@ if($row = $src->Fetch()){
 // code
 }   
 
+// Все сделки по контакту: 
+\Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
+
+// Получить типы сделок: 
+CCrmStatus::GetStatusListEx('DEAL_TYPE');
+
 // ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ
 // $entity_type - Тип сущности ('D' - сделкa, 'L' - лид) 
 // $entity_id - ID сущности
