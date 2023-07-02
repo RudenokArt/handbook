@@ -1,3 +1,16 @@
+<?php 
+
+
+// Отправить сообщение от пользвателя копльзователю
+\CIMMessage::Add(array(  
+	'FROM_USER_ID' => 4,  
+	'TO_USER_ID' => 1, 
+	'MESSAGE' => 'one more message', 
+));  
+
+?>
+
+
 CIMChat::getCrmChatId('DEAL|123')
 $params = [
 'filter' => ['=CHAT_ID' => $chatId, '>AUTHOR_ID' => 0],
