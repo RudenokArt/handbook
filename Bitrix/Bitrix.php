@@ -56,6 +56,12 @@ class DocumentGeneratorHandler {
 // ===== Получение файла по id =====
 $file=CFile::GetFileArray($id)['SRC'];
 
+// ===== Принять файл с формы, сохранить и записать в таблицу b_file;
+$file_id = CFile::SaveFile(
+  array_merge($_FILES['contact_photo'], ['del' => 'N', 'MODULE_ID' => 'main', ]),
+  'tmp'
+);
+
 // ===== Загрузка файла на сервер ======
 echo CFile::InputFile("IMAGE_ID", 20, $str_IMAGE_ID); // отрисовать поле для загрузки
 $arr_file=Array( // загрузить файл 
