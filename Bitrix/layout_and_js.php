@@ -10,7 +10,7 @@
 
 <?php 
 // url шаблона сайта
-SITE_TEMPLATE_PATH
+SITE_TEMPLATE_PATH;
 // ========== JS LIBRARY ==========
 
 function js_library () { // js библиотека
