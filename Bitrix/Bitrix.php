@@ -52,6 +52,8 @@ class DocumentGeneratorHandler {
   }
 }
 
+// ===== Конвертировать BB коды в html ======
+$messages[$key]['MESSAGE'] = $bbTextParser->convertText($value['MESSAGE']);
 
 // ===== Получение файла по id =====
 $file=CFile::GetFileArray($id)['SRC'];

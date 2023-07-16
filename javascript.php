@@ -27,11 +27,27 @@
 
 </script>
 
+===== Загрузка файла на сервер FETCH =====
+<form enctype="multipart/form-data" method="post" id="attachment_form">
+  <input v-on:change="sendAttachment" type="file" name="attachment" multiple="multiple">
+</form>
+<script>
+  fetch('/test.php', {
+    method: 'POST',
+    body: new FormData(document.querySelector('#attachment_form')),
+  }).then(function(response){
+    return response.text();
+  }).then(function (text) {
+    console.log(text);
+    $('input[name="attachment"]').val(null);
+  });
+</script>
+
 ===== Плавный скролл страницы =====
 <style>
   html {
-  scroll-behavior: smooth;
-}
+    scroll-behavior: smooth;
+  }
 </style>
 <script>
   window.scrollTo(pageYOffset, 0);
@@ -59,10 +75,10 @@
 
 ===== DRAG & DROP =====
 <div class="container">
-   <a href="" class="row">item # 1</a>
-   <a href="" class="row">item # 2</a>
-   <a href="" class="row">item # 3</a>
- </div>
+ <a href="" class="row">item # 1</a>
+ <a href="" class="row">item # 2</a>
+ <a href="" class="row">item # 3</a>
+</div>
 <script>
   var drag, undrag;
   $('.row').bind('dragover', function(){
