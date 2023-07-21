@@ -1,5 +1,8 @@
 <?php
 
+// Подключить модуль
+\Bitrix\Main\Loader::includeModule('crm');
+
 // ===== Получение текущую папку в URL =====
 echo $this->getFolder();
 

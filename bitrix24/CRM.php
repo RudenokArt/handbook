@@ -2,19 +2,28 @@
 
 // ========== CRM DEALS ==========
 
-// получить сделки по фильтру
-$src = CCrmDeal::GetList([], [
-  'ID' => $deal_id,
-], []);
-if($row = $src->Fetch()){
-// code
-}   
+// Контакты
+\Bitrix\Crm\ContactTable::getList();
+
+// Статусы сделок
+Bitrix\Crm\StatusTable::getList();
+// Категории сделок
+Bitrix\Crm\Category\DealCategory::getAll(true);
 
 // Все сделки по контакту: 
 \Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
 
+// Телефоны и email контактов
+Bitrix\Crm\FieldMultiTable::getList();
+
+// Адреса контактов
+\Bitrix\Crm\AddressTable::getList();
+
 // Получить типы сделок: 
 CCrmStatus::GetStatusListEx('DEAL_TYPE');
+
+// получить дела (из timline)
+$data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
 
 // ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ
 // $entity_type - Тип сущности ('D' - сделкa, 'L' - лид) 

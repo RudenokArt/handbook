@@ -4,17 +4,20 @@
 // отключить авторизацию на странице
 define('NOT_CHECK_PERMISSIONS', true);
 
-// МОДУЛЬ DOCUMENTGENERATOR
-\Bitrix\Main\Loader::includeModule('documentgenerator');
-// классы для таблицы b_documentgenerator_template
-print_r(get_class_methods('Bitrix\DocumentGenerator\Model\TemplateTable'));
-print_r(get_class_methods('Bitrix\DocumentGenerator\Template'));
-// Класс для работы с таблицей b_documentgenerator_file
-Bitrix\DocumentGenerator\Model\FileTable();
-// Класс для работы с таблицей b_documentgenerator_document
-Bitrix\DocumentGenerator\Model\DocumentTable();
-// Получить элемент таблицы b_file по полю FILE_ID таблицы b_documentgenerator_template
-Bitrix\DocumentGenerator\Model\FileTable::getBFileId($file_id);
+
+// Запустить бизнесспроцесс для сделки кодом:
+$fields = [
+  'STAGE_ID' => 'C1:UC_556F1H',
+];
+$update = \Bitrix\Crm\DealTable::update($dealId, $fields);
+$workflows = Bitrix\Bizproc\Workflow\Template\Entity\WorkflowTemplateTable::getList([
+  'select' => ['ID'],
+  'filter' => ['=DOCUMENT_STATUS' => $fields['STAGE_ID']]
+]);
+while ($workflow = $workflows->fetch()) {
+  CBPDocument::startWorkflow($workflow['ID'], ['crm', 'CCrmDocumentDeal', 'DEAL_' . $dealId], [], $errors);
+}
+
 
 // получить id документа в actitivity бизнесс процесса
 $deal_id = $this->GetDocumentId();
@@ -43,7 +46,7 @@ print_r(
 ?>
 
 <script>
-
+  // Открыть слайдер
   BX.SidePanel.Instance.open('add_faq_form.php?update='+item_id, {
     allowChangeHistory: false,
   });
