@@ -76,6 +76,18 @@ function getDealFieldsArr () { // все поля сделок с именами
   return [$fields, $uFields];
 }
 
+// ========== CRM INVOICE ==========
+
+// получить инвойс по id (#5);
+use Bitrix\Main\Loader;
+use Bitrix\Crm\Service;
+Loader::includeModule('crm');
+$typeid = '31';
+$factory = Service\Container::getInstance()->getFactory($typeid);
+$sourceItemId = 5;
+$item = $factory->getItem($sourceItemId);
+print_r($item->getData());
+
 // ========== CRM LEADS ==========
 
 function get_leads_sourses () {  // получить источники лидов
