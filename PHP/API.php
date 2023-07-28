@@ -54,7 +54,7 @@ function cUrlGet () { // cUrl - запрос методом GET
   return curl_exec($curl);
 }
 
-function cUrlPost () { // cUrl - запрос методом POST
+  // cUrl - запрос методом POST
   $url = "https://online.vetliva.ru/Vetliva/json_handler.ashx";
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_URL, $url);
@@ -72,7 +72,23 @@ function cUrlPost () { // cUrl - запрос методом POST
   $resp = curl_exec($curl);
   curl_close($curl);
   var_dump($resp);
-}
 
-
-?>
+// Асинхронный СURL запрос (без ожидания ответа)
+$url = "https://demo.doc-brown.de/local/test/";
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($curl, CURLOPT_TIMEOUT, 1);
+$headers = array(
+   "Accept: application/json",
+   "Content-Type: application/json",
+   "Content-Length: 0",
+);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+//for debug only!
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+$resp = curl_exec($curl);
+curl_close($curl);
+var_dump($resp);
