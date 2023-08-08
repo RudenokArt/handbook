@@ -1,12 +1,19 @@
 <?php 
 
+// Подключить модуль
+\Bitrix\Main\Loader::includeModule('crm');
+
 // ========== CRM DEALS ==========
 
 // Контакты
 \Bitrix\Crm\ContactTable::getList();
 
+// Таблица связи инвойсов и контактов:
+// b_crm_entity_contact
+
 // Статусы сделок
 Bitrix\Crm\StatusTable::getList();
+
 // Категории сделок
 Bitrix\Crm\Category\DealCategory::getAll(true);
 
@@ -77,6 +84,12 @@ function getDealFieldsArr () { // все поля сделок с именами
 }
 
 // ========== CRM INVOICE ==========
+
+// Таблица с новыми инвойсами:
+// b_crm_dynamic_items_31
+
+// Таблица связи инвойсов и контактов:
+// b_crm_entity_contact
 
 // получить инвойс по id (#5);
 use Bitrix\Main\Loader;

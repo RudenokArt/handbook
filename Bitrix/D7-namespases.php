@@ -5,19 +5,6 @@
 // объект Request
 \Bitrix\Main\Application::getInstance()->getContext()->getRequest()->getQuery('id');
 
-// Статусы сделок
-Bitrix\Crm\StatusTable::getList();
-// Категории сделок
-Bitrix\Crm\Category\DealCategory::getAll(true);
-// Все сделки по контакту: 
-\Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
-// Телефоны и email контактов
-Bitrix\Crm\FieldMultiTable::getList();
-// Адреса контактов
-\Bitrix\Crm\AddressTable::getList();
-// Контакты
-\Bitrix\Crm\ContactTable::getList();
-
 // ИНФОБЛОКИ
 \Bitrix\Iblock\TypeTable::getList(); // списки типов инфоблоков
 \Bitrix\Iblock\IblockTable::getList(); // списки инфоблоков
