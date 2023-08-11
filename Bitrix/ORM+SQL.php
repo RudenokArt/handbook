@@ -2,6 +2,16 @@
 
 // ========== ORM ==========
 
+// ===== ERROR =====
+
+if($add->isSuccess()) {
+  $ID = $add->getId();
+  echo "New item id: ".$ID;
+} else {
+  $error = $add->getErrorMessages();
+  echo "ERROR: <pre>".var_export($error, true)."</pre>";
+}
+
 // ===== JOIN ======
 
 $messages = Bitrix\Im\Model\MessageTable::getList([
