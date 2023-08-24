@@ -1,0 +1,81 @@
+
+/* СОСЕДНИЙ СЕЛЕКТОР +
+позволяет выбрать элемент по его соседу сверху. */
+.item + p {
+	color:red;
+}
+
+/* РОДСТВЕННЫЙ СЕЛЕКТОР ~
+позволяет выбрать все элементы, находящиеся после заданного элемента внутри одного родителя.*/
+.first ~ .second{
+	color: red;
+}
+
+/* УНИВЕРСАЛЬНЫЙ СЕЛЕКТОР */
+.parent > * {
+	color: red;
+}
+
+/* Селектор атрибута - значение начинается с определенного текста */
+a[href^="about"] {
+	color: red;
+}
+/* Селектор атрибута - значение оканчивается определенным текстом */
+a[href$="faq"] {
+	color: red;
+}
+/* Селектор атрибута - значение содержит определенный текст */
+a[href*="t/f"] {
+	color: orange;
+}
+
+/*  Медиа запросы*/
+@media screen and (max-width: 800px){}
+@media (min-width:320) and (max-width: 600px){}
+
+/*select без стрелки*/
+#booking-mod select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none !important;
+}
+
+/* input[tupe="number"] без стрелок*/
+.booking_mod-tabs_item-input input[type="number"] {
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+.booking_mod-tabs_item-input input[type="number"]::-webkit-outer-spin-button,
+.booking_mod-tabs_item-input input[type="number"]::-webkit-inner-spin-button {
+	display: none;
+}
+
+/*тень элемента*/
+div { 
+	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* АНИМАЦИЯ */
+@keyframes move {
+	from { /* исходная позиция */ 
+		margin-left: 0;
+	}
+	to { /* конечная позиция */ 
+		margin-left: 200px;
+		border-color:green;
+	}
+}
+.box{
+	width: 100px;
+	height: 100px;
+	border:1px solid red;
+	animation-name:move; /* привязка анимации */ 
+	animation-duration:10s; /* время анимации */
+	animation-timing-function:ease; /* ускорение анимации */ 
+	animation-delay:2s; /* задержка анимации */ 
+	animation-direction:reverse; /* направление анимации */
+	animation-iteration-count:2; /* кол-во повторов */ 
+}
+
