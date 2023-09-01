@@ -1,0 +1,129 @@
+/* СОСЕДНИЙ СЕЛЕКТОР +
+позволяет выбрать элемент по его соседу сверху. */
+.item + p {
+	color:red;
+}
+
+/* РОДСТВЕННЫЙ СЕЛЕКТОР ~
+позволяет выбрать все элементы, находящиеся после заданного элемента внутри одного родителя.*/
+.first ~ .second{
+	color: red;
+}
+
+/* УНИВЕРСАЛЬНЫЙ СЕЛЕКТОР */
+.parent > * {
+	color: red;
+}
+
+/* Селектор атрибута - значение начинается с определенного текста */
+a[href^="about"] {
+	color: red;
+}
+/* Селектор атрибута - значение оканчивается определенным текстом */
+a[href$="faq"] {
+	color: red;
+}
+/* Селектор атрибута - значение содержит определенный текст */
+a[href*="t/f"] {
+	color: orange;
+}
+
+/* СОСТОЯНИЯ ССЫЛОК */
+a:link {
+	color: red;
+}
+a:visited {
+	color: green;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	color: blue;
+}
+/* ПЕРВЫЙ ЭЛЕМЕНТ В ВЫБОРКЕ	*/
+li:first-child { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:first-of-type {
+	color: red;
+}
+/* ПОСЛЕДНИЙ ЭЛЕМЕНТ В ВЫБОРКЕ	*/
+li:last-child { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:last-of-type {
+	color: red;
+}
+/* ТРЕТИЙ ПО СЧЕТУ ЭЛЕМЕНТ */
+li:nth-child(3) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-of-type(3) {
+	color: red;
+}
+/* ТРЕТИЙ С КОНЦА ЭЛЕМЕНТ */
+li:nth-last-child(2) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-last-of-type(3) {
+	color: red;
+}
+/* НЕЧЕТНЫЕ ЭЛЕМЕНТЫ */
+li:nth-child(odd) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-of-type(odd) {
+	color: red;
+}
+/* НЕЧЕТНЫЕ С КОНЦА ЭЛЕМЕНТЫ */
+li:nth-last-child(odd) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-last-of-type(odd) {
+	color: red;
+}
+/* ЧЕТНЫЕ ЭЛЕМЕНТЫ */
+li:nth-child(even) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-of-type(even) {
+	color: red;
+}
+/* ЧЕТНЫЕ С КОНЦА ЭЛЕМЕНТЫ */
+li:nth-last-child(even) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-last-of-type(even) {
+	color: red;
+}
+/* КАЖДЫЙ ТРЕТИЙ ЭЛЕМЕНТ но начиная с -1 */
+li:nth-child(3n-1) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-of-type(3n-1) {
+	color: red;
+}
+/* КАЖДЫЙ ТРЕТИЙ ЭЛЕМЕНТ С КОНЦА */
+li:nth-last-child(3n) { /* только для элементов являющихся потомками */
+	color: red;
+}
+p:nth-last-of-type(3n) {
+	color: red;
+}
+/* ЕДИНСТВЕННЫЙ элемент в выборке */
+li:only-child{ /* только для элементов являющихся потомками */
+	color: red;
+}
+p:only-of-type {
+	color: red;
+}
+/* Пустой элемент */
+p:empty {
+	border:1px solid red;
+}
+
+/*ОТРИЦАНИЕ*/
+p:not(.active) {
+	color: grey;
+}

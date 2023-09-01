@@ -61,6 +61,24 @@ Template Name: ug_ideal-catalog
 */
 
 
+
+
 ?>
 
 
+Я решил свою проблему с помощью своего решения под номером # 04 Смотрите ниже, что я пробовал:
+
+1- Убедитесь, что установлены ссылки на базу данных wp_option
+
+/* MySQL: */
+update wp_options set option_value = 'http://example.com' where option_name = 'siteurl';
+update wp_options set option_value = 'http://example.com' where option_name = 'home';
+2 - дополнительно указать URL-адрес в файл wp-config.php
+
+define('WP_HOME','http://example.com');
+define('WP_SITEURL','http://example.com');
+3- Очистить кэш с сервера
+
+4- Очистите кэш вашего браузера и историю (Ура!!! это решило мою проблему без перенаправления)
+
+В Chrome перейдите к chrome://settings/clearBrowserData и очистите кэш изображений и файлов.

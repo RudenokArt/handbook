@@ -18,12 +18,17 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
 
+
 // jQuery
 CJSCore::Init(array("jquery"));
 // bootstrap
 \Bitrix\Main\UI\Extension::load("ui.bootstrap4");
+
+// jQuery + bootstrap
+CJSCore::Init(['jquery', 'ui.bootstrap4']);
 // font-awesome
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
+
 
 
 // Автозагрузка классов
