@@ -31,14 +31,28 @@ print_r($test->getFileName());
 
 // ГЕНЕРАТОР ПАРОЛЕЙ
 function passwordGenerator(){
-    $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
-    $numChars = strlen($chars);
-    $string = '';
-    for ($i = 0; $i < 10; $i++) {
-      $string .= substr($chars, rand(1, $numChars) - 1, 1);
-    }
-    return $string;
+  $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+  $numChars = strlen($chars);
+  $string = '';
+  for ($i = 0; $i < 10; $i++) {
+    $string .= substr($chars, rand(1, $numChars) - 1, 1);
   }
+  return $string;
+}
 
   // PHPMailer
   // composer require phpmailer/phpmailer - установка
+
+
+  // MySQL
+
+$host = 'localhost';
+$log = 'root';
+$pas = 'root';
+$db = 'php_test';
+$link = mysqli_connect($host, $log, $pas, $db);
+$arr = mysqli_query($link,'SELECT * FROM `pages` ');
+while ($row = mysqli_fetch_assoc($arr)) {
+  print_r($row);
+}
+

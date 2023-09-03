@@ -11,8 +11,8 @@
   });
 </script>
 
-===== AJAX =====
 <script>
+// ===== AJAX =====
   function ajaxGetData (text,file) {
    var req = new XMLHttpRequest();
    req.open('POST','php-get-data.php');
@@ -25,7 +25,32 @@
  };
 }
 
+// ===== FormData ===== 
+var formdata = new FormData();
+formdata.set('product_id', 'V01PAK');
+formdata.set('preferred_day', 0);
+formdata.set('visual_min_age', 0);
+formdata.set('service_ParcelOutletRouting', 'yes');
+formdata.set('ident_date_of_birth', '');
+formdata.set('ident_min_age', 0);
+formdata.set('security', '150a8800fe');
+formdata.set('reference_id', '9');
+formdata.set('action', 'woocommerce_gzd_create_shipment_label_submit');
+console.log(Array.from(formdata));
+
+// ===== FETCH POST=====
+fetch('admin-ajax.php',{
+  method: 'POST',
+  body: formdata,
+}).then(function(response){
+  return response.text();
+}).then(function (text) {
+  console.log(text);
+});
+
 </script>
+
+
 
 ===== Загрузка файла на сервер FETCH =====
 <form enctype="multipart/form-data" method="post" id="attachment_form">

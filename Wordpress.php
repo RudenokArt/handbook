@@ -15,6 +15,7 @@ get_template_directory();
 
 // url темы
 get_stylesheet_directory_uri();
+get_template_directory_uri(); // для дочерних тем
 
 // Проверка пользователя на админа:
 print_r(current_user_can('manage_options'));
