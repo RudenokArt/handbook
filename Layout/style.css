@@ -1,6 +1,10 @@
 
 
-
+.test { /* Неподвижный фон */
+	background-image: url(/img/image-2.jpg);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
 
 /*  Медиа запросы*/
 @media screen and (max-width: 800px){}
