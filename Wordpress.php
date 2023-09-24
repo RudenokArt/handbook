@@ -25,6 +25,10 @@ print_r(current_user_can('manage_options'));
 $sql=$wpdb->get_results('SELECT `post_content` FROM `wp_posts`');
 print_r($sql);
 
+// Получить слаг текущей страницы
+$current_page_slug = get_post()->post_name;
+
+
 // ===== ДОБАВЛЕНИЕ СВОИХ СТРАНИЦ В АДМИНКУ
 add_action( 'admin_menu', 'true_top_menu_page', 25 );
 function true_top_menu_page(){
