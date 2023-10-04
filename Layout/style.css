@@ -56,3 +56,13 @@ div {
 	animation-iteration-count:2; /* кол-во повторов */ 
 }
 
+
+/*Обтекание и отмена обтекания*/
+img {
+	float: left;
+	margin-right: 50px;
+}
+.clearfix {
+	clear: both;
+}
+
