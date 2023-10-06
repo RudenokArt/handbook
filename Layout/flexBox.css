@@ -1,0 +1,12 @@
+* {/*	Для родителя*/
+	justify-content: center; /* Выравнивание по главной оси */
+	flex-direction: column-reverse; /* Направление оси */
+	align-items: flex-start; /* Выравнивание по поперечной оси	*/
+
+}
+
+* { /*	Для потомков*/
+	align-self: flex-end;
+	order: -1
+
+}
