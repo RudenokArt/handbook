@@ -1,0 +1,4 @@
+.parent { /* Разбивка на колонки */
+	display: grid;
+	grid-template-columns: 25vw 25vw;
+}
