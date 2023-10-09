@@ -29,40 +29,6 @@ Bitrix\Crm\FieldMultiTable::getList();
 // Получить типы сделок: 
 CCrmStatus::GetStatusListEx('DEAL_TYPE');
 
-// получить дела (из timline)
-$data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
-
-// ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ
-// $entity_type - Тип сущности ('D' - сделкa, 'L' - лид) 
-// $entity_id - ID сущности
-// $products - массив товаров
-$products = CAllCrmProductRow::LoadRows($entity_type, $entity_id);
-
-// ПОЛУЧИТЬ ТОВАРЫ ПО СДЕЛКЕ С КОЛИЧЕСТВОМ И СТОИМОСТЬЮ
-$products = CCrmDeal::LoadProductRows($entity_type, $entity_id);
-
-$prod = CCrmProductRow::GetList([], [
-  'OWNER_ID' => $deal_id,
-  'OWNER_TYPE' => 'D', // DEAL OR L-LEAD
-])->Fetch();
-
-$products = \Bitrix\Crm\ProductRowTable::getList([
-  'select' => ['PRICE', 'QUANTITY'],
-  'filter' => [
-    'OWNER_ID' => $deal_id,
-    'OWNER_TYPE' => 'D', // DEAL OR L-LEAD
-  ]
-])->fetchAll();
-
-// Получить стандартные поля по сделке
-CCrmDeal::GetFieldsInfo();
-// или так:
-CCrmOwnerType::getFieldsInfo(
-  CCrmOwnerType::Deal
-);
-// пользовательские поля сделок 
-Bitrix\Main\UserFieldTable::getList(['filter' => ['ENTITY_ID' => 'CRM_DEAL']])->fetchAll();
-
 function getDealFieldsArr () { // все поля сделок с именами
   foreach (CCrmDeal::getFieldsInfo() as $id => $field) {
     $fields[] = [
@@ -137,8 +103,12 @@ $GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
   array('HIDE_ICONS' => 'Y')
 ); 
 
+// ===== ТОРГОВЫЙ КАТАЛОГ (TRADE CATALOG) =====
 
-// ===== TIME LINE ====
+CCrmProductRow::GetList(); // Получить товары по сделке/лиду
+CCatalogSKU::getOffersList($arr); // получить торговые предложения
+
+// ===== TIME LINE =====
 
 // Добавить запись в timeline
 \Bitrix\Main\Loader::includeModule('crm');
@@ -149,6 +119,20 @@ $resId = \Bitrix\Crm\Timeline\CommentEntry::create([
   'BINDINGS' => array(array('ENTITY_TYPE_ID' => CCrmOwnerType::Deal, 'ENTITY_ID' => $deal_id))
 ]);
 
+// получить дела (из timline)
+$data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
+
+
+// ===== РАБОТА С ПОЛЯМИ =====
+
+// Получить стандартные поля по сделке
+CCrmDeal::GetFieldsInfo();
+// или так:
+CCrmOwnerType::getFieldsInfo(
+  CCrmOwnerType::Deal
+);
+// пользовательские поля сделок 
+Bitrix\Main\UserFieldTable::getList(['filter' => ['ENTITY_ID' => 'CRM_DEAL']])->fetchAll();
 
 // ПЕРЕЗАПИСЬ ПОЛЕЙ ДОКУМЕНТА В МОМЕНТ ГЕНЕРАЦИИ
 \Bitrix\Main\EventManager::getInstance()->addEventHandler('documentgenerator', 'onBeforeProcessDocument', 'onBeforeProcessDocument');
