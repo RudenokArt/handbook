@@ -2,4 +2,6 @@
 	display: grid;
 	grid-template-columns: 25vw 25vw;
 	grid-template-columns: repeat(5, 1fr); /* повтор колонок указанное количество раз */
+	grid-template-columns: repeat(5, auto); /* повтор колонок с автоподбором ширины */
+	grid-template-columns: 500px repeat(5, auto); /* 1-я колонка фиксированная ширина, остальные с автоподбором */
 }
