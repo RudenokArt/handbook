@@ -21,7 +21,7 @@ Bitrix\Crm\Category\DealCategory::getAll(true);
 \Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
 
 // Телефоны и email контактов
-Bitrix\Crm\FieldMultiTable::getList();
+\Bitrix\Crm\FieldMultiTable::getList();
 
 // Адреса контактов
 \Bitrix\Crm\AddressTable::getList();
