@@ -2,17 +2,15 @@
 
 // ========== DATE & TIME ==========
 
-function date_filter () {
-  $dateFrom = new \Bitrix\Main\Type\DateTime();
-  $dateFrom->add('-10 day');
-  $dateTo = new \Bitrix\Main\Type\DateTime();
-  $filter = [
-    ">=CLOSED_DATE" => $dateFrom,
-    "<=CLOSED_DATE" => $dateTo,
-    'RESPONSIBLE_ID' => $value['ID'],
-  ];
-  $src = CTasks::GetList([],$filter, []);
+
+// Фильтр из GET параметров
+if (isset($_GET['filter']['>=DATE_CREATE'])) {
+  $_GET['filter']['>=DATE_CREATE'] = new \Bitrix\Main\Type\DateTime($_GET['filter']['>=DATE_CREATE'], 'Y-m-d');
 }
+if (isset($_GET['filter']['<=DATE_CREATE'])) {
+  $_GET['filter']['<=DATE_CREATE'] = new \Bitrix\Main\Type\DateTime($_GET['filter']['<=DATE_CREATE'], 'Y-m-d');
+}
+
 
 function reportFilterDate () {
   if ($_GET['F_DATE_TYPE']=='month') {
