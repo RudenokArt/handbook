@@ -7,7 +7,7 @@
 
 	grid-template-rows: 50px 75px 100px 125px; /* строки по высоте */
 	grid-template-rows: 50px 50px 50px auto; /* автоподбор высотыы строк */
-	grid-template-rows: repeat(7, 50px); /* повтор колонок указанное количество раз */
+	grid-template-rows: repeat(7, 50px); /* повтор строк указанное количество раз */
 	grid-template-rows: repeat(auto-fill, 50px); /* все строки одинаковой высоты */
 
 	grid-template: 1fr 3fr 1fr / 1fr 2fr 1fr; /* Строки и колонки одновременно */
