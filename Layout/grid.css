@@ -11,6 +11,16 @@
 	grid-template-rows: repeat(auto-fill, 50px); /* все строки одинаковой высоты */
 
 	grid-template: 1fr 3fr 1fr / 1fr 2fr 1fr; /* Строки и колонки одновременно */
+
+	/* Расстоянием между рядами */
+	grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+	column-gap: 20px;
+	/* Расстоянием между строками */
+	grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+	row-gap: 10px;
+	/* Расстоянием между строками и рядами */
+	grid-template: 1fr 1fr / 1fr 1fr 1fr 1fr;
+	gap: 20px 10px;
 }
 
 .content { /* Колонка на две строки */

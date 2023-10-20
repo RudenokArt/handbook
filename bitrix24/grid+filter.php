@@ -82,6 +82,9 @@ Toolbar::addFilter([
 	if (gridObject.hasOwnProperty('instance')){
 		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
 	}
+	
+	// Получить выбранные строки грида
+	gridObject.instance.getRows().getSelectedIds();
 
 	// перезагрузить родительский грид из слайдера
 	var gridObject = top.BX.Main.gridManager.getById('tinkoff_operations_list');
