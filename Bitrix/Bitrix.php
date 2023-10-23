@@ -29,7 +29,8 @@ CJSCore::Init(['jquery', 'ui.bootstrap4']);
 // font-awesome
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
 
-
+// Вставить компонент
+$APPLICATION->IncludeComponent("exxagate:create_project", "", []);
 
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
@@ -105,13 +106,6 @@ print_r($localStorage->get('main_event'));
  "RULE" => "SECTION_ID=$1",
  "PATH" => "/news/index.php",
 ], ];
-
-// Вставить компонент
-$APPLICATION->IncludeComponent(
-  "vetliva:advertisement_popup",
-  "",
-  Array()
-);
 
 // ========= Отложенный вывод контента или компонента ==============
 $APPLICATION->ShowViewContent('rus_bank_approved_order'); // собственно вывод - метка для подстановки ?>

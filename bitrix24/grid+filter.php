@@ -79,12 +79,17 @@ Toolbar::addFilter([
 <script>
 	// перезагрузить грид
 	var gridObject = BX.Main.gridManager.getById('tinkoff_operations_list');
-	if (gridObject.hasOwnProperty('instance')){
-		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
+	var gridCurrentPage = document.querySelector('.main-ui-pagination-active').textContent;
+	if (gridObject.hasOwnProperty('instance')){ // сохранить текущую страницу при перезагрузке
+		gridObject.instance.reloadTable('POST', {}, null, BX.Grid.Utils.addUrlParams(gridObject.instance.baseUrl, {
+			[gridObject.instance.getId()]: `page-${gridCurrentPage}` 
+		}));
 	}
 	
 	// Получить выбранные строки грида
 	gridObject.instance.getRows().getSelectedIds();
+
+	// 
 
 	// перезагрузить родительский грид из слайдера
 	var gridObject = top.BX.Main.gridManager.getById('tinkoff_operations_list');
