@@ -41,6 +41,12 @@ a:hover {
 a:active {
 	color: blue;
 }
+
+/* ПЕРВАЯ БУКВА */
+.task_list-title div::first-letter {
+	text-transform: uppercase;
+}
+
 /* ПЕРВЫЙ ЭЛЕМЕНТ В ВЫБОРКЕ	*/
 li:first-child { /* только для элементов являющихся потомками */
 	color: red;

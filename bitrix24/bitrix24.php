@@ -4,6 +4,8 @@
 // отключить авторизацию на странице
 define('NOT_CHECK_PERMISSIONS', true);
 
+// Получить статусы задач
+CTaskItem::getStatusMap();
 
 // Запустить бизнесспроцесс для сделки кодом:
 $fields = [

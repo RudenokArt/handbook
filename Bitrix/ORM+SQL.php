@@ -2,6 +2,19 @@
 
 // ========== ORM ==========
 
+// Количество элементов для пагинации
+$arResult['task_src'] = \Bitrix\Tasks\TaskTable::getList([
+  'filter' => $arResult['task_list_filter'],
+  'select' => ['ID', 'TITLE', ],
+  'order' => ['ID' => 'DESC', ],
+  'limit' => 20,
+  'count_total' => true,
+  'offset' => $offset,
+]);
+
+$arResult['count_total'] =  $arResult['task_src']->getCount();
+$arResult['task_list'] = $arResult['task_src']->fetchAll();
+
 // ===== ERROR =====
 
 if($add->isSuccess()) {
@@ -13,6 +26,26 @@ if($add->isSuccess()) {
 }
 
 // ===== JOIN ======
+
+// join с псифдонимами:
+$arResult['task_list'] = \Bitrix\Tasks\TaskTable::getList([
+  'filter' => $arResult['task_list_filter'],
+  'select' => [
+    'ID',
+    'TITLE',
+    'RESPONSIBLE_ID',
+    'RRESPONSIBLE_NAME' => 'RESPONSIBLE.NAME',
+    'RESPONSIBLE_LAST_NAME'=> 'RESPONSIBLE.LAST_NAME',
+  ],
+  'runtime' => [
+    'RESPONSIBLE' => [
+      'data_type' => 'Bitrix\Main\UserTable',
+      'reference' => ['this.RESPONSIBLE_ID' => 'ref.ID'],
+    ],
+  ],
+])->fetchAll();
+
+// Простой join
 
 $messages = Bitrix\Im\Model\MessageTable::getList([
   'filter' => [
