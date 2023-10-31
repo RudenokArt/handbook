@@ -27,7 +27,7 @@ if($add->isSuccess()) {
 
 // ===== JOIN ======
 
-// join с псифдонимами:
+// join с псedдонимами:
 $arResult['task_list'] = \Bitrix\Tasks\TaskTable::getList([
   'filter' => $arResult['task_list_filter'],
   'select' => [
