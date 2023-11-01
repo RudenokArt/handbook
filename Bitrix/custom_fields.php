@@ -2,6 +2,28 @@
 
 // ========== Custom fields ==========
 
+
+// Добавить пользовательское поле тип CRM
+$oUserTypeEntity = new CUserTypeEntity();
+$aUserFields_log = array(
+  'ENTITY_ID' => 'CRM_DEAL',
+  'FIELD_NAME' => 'UF_AGENT_REFERAL',
+  'USER_TYPE_ID' => 'crm',
+  'MULTIPLE'=> 'N',
+  'SETTINGS' => ['CONTACT' => 'Y'],
+  'EDIT_FORM_LABEL' => array(
+    'ru' => 'Агент (реферал)',
+    'en' => 'Agent (referal)',
+    'de' => 'Agent (referal)',
+  ),
+  'LIST_COLUMN_LABEL' => array(
+    'ru' => 'Агент (реферал)',
+    'en' => 'Agent (referal)',
+    'de' => 'Agent (referal)',
+  ),
+);
+$oUserTypeEntity->Add( $aUserFields_log );
+
 // Добавить пользовательское поле
 $field_id = (new CUserTypeEntity())->Add([
  'ENTITY_ID' => 'CRM_DEAL',

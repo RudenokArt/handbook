@@ -45,12 +45,19 @@ print_r(
  BitrixRest::call('crm.contact.get', ['id' => 187])
 );
 
+
+
+// подключить библиотеку рабоыты со слайдером (в слайдере например)
+CJSCore::Init(['sidepanel']);
 ?>
 
+
+
 <script>
-  // Открыть слайдер
+// Открыть слайдер
   BX.SidePanel.Instance.open('add_faq_form.php?update='+item_id, {
     allowChangeHistory: false,
   });
   
+  BX.SidePanel.Instance.reload(); // Перезагрузить слайдер
 </script>
