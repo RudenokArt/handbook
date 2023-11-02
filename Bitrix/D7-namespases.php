@@ -1,6 +1,6 @@
 <?php 
 // Подключить модуль
-\Bitrix\Main\Loader::includeModule('crm');
+\Bitrix\Main\Loader::includeModule('disk');
 
 // объект Request
 \Bitrix\Main\Application::getInstance()->getContext()->getRequest()->getQuery('id');
@@ -14,6 +14,16 @@
 \Bitrix\Iblock\ElementTable::getList(); // Списки элементов инфоблоков 
 \Bitrix\Iblock\InheritedPropertyTable::getList(); // Списки наследуемых свойств (seo шаблоны) 
 
+// ЗАДАЧИ
+// Соисполнители и наблюдатели в задачах
+\Bitrix\Tasks\Internals\Task\MemberTable::getList();
+// Стадии (Фазы) задач
+Bitrix\Tasks\Kanban\StagesTable::getList();
+// Файлы задачи 
+\Bitrix\Disk\Internals\AttachedObjectTable::getList();
+
+// ДИСК
+\Bitrix\Disk\Internals\ObjectTable::getList();
 
 // МОДУЛЬ DOCUMENTGENERATOR
 \Bitrix\Main\Loader::includeModule('documentgenerator');
