@@ -38,34 +38,20 @@ formdata.set('reference_id', '9');
 formdata.set('action', 'woocommerce_gzd_create_shipment_label_submit');
 console.log(Array.from(formdata));
 
-// ===== FETCH POST=====
-fetch('admin-ajax.php',{
-  method: 'POST',
-  body: formdata,
-}).then(function(response){
-  return response.text();
-}).then(function (text) {
-  console.log(text);
-});
+// ===== FETCH POST + ЗАГРУЗКА ФАЙЛОВ =====
 
-</script>
-
-
-
-===== Загрузка файла на сервер FETCH =====
-<form enctype="multipart/form-data" method="post" id="attachment_form">
-  <input v-on:change="sendAttachment" type="file" name="attachment" multiple="multiple">
-</form>
-<script>
-  fetch('/test.php', {
+async function newCommentAdd (e) {
+  var formdata = new FormData(e.target);
+  var comment = await fetch(this.ajaxUrl, {
     method: 'POST',
-    body: new FormData(document.querySelector('#attachment_form')),
+    body: formdata,
   }).then(function(response){
     return response.text();
   }).then(function (text) {
-    console.log(text);
-    $('input[name="attachment"]').val(null);
+    return (text);
   });
+  console.log(comment);
+};
 </script>
 
 ===== Плавный скролл страницы =====
