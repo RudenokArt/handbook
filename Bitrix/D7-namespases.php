@@ -25,6 +25,11 @@ Bitrix\Tasks\Kanban\StagesTable::getList();
 // ДИСК
 \Bitrix\Disk\Internals\ObjectTable::getList();
 
+
+// ЧАТ 
+Bitrix\Im\Model\RelationTable(); // Привязка чатов к юзерам
+Bitrix\Im\Model\ChatTable(); // Список чатов
+
 // МОДУЛЬ DOCUMENTGENERATOR
 \Bitrix\Main\Loader::includeModule('documentgenerator');
 // классы для таблицы b_documentgenerator_template

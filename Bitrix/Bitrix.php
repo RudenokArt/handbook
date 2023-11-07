@@ -30,7 +30,7 @@ CJSCore::Init(['jquery', 'ui.bootstrap4']);
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
 
 // Вставить компонент
-$APPLICATION->IncludeComponent("exxagate:create_project", "", []);
+$APPLICATION->IncludeComponent('exxagate:messenger', '', []);
 
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
