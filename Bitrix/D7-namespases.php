@@ -29,6 +29,7 @@ Bitrix\Tasks\Kanban\StagesTable::getList();
 // ЧАТ 
 Bitrix\Im\Model\RelationTable(); // Привязка чатов к юзерам
 Bitrix\Im\Model\ChatTable(); // Список чатов
+Bitrix\Im\Model\MessageTable(); // Сообщения
 
 // МОДУЛЬ DOCUMENTGENERATOR
 \Bitrix\Main\Loader::includeModule('documentgenerator');
