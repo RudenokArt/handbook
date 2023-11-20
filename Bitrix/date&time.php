@@ -10,6 +10,11 @@ if (isset($_GET['filter']['>=DATE_CREATE'])) {
 if (isset($_GET['filter']['<=DATE_CREATE'])) {
   $_GET['filter']['<=DATE_CREATE'] = new \Bitrix\Main\Type\DateTime($_GET['filter']['<=DATE_CREATE'], 'Y-m-d');
 }
+// Фильтр из GET параметров + 1 День
+if (isset($_GET['date_to']) and $_GET['date_to']) {
+  $arResult['tickets_list_filter']['<=DATE_CREATE'] = (new \Bitrix\Main\Type\DateTime($_GET['date_to'], 'Y-m-d'))
+  ->add('1D');
+}
 
 
 function reportFilterDate () {
