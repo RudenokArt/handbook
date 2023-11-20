@@ -1,7 +1,7 @@
 <?php 
 
-// ========== Custom fields ==========
-
+// Заполнить поле типа "Файл"
+add(["UF_UPLOAD_FILE" => \CFile::MakeFileArray($FileID)]);
 
 // Добавить пользовательское поле тип CRM
 $oUserTypeEntity = new CUserTypeEntity();

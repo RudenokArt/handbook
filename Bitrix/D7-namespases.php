@@ -5,6 +5,11 @@
 // объект Request
 \Bitrix\Main\Application::getInstance()->getContext()->getRequest()->getQuery('id');
 
+// ПОЛЬЗОВАТЕЛИ
+\Bitrix\Main\GroupTable(); // группы пользователей
+\Bitrix\Main\UserGroupTable(); // привязка пользователей к группам
+
+
 // ИНФОБЛОКИ
 \Bitrix\Iblock\TypeTable::getList(); // списки типов инфоблоков
 \Bitrix\Iblock\IblockTable::getList(); // списки инфоблоков
