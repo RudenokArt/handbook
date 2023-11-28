@@ -10,6 +10,9 @@
 // Подключить пролог без шапки
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 
+// Подключение файла php
+get_template_part('core/AdminRouter');
+
 // Путь до темы (php path);
 get_template_directory();
 
