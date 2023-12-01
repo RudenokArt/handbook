@@ -34,28 +34,6 @@ div {
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
-/* АНИМАЦИЯ */
-@keyframes move {
-	from { /* исходная позиция */ 
-		margin-left: 0;
-	}
-	to { /* конечная позиция */ 
-		margin-left: 200px;
-		border-color:green;
-	}
-}
-.box{
-	width: 100px;
-	height: 100px;
-	border:1px solid red;
-	animation-name:move; /* привязка анимации */ 
-	animation-duration:10s; /* время анимации */
-	animation-timing-function:ease; /* ускорение анимации */ 
-	animation-delay:2s; /* задержка анимации */ 
-	animation-direction:reverse; /* направление анимации */
-	animation-iteration-count:2; /* кол-во повторов */ 
-}
-
 
 /*Обтекание и отмена обтекания*/
 img {

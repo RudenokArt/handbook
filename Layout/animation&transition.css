@@ -1,0 +1,50 @@
+
+/* TRANSITION  */
+.test {
+  transition-duration: 1s;
+  transition-property: all;
+  transition-delay: 1s;
+}
+
+
+/* ANIMATION */
+.test {
+  border: 1px solid green;
+  animation-name: expand;
+  animation-duration: 1s;
+  animation-delay: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-direction: alternate;
+}
+
+@keyframes expand {
+  from {
+    padding: 5px;
+  } to {
+    padding: 50px;
+  }
+}
+
+/* АНИМАЦИЯ ПО НАВЕДЕНИЮ */
+
+#trigger:hover + .test {
+  animation-play-state: running;
+}
+
+.test {
+  border: 1px solid green;
+  animation-name: expand;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+}
+
+@keyframes expand {
+  from {
+    padding: 5px;
+  } to {
+    padding: 50px;
+  }
+}
