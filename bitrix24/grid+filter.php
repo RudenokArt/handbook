@@ -97,3 +97,4 @@ Toolbar::addFilter([
 		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
 	}
 </script>
+

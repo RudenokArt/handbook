@@ -1,3 +1,5 @@
+<!-- BITRIX VUE 3 -->
+<?php \Bitrix\Main\UI\Extension::load("ui.vue3"); ?>
 
 <!-- BITRIX VUE -->
 <?php \Bitrix\Main\UI\Extension::load("ui.vue"); ?>

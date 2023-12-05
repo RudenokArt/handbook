@@ -112,6 +112,15 @@ function getBookingPrices () {
   return $arr;
 }
 
+// ========== Отладка SQL ==========
+$connection = Bitrix\Main\Application::getConnection();
+$tracker = $connection->startTracker();
+// any code with SQL queries
+$connection->stopTracker();
+foreach ($tracker->getQueries() as $query) {
+  var_dump($query->getSql());
+}
+
 /**
  * 
  */
