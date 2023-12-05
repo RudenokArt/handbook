@@ -2,8 +2,16 @@
 
 // users
 $arResult['FILTER'][] = 
-['id' => 'USER', 'name' => getMessage('AWARD_USERS_USER'), 'default' => true, 'type' => 'dest_selector',
-'params' => ['multiple' => 'Y', 'enableDepartments' => 'N', 'userSearchArea' => 'I']
+[
+	'id' => 'USER', 
+	'name' => getMessage('AWARD_USERS_USER'),
+	'default' => true,
+	'type' => 'dest_selector',
+	'params' => [
+		'multiple' => 'Y',
+		'enableDepartments' => 'N',
+		'userSearchArea' => 'I'
+	]
 ];
 
 // CRM deals
