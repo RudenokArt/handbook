@@ -11,6 +11,7 @@
 // Таблица связи инвойсов и контактов:
 // b_crm_entity_contact
 
+
 // Статусы сделок
 Bitrix\Crm\StatusTable::getList();
 
@@ -19,6 +20,9 @@ Bitrix\Crm\Category\DealCategory::getAll(true);
 
 // Все сделки по контакту: 
 \Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
+
+// Связь сделок и контактов
+\Bitrix\Crm\Binding\DealContactTable::getList();
 
 // Телефоны и email контактов
 \Bitrix\Crm\FieldMultiTable::getList();
