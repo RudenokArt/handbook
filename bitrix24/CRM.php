@@ -1,5 +1,9 @@
 <?php 
 
+
+// Смарт процессы
+Bitrix\Crm\Model\Dynamic\TypeTable::getList();
+
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
 
@@ -52,6 +56,15 @@ function getDealFieldsArr () { // все поля сделок с именами
   ])->fetchAll();
   return [$fields, $uFields];
 }
+
+// ========== СМАРТ ПРОЦЕССЫ ==========
+// получить фабрику (хз что это) по id типа смартпроцесса
+$factory = \Bitrix\Crm\Service\Container::getInstance()->getFactory($typeid);
+// получить список элементов
+$src = $factory->getItems([
+  'select' => [],
+'filter' => [],
+]);
 
 // ========== CRM INVOICE ==========
 
