@@ -104,5 +104,15 @@ Toolbar::addFilter([
 	if (gridObject.hasOwnProperty('instance')){
 		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
 	}
+
+	// Перезагрузить грид после закрытия слайдера
+	// Полный список событий слайдера здесь: https://dev.1c-bitrix.ru/api_help/js_lib/sidepanel/events/events.php
+	BX.addCustomEvent("SidePanel.Slider:onCloseComplete", function(event) {
+		var gridObject = BX.Main.gridManager.getById('sievert_deals_grid');
+		if (gridObject.hasOwnProperty('instance')){
+			gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
+		}
+	});
+
 </script>
 
