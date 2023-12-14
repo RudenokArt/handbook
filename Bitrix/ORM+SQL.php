@@ -65,7 +65,7 @@ $messages = Bitrix\Im\Model\MessageTable::getList([
 // ===== DOUBLE JOIN + MODIFIER =====
 
 if (isset($_REQUEST['getChatMessages'])) {
-  $messages_src = Bitrix\Im\Model\MessageTable::getList([
+  $src = Bitrix\Im\Model\MessageTable::getList([
     'filter' => [
       'CHAT_ID' => $_REQUEST['chatId'],
       '!=AUTHOR_ID' => 0,
@@ -83,12 +83,12 @@ if (isset($_REQUEST['getChatMessages'])) {
       ],
     ],
   ]);
-  $messages_src->addFetchDataModifier(function (&$data) {
+  $src->addFetchDataModifier(function (&$data) {
     $bbTextParser = new CTextParser();
-    $data['DATE'] = ConvertDateTime($data['DATE_CREATE'], 'YYYY-MM-DD HH:MI:SS');
+    $data['DATE'] = format('Y-m-d H:i:s');
     $data['MESSAGE'] = $bbTextParser->convertText($data['MESSAGE']);
   });
-  $messages = $messages_src->fetchAll();
+  $arr = $src->fetchAll();
 }
 
 // ===== Insert - add() =====
