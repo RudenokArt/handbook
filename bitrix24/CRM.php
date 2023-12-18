@@ -125,7 +125,7 @@ $GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
 CCrmProductRow::GetList(); // Получить товары по сделке/лиду
 CCatalogSKU::getOffersList($arr); // получить торговые предложения
 
-// ===== TIME LINE =====
+// ===== TIMELINE =====
 
 // Добавить запись в timeline
 \Bitrix\Main\Loader::includeModule('crm');
@@ -138,6 +138,16 @@ $resId = \Bitrix\Crm\Timeline\CommentEntry::create([
 
 // получить дела (из timline)
 $data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
+
+// Получить комментарии из Timeline:
+$comments = Bitrix\Crm\Timeline\Entity\TimelineTable::getList(array(
+  'order' => array("ID" => "DESC"),
+  'select'=>array("ID", "COMMENT", "TYPE_ID", "AUTHOR_ID", "BINDINGS"),
+  'filter' => [
+    'TYPE_ID' => 7,
+    'CRM_TIMELINE_ENTITY_TIMELINE_BINDINGS_ENTITY_ID' => $deal['ID'],
+  ],
+ ))->fetchAll();
 
 
 // ===== РАБОТА С ПОЛЯМИ =====
