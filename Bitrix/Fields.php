@@ -55,4 +55,27 @@ $prop = \Bitrix\Main\UserFieldTable::getList([
 ])->fetch();
 $prop = CUserTypeEntity::GetByID($prop['ID']);
 
-?>
+
+// Получить стандартные поля по сделке
+CCrmDeal::GetFieldsInfo();
+// или так:
+CCrmOwnerType::getFieldsInfo(
+  CCrmOwnerType::Deal
+);
+// пользовательские поля сделок 
+Bitrix\Main\UserFieldTable::getList(['filter' => ['ENTITY_ID' => 'CRM_DEAL']])->fetchAll();
+
+// ПЕРЕЗАПИСЬ ПОЛЕЙ ДОКУМЕНТА В МОМЕНТ ГЕНЕРАЦИИ
+\Bitrix\Main\EventManager::getInstance()->addEventHandler('documentgenerator', 'onBeforeProcessDocument', 'onBeforeProcessDocument');
+function onBeforeProcessDocument($event) {
+  $document = $event->getParameter('document');
+  lib\Debugger::singleLog_txt(json_encode(get_class_methods($document)));
+  $document->setValues(['sig' => '${sig}']);
+  /** @var \Bitrix\DocumentGenerator\Document $document */
+  // добавить дополнительные описания полей
+  // $document->setFields($newFields);
+  // добавить значения полей
+  //$document->setValues(['someField' => 'myCustomValue']);
+  // получить список полей и их текущих значений
+  //$fields = $document->getFields();
+}
