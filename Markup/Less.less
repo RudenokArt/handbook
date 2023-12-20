@@ -3,3 +3,25 @@
 
 // npm install -g less-watch-compiler
 // less-watch-compiler . . style.less
+
+// Родство или вложенность:
+.container {
+	>div {
+		color: red;
+	}
+}
+
+// Соединение селекторов
+li {
+	&.point{
+		color: red;
+	}
+}
+
+// Присоединение псевдокласса
+li {
+	color: red;
+	&:hover {
+		color: blue;
+	}
+}
