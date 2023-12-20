@@ -68,6 +68,13 @@ $messages[$key]['MESSAGE'] = $bbTextParser->convertText($value['MESSAGE']);
 // ===== Получение файла по id =====
 $file=CFile::GetFileArray($id)['SRC'];
 
+// ===== Получить ссылку на файл ===== 
+CBitrixComponent::includeComponentClass('bitrix:main.file.input'); 
+$fileId = 358; 
+$mfiController = new MFIController; 
+$mfiController->generateCid($fileId)->registerFile($fileId); 
+echo '<a href="' . $mfiController->getUrlDownload($fileId) . '" target="_blank">Click me!</a>';
+
 // ===== Принять файл с формы, сохранить и записать в таблицу b_file;
 $file_id = CFile::SaveFile(
   array_merge($_FILES['contact_photo'], ['del' => 'N', 'MODULE_ID' => 'main', ]),

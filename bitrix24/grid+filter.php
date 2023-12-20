@@ -88,6 +88,11 @@ Toolbar::addFilter([
 	// перезагрузить грид
 	var gridObject = BX.Main.gridManager.getById('tinkoff_operations_list');
 	var gridCurrentPage = document.querySelector('.main-ui-pagination-active').textContent;
+	var gridRowsCount = gridObject.instance.getRows().getBodyChild().length;
+	var del = false;
+	if (del &&gridRowsCount <= 1 && gridCurrentPage > 1) { // отлистать страницу назад, если последняя строка
+		gridCurrentPage = gridCurrentPage - 1;
+	}
 	if (gridObject.hasOwnProperty('instance')){ // сохранить текущую страницу при перезагрузке
 		gridObject.instance.reloadTable('POST', {}, null, BX.Grid.Utils.addUrlParams(gridObject.instance.baseUrl, {
 			[gridObject.instance.getId()]: `page-${gridCurrentPage}` 

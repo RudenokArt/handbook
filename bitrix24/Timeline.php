@@ -22,6 +22,20 @@ $comments = Bitrix\Crm\Timeline\Entity\TimelineTable::getList(array(
   ],
 ))->fetchAll();
 
+// Получить комментарии из Timeline вместе с файлами
+$src = Bitrix\Crm\Timeline\Entity\TimelineTable::getList([
+  'filter' => [
+    'TYPE_ID' => Bitrix\Crm\Timeline\TimelineType::COMMENT,
+    'AUTHOR_ID' => $_REQUEST['userId'],
+    'BINDINGS.ENTITY_TYPE_ID' => CCrmOwnerType::Deal,
+    'BINDINGS.ENTITY_ID' => $deal['ID']
+  ]
+]);
+$src->addFetchDataModifier(function(&$data) {
+  $data['FILES'] = Bitrix\Crm\Timeline\CommentController::getFiles($data['UALIAS_0'], $data['UALIAS_2'], $data['UALIAS_1']);
+});
+$comments = $src->fetchAll();
+
 
 // ДОБАВЛЕНИЕ КОММЕНТАРИЯ В TIMELINE С ПРИЛОЖЕНИЕМ ФАЙЛА
 // 1. добавляем файл в диск
