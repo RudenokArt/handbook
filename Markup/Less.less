@@ -45,3 +45,18 @@ li {
 .@{var2} {
 	color: blue;
 }
+
+// Математические операции
+div {
+  background: lightcoral;
+  height: 150px;
+  width: 100px;
+}
+
+// Математические операции с разными единицами
+@varS: 100px;
+div {
+	background: lightcoral;
+	height: calc(@varS + 50vh);
+	width: @varS;
+}
