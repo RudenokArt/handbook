@@ -60,3 +60,23 @@ div {
 	height: calc(@varS + 50vh);
 	width: @varS;
 }
+
+// Миксины:
+.mixin1 {
+	background: mediumaquamarine;
+}
+div {
+	height: 100px;
+	width: 100px;
+	.mixin1;
+}
+
+// Миксин без компиляции класса: 
+.mixin2() {
+	background: mediumvioletred;
+}
+div {
+	height: 100px;
+	width: 100px;
+	.mixin2;
+}
