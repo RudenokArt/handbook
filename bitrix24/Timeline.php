@@ -1,6 +1,28 @@
 <?php
 
-// Добавить запись в timeline
+// Добавить дело в timeline
+
+$params = [
+  'PROVIDER_ID' => 'CRM_TODO',
+  'PROVIDER_TYPE_ID' => 'TODO',
+  'TYPE_ID' => 6,
+  'BINDINGS' => [
+    ['OWNER_ID' => $_POST['OWNER_ID'], 'OWNER_TYPE_ID' => CCrmOwnerType::Deal]
+  ],
+  'SUBJECT' => $_POST['SUBJECT'],
+  'COMPLETED' => 'N',
+  'DESCRIPTION' => $_POST['DESCRIPTION'],
+  'RESPONSIBLE_ID' => $_POST['RESPONSIBLE_ID'],
+  'DIRECTION' => CCrmActivityDirection::Outgoing,
+  'START_TIME' => new \Bitrix\Main\Type\DateTime($_POST['START_TIME'], 'd.m.Y'),
+];
+$response = CCrmActivity::Add($params, false, false);
+print_r($params);
+
+// получить дела (из timline)
+$data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
+
+// Добавить комментарий в timeline
 \Bitrix\Main\Loader::includeModule('crm');
 $resId = \Bitrix\Crm\Timeline\CommentEntry::create([
   'TEXT' => 'test2',
@@ -9,8 +31,7 @@ $resId = \Bitrix\Crm\Timeline\CommentEntry::create([
   'BINDINGS' => array(array('ENTITY_TYPE_ID' => CCrmOwnerType::Deal, 'ENTITY_ID' => $deal_id))
 ]);
 
-// получить дела (из timline)
-$data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
+
 
 // Получить комментарии из Timeline:
 $comments = Bitrix\Crm\Timeline\Entity\TimelineTable::getList(array(

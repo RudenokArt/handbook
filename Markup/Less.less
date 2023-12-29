@@ -80,3 +80,12 @@ div {
 	width: 100px;
 	.mixin2;
 }
+
+// Расширение классов (сомнительное преимущество)
+.mixin1{
+	color:red;
+}
+.block {
+	&:extend(.mixin1);
+	background: blue;
+}

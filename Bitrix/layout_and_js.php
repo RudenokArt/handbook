@@ -16,9 +16,10 @@
   <div class="ui-ctl-after ui-ctl-icon-calendar"></div>
   <input type="text" name="INPUTNAME" onclick="BX.calendar({node: this, field: this, bTime: false});" class="ui-ctl-element ui-ctl-textbox">
 </div>
+
+
+
 <script>
-
-
 // Вывести все события в косоль:
   var originalBxOnCustomEvent = BX.onCustomEvent;
   BX.onCustomEvent = function (eventObject, eventName, eventParams, secureParams)
