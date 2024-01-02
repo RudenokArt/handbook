@@ -89,3 +89,20 @@ div {
 	&:extend(.mixin1);
 	background: blue;
 }
+
+// Пространства имен для миксинов
+.namespace_1 {
+	.test_mix {
+		color: yellow;
+	}
+}
+
+.namespace_2 {
+	.test_mix {
+		background: darkblue;
+	}
+}
+
+.block {
+	.namespace_1>.test_mix;
+	.namespace_2>.test_mix;
