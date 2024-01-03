@@ -85,7 +85,7 @@ if (isset($_REQUEST['getChatMessages'])) {
   ]);
   $src->addFetchDataModifier(function (&$data) {
     $bbTextParser = new CTextParser();
-    $data['DATE'] = format('Y-m-d H:i:s');
+    $data['DATE'] = $data['DATE']->format('Y-m-d H:i:s');
     $data['MESSAGE'] = $bbTextParser->convertText($data['MESSAGE']);
   });
   $arr = $src->fetchAll();
