@@ -34,7 +34,7 @@ li {
 	}
 }
 
-// Переменные
+// ===== ПЕРЕМЕННЫЕ =====
 @var1: red;
 li {
 	color: @var1;
@@ -45,6 +45,16 @@ li {
 .@{var2} {
 	color: blue;
 }
+
+// Блок кода в переменной
+@var1: {
+	color: mediumseagreen;
+	font-weight: bold;
+}
+.block {
+	@var1();
+}
+
 
 // Математические операции
 div {
@@ -61,7 +71,9 @@ div {
 	width: @varS;
 }
 
-// Миксины:
+
+
+// ===== МИКСИНЫ =====:
 .mixin1 {
 	background: mediumaquamarine;
 }
@@ -96,13 +108,37 @@ div {
 		color: yellow;
 	}
 }
-
 .namespace_2 {
 	.test_mix {
 		background: darkblue;
 	}
 }
-
 .block {
 	.namespace_1>.test_mix;
 	.namespace_2>.test_mix;
+
+// ===== ФУНКЦИИ =====
+// функции с параметрами
+.f_color (@color, @bg) {
+	color: @color;
+	background: @bg;
+}
+.block {
+	.f_color(red, blue);
+}
+// Параметр по умолчанию
+.f_color (@color, @bg:green) {
+	color: @color;
+	background: @bg;
+}
+.block {
+	.f_color(red);
+}
+// Все аргументы в одной переменной
+.f_color (@thick, @type, @color) {
+	border: @arguments;
+}
+.block {
+	.f_color(1px, solid, grey);
+	box-shadow: 5px 5px red, 5px 5px blue;
+}

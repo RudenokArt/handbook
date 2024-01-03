@@ -46,7 +46,16 @@ $this->getPath();
 // получить список стран
 print_r(GetCountryArray(LANGUAGE_ID));
 
-// Регистрация события при установке модуля
+// Регистрация обработчика события
+\Bitrix\Main\Loader::includeModule('crm');
+AddEventHandler('crm', 'OnAfterCrmDealUpdate', 'LocalEventHandler::OnAfterCrmDealUpdate');
+class LocalEventHandler {
+  function OnAfterCrmDealUpdate ($arr) {
+    file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test/log.json', json_encode($arr));
+  } 
+}
+
+// Регистрация обработчика события при установке модуля
 registerModuleDependences('documentgenerator', 'onBeforeProcessDocument', $this->MODULE_ID, 'DocumentGeneratorHandler', 'customizeDocument');
 class DocumentGeneratorHandler {
   public static function customizeDocument($event)
