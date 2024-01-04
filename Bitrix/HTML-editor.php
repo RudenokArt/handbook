@@ -1,6 +1,6 @@
 <?php 
 
-function add_textarea_form($c,$g){
+function add_textarea_form($c, $g){
 	$LHE = new CLightHTMLEditor;
 	$LHE->Show(array(
 		'id' => "",
