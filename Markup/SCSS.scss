@@ -2,3 +2,32 @@
 // sass --version /* Проверка верссии */
 // sass style.scss style.css /* Компиляция */
 // sass style.scss style.css -w /* Компиляция с наблюдением */
+
+// Родство или вложенность
+div {
+	>p {
+		color: green;
+	}
+}
+
+// Соединение селекторов
+p {
+	&.pg {
+		color: green;
+	}
+}
+
+// Псевдоклассы:
+.pg {
+	&:hover {
+		color: red;
+	}
+}
+
+// Соединение частей селектора
+.pg {
+	color: blue;
+	&-active {
+		color: orange;
+	}
+}
