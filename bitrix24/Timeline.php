@@ -22,6 +22,12 @@ print_r($params);
 // получить дела (из timline)
 $data = CCrmActivity::getList([], ['ID' => $id])->Fetch();
 
+// Удалить дело из timeline
+CCrmActivity::delete($_REQUEST['DELETE'], false);
+
+// Обновить дело в timeline
+CCrmActivity::update($_REQUEST['UPDATE'], ['COMPLETED' => 'Y','CHECK_PERMISSIONS' => 'N']);
+
 // Добавить комментарий в timeline
 \Bitrix\Main\Loader::includeModule('crm');
 $resId = \Bitrix\Crm\Timeline\CommentEntry::create([
