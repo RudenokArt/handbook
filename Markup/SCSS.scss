@@ -60,3 +60,74 @@ label {
 		font-size: 50px - 10px;
 	}
 }
+
+// МИКСИНЫ
+// -----------------------------------
+@mixin mix1 {
+	color: blue;
+}
+.pg {
+	@include mix1;
+	font-weight: bold;
+}
+
+// Вызов миксина в корне
+@mixin mix1 {
+	p {
+		color: blue;
+	};
+}
+@include mix1;
+
+// Миксин с параметрок
+@mixin mix1 ($color) {
+	color: $color;
+}
+.pg {
+	@include mix1(red);
+}
+
+// Миксин с параметром по умолчанию
+@mixin mix1 ($color: green) {
+	color: $color;
+}
+.pg {
+	@include mix1();
+}
+
+// Именованные параметры
+@mixin mix1 ($color, $weight) {
+	color: $color;
+	font-weight: $weight;
+}
+.pg {
+	@include mix1($weight: bold, $color: orange);
+}
+
+// Неопределенное количество параметров 
+
+@mixin mix1 ($padding...) {
+	border: 1px solid orange;
+	padding: $padding;
+}
+.pg {
+	@include mix1(50px 50px,);
+}
+.pg-active {
+	@include mix1(50px 50px 0 0);
+}
+
+// Передача блока кода в миксин (хуита)
+@mixin mix1 () {
+	div {
+		@content;
+	}
+}
+@include mix1{
+	p {
+		color: blue;
+	}
+};
+
+
+// =============================================
