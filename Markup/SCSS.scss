@@ -33,7 +33,6 @@ p {
 }
 
 // ПЕРЕМЕННЫЕ
-// -------------------------------------------
 $var1: red;
 .pg {
 	color: blue;
@@ -62,7 +61,6 @@ label {
 }
 
 // МИКСИНЫ
-// -----------------------------------
 @mixin mix1 {
 	color: blue;
 }
@@ -129,5 +127,30 @@ label {
 	}
 };
 
-
 // =============================================
+
+
+// ФУНКЦИИ
+@function colorText() {
+	@return red;
+} 
+.pg {
+	color: colorText();
+}
+
+// функции с параметром
+@function colorText($color) {
+	@return $color;
+} 
+.pg {
+	color: colorText(blue);
+}
+
+// Именованный параметр
+@function heightCalc ($x, $y) {
+	@return $x - $y;
+} 
+.block {
+	height: heightCalc($y:500px, $x:800px);
+	background: mediumspringgreen;
+}
