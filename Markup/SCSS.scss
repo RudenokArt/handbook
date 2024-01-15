@@ -154,3 +154,12 @@ label {
 	height: heightCalc($y:500px, $x:800px);
 	background: mediumspringgreen;
 }
+
+// ИМПОРТ ИЗ ФАЙЛА header.scss
+@import "header";
+
+// Импорт внутрь селектора
+ul {
+	color: blue;
+	@import "header";
+}
