@@ -163,3 +163,69 @@ ul {
 	color: blue;
 	@import "header";
 }
+
+// МЕДИАЗАПРОСЫ
+ul {
+	display: flex;
+	justify-content: space-around;
+	@media screen and (max-width: 576px) {
+		display: block;
+	}
+	@media screen and (min-width: 1200px) {
+		color: red;
+	}
+}
+
+// НАСЛЕДОВАНИЕ (расширение)
+.parent1 {
+	border: 1px solid blue;
+}
+.child2 {
+	@extend .parent1;
+}
+
+// Множественное наследование
+.parent1 {
+	border: 1px solid blue;
+}
+.parent2 {
+	background: orange;
+}
+.child1 {
+	@extend .parent1;
+	@extend .parent2;
+}
+// Множественное наследование
+.parent1 {
+	border: 1px solid blue;
+}
+.parent2 {
+	background: orange;
+}
+.child1 {
+	@extend .parent1, .parent2;
+}
+
+// Цепное наследование
+.parent1 {
+	border: 1px solid blue;
+}
+.parent2 {
+	@extend .parent1;
+	background: orange;
+}
+.child1 {
+	@extend .parent2;
+}
+
+// Опциональное наследование (исключение ошибок)
+.parent1 {
+	border: 1px solid blue;
+}
+.parent2 {
+	@extend .parent1;
+	background: orange;
+}
+.child1 {
+	@extend .parent2, .child2!optional;
+}
