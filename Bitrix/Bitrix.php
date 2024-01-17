@@ -18,6 +18,9 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
 
+// Вставить компонент
+$APPLICATION->IncludeComponent('exxagate:messenger', '', []);
+
 
 // jQuery
 CJSCore::Init(array("jquery"));
@@ -28,9 +31,6 @@ CJSCore::Init(array("jquery"));
 CJSCore::Init(['jquery', 'ui.bootstrap4']);
 // font-awesome
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
-
-// Вставить компонент
-$APPLICATION->IncludeComponent('exxagate:messenger', '', []);
 
 // Автозагрузка классов
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
