@@ -5,7 +5,7 @@ add(["UF_UPLOAD_FILE" => \CFile::MakeFileArray($FileID)]);
 
 // Добавить пользовательское поле тип CRM
 $oUserTypeEntity = new CUserTypeEntity();
-$aUserFields_log = array(
+$aUserFields_bind = array(
   'ENTITY_ID' => 'CRM_DEAL',
   'FIELD_NAME' => 'UF_AGENT_REFERAL',
   'USER_TYPE_ID' => 'crm',
@@ -22,7 +22,7 @@ $aUserFields_log = array(
     'de' => 'Agent (referal)',
   ),
 );
-$oUserTypeEntity->Add( $aUserFields_log );
+$oUserTypeEntity->Add( $aUserFields_bind );
 
 // Добавить пользовательское поле
 $field_id = (new CUserTypeEntity())->Add([

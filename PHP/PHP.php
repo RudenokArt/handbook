@@ -1,6 +1,15 @@
+<!-- Кодировка в HTML -->
+<meta charset="utf-8">
+<?php
+  mb_internal_encoding('UTF-8');
+  echo 'моя первая программа';
+?>
+
 <?php
 // кодировка страницы
 header('Content-type: text/html; charset=utf-8');
+
+mb_internal_encoding('UTF-8');
 
 // Разрешить кроссдоменный запрос
 header('Access-Control-Allow-Origin:*');
