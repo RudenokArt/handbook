@@ -6,6 +6,9 @@
 ?>
 
 <?php
+
+// Принудительное преобразование типа: 
+$var = (string) true; // выведет "1" (строку)
 // кодировка страницы
 header('Content-type: text/html; charset=utf-8');
 
