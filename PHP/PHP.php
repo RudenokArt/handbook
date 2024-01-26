@@ -7,6 +7,8 @@
 
 <?php
 
+
+
 // Принудительное преобразование типа: 
 $var = (string) true; // выведет "1" (строку)
 // кодировка страницы
@@ -58,10 +60,7 @@ function passwordGenerator(){
   return $string;
 }
 
-  // PHPMailer
-  // composer require phpmailer/phpmailer - установка
-
-
+ 
   // MySQL
 
 $host = 'localhost';

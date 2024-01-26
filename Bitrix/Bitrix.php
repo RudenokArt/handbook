@@ -10,7 +10,7 @@ echo $this->getFolder();
 echo SITE_TEMPLATE_PATH; 
 
 // подключить пролог и эпилог
-require_once($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");
 
 

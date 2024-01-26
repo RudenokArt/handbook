@@ -1,8 +1,13 @@
 <?php 
 
+// Копировать родительскую задачу:
+// ?PARENT_ID=26516&COPY=26516&TEMPLATE=Y
+
 
 // отключить авторизацию на странице
 define('NOT_CHECK_PERMISSIONS', true);
+// доступ к скрипту для пользователей extranet
+define("EXTRANET_NO_REDIRECT", true);
 
 // Получить статусы задач
 CTaskItem::getStatusMap();
@@ -46,11 +51,9 @@ print_r(
 );
 
 
-
 // подключить библиотеку рабоыты со слайдером (в слайдере например)
 CJSCore::Init(['sidepanel']);
 ?>
-
 
 
 <script>
