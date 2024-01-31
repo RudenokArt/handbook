@@ -1,11 +1,13 @@
 <!-- Кодировка в HTML -->
 <meta charset="utf-8">
 <?php
-  mb_internal_encoding('UTF-8');
-  echo 'моя первая программа';
-?>
+mb_internal_encoding('UTF-8');
+echo 'моя первая программа';
 
-<?php
+// Тернарный оператор
+$var = ($argv[1] > 18) ? 'wellcome' : 'denied';
+echo $var;
+
 
 
 
@@ -60,7 +62,7 @@ function passwordGenerator(){
   return $string;
 }
 
- 
+
   // MySQL
 
 $host = 'localhost';
