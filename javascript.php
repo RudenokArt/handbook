@@ -1,3 +1,8 @@
+<script>
+  // вызов события на элементе
+  node.dispatchEvent(new Event('input', {bubbles: true }));
+</script>
+
  Текстовый редактор для сайта
  <!-- https://cdn.ckeditor.com/  --> 
  <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>

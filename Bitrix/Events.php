@@ -23,20 +23,22 @@ class DocumentGeneratorHandler {
     // // //$fields = $document->getFields();
   }
 }
-// Добавление вкладки в crm сущность (сделку)ж
+// Добавление вкладки в crm сущность (сделку) 
+// можно из модуля!
 Bitrix\Main\EventManager::getInstance()->addEventHandler(
   'crm',
   'onEntityDetailsTabsInitialized', 
   static function(\Bitrix\Main\Event $event) {
     $entityId = $event->getParameter('entityID');
+    $typeId = $event->getParameter('entityTypeID');
     $tabs = $event->getParameter('tabs');
     $tabs[] = [
       'id' => 'crm_products_calc',
       'name' => 'Products(calc)',
       'loader' => [
-        'serviceUrl' => '/local/components/docbrown/crm_products_calc/lazyload.ajax.php',
-        'componentData' => [
-          'dealId' => $entityId
+        'serviceUrl' => '/local/components/docbrown/crm_products_calc/lazyload.ajax.php', // путь к компоненту
+        'componentData' => [ // arParams компонента
+          'dealId' => $entityId 
         ]
       ]
     ];
