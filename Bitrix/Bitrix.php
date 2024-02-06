@@ -1,5 +1,7 @@
 <?php
 
+// ?bitrix_include_areas=Y
+
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
 

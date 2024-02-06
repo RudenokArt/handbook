@@ -31,6 +31,7 @@ Bitrix\Main\EventManager::getInstance()->addEventHandler(
   static function(\Bitrix\Main\Event $event) {
     $entityId = $event->getParameter('entityID');
     $typeId = $event->getParameter('entityTypeID');
+    $parameters = $event->getParameters(); // все параметры (если надо)
     $tabs = $event->getParameter('tabs');
     $tabs[] = [
       'id' => 'crm_products_calc',

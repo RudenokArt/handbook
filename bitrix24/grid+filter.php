@@ -85,6 +85,11 @@ Toolbar::addFilter([
 ?>
 
 <script>
+	// получить все гриды на странице
+	var gridList = BX.Main.gridManager.data;
+	// получить грид по ID
+	var productGrid = BX.Main.gridManager.getInstanceById('CCrmEntityProductListComponent');
+
 	// перезагрузить грид
 	var gridObject = BX.Main.gridManager.getById('tinkoff_operations_list');
 	var gridCurrentPage = document.querySelector('.main-ui-pagination-active').textContent;
@@ -99,6 +104,8 @@ Toolbar::addFilter([
 		}));
 	}
 	
+	// Получить строки грида
+	gridObject.instance.getRows();
 	// Получить выбранные строки грида
 	gridObject.instance.getRows().getSelectedIds();
 
