@@ -14,7 +14,8 @@
 \Bitrix\Iblock\TypeTable::getList(); // списки типов инфоблоков
 \Bitrix\Iblock\IblockTable::getList(); // списки инфоблоков
 \Bitrix\Iblock\PropertyTable::getList(); // списки свойств инфоблоков
-\Bitrix\Iblock\PropertyEnumerationTable::getList(); // списки значений свойств, хранимых отдельно
+\Bitrix\Iblock\PropertyEnumerationTable::getList(); // Варианты значений типа список
+\Bitrix\Iblock\ElementPropertyTable::getList(); // Свойства элементов инфоблоков
 \Bitrix\Iblock\SectionTable::getList(); // Списки разделы инфоблоков
 \Bitrix\Iblock\ElementTable::getList(); // Списки элементов инфоблоков 
 \Bitrix\Iblock\InheritedPropertyTable::getList(); // Списки наследуемых свойств (seo шаблоны) 
