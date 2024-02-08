@@ -4,11 +4,23 @@
 mb_internal_encoding('UTF-8');
 echo 'моя первая программа';
 
+// continue, break
+$arr = [1, 2, 3, 4, 5, ];
+foreach ($arr as $key => $value) {
+  if ($value == 4) {
+    break;
+  } elseif ($value == 2) {
+    continue;
+  }
+  echo $key.'-'.$value.PHP_EOL;
+}
+
 // Тернарный оператор
 $var = ($argv[1] > 18) ? 'wellcome' : 'denied';
 echo $var;
 
-
+// Перенос строки:
+echo $value.PHP_EOL;
 
 
 // Принудительное преобразование типа: 
@@ -33,9 +45,6 @@ echo '<script>setTimeout(function(){document.location.href="index.php";},2000);<
 
 // JSON
 $json=json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-// перенос строки в txt
-PHP_EOL.date('H:i:s-d.m.Y');
 
 // image to base64
 $base64imageTinkoffLogo = base64_encode(file_get_contents(__DIR__.'/img/tink-logo.jpg'));
