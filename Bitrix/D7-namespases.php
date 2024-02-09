@@ -18,7 +18,6 @@
 \Bitrix\Iblock\ElementPropertyTable::getList(); // Свойства элементов инфоблоков
 \Bitrix\Iblock\SectionTable::getList(); // Списки разделы инфоблоков
 \Bitrix\Iblock\ElementTable::getList(); // Списки элементов инфоблоков 
-\Bitrix\Iblock\InheritedPropertyTable::getList(); // Списки наследуемых свойств (seo шаблоны) 
 
 // ЗАДАЧИ
 // Соисполнители и наблюдатели в задачах

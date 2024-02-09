@@ -2,6 +2,9 @@
 
 // ?bitrix_include_areas=Y
 
+// custom debagger;
+\Tools\Debugger::jsonLog(['install']);
+
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
 
