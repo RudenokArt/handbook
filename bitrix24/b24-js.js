@@ -19,3 +19,5 @@ BX.SidePanel.Instance.open('add_faq_form.php?update='+item_id, {
 });
 // Перезагрузить слайдер
 BX.SidePanel.Instance.reload(); 
+// Закрыть слайдер
+BX.SidePanel.Instance.close();
