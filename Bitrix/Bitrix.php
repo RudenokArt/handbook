@@ -12,36 +12,7 @@
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
 
-// ===== Получение текущую папку в URL =====
-echo $this->getFolder();
-
-// путь к папке шаблона
-echo SITE_TEMPLATE_PATH; 
-
-// подключить пролог и эпилог
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php");
-
-
-// footer & header 
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
-
-// Вставить компонент
-$APPLICATION->IncludeComponent('exxagate:messenger', '', []);
-
-
-// jQuery
-CJSCore::Init(array("jquery"));
-// bootstrap
-\Bitrix\Main\UI\Extension::load("ui.bootstrap4");
-
-// jQuery + bootstrap
-CJSCore::Init(['jquery', 'ui.bootstrap4']);
-// font-awesome
-$APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
-
-// Автозагрузка классов
+// Автозагрузка классов в init.php
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [
   'Classes\Infoblock' => '/local/php_interface/classes/infoblock.php'
 ]);
