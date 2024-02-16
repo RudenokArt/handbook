@@ -1,3 +1,9 @@
+
+Произвольный контент в Toolbar
+<?php $this->SetViewTarget("pagetitle", 100);?>
+<?php echo 'pagetitle  ' ?>
+<?php $this->EndViewTarget(); ?>
+
 <?php
 
 // users
