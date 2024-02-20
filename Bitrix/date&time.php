@@ -3,6 +3,11 @@
 // ========== DATE & TIME ==========
 
 
+// Первый и последний день месяца:
+$arr['date']['date_to'] = date('Y-m-d', mktime(0, 0, 0, $arr['date']['month'], 1, $arr['date']['year']));
+$arr['date']['date_from'] = date('Y-m-t', mktime(0, 0, 0, $arr['date']['month'], 1, $arr['date']['year']));
+
+
 // Фильтр из GET параметров
 if (isset($_GET['filter']['>=DATE_CREATE'])) {
   $_GET['filter']['>=DATE_CREATE'] = new \Bitrix\Main\Type\DateTime($_GET['filter']['>=DATE_CREATE'], 'Y-m-d');
