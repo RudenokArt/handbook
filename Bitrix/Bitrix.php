@@ -5,9 +5,9 @@
 // custom debugger;
 \Tools\Debugger::jsonLog(['install']);
 // error
-  if (!$add->isSuccess()) {
-    print_r($add->getErrorMessages());
-  }
+if (!$add->isSuccess()) {
+  print_r($add->getErrorMessages());
+}
 
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
