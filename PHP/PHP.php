@@ -84,3 +84,15 @@ while ($row = mysqli_fetch_assoc($arr)) {
   print_r($row);
 }
 
+// Рекурсивный перебор многомерного массива
+var_dump(recursive($arr));
+function recursive ($arr) {
+  foreach ($arr as $key => $value) {
+    if (is_array($value)) {
+      recursive($value);
+    } else {
+      echo $value;
+    }
+  }
+  return $arr;
+}
