@@ -81,10 +81,11 @@ Template Name: ug_ideal-catalog
 /* MySQL: */
 update wp_options set option_value = 'http://example.com' where option_name = 'siteurl';
 update wp_options set option_value = 'http://example.com' where option_name = 'home';
-2 - дополнительно указать URL-адрес в файл wp-config.php
 
+2 - дополнительно указать URL-адрес в файл wp-config.php
 define('WP_HOME','http://example.com');
 define('WP_SITEURL','http://example.com');
+
 3- Очистить кэш с сервера
 
 4- Очистите кэш вашего браузера и историю (Ура!!! это решило мою проблему без перенаправления)
