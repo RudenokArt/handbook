@@ -53,7 +53,8 @@ $arResult['FILTER'][] = [
 		'enableAll' => 'N',
 		'enableDepartments' => 'N',
 		'enableCrm' => 'Y',
-		'enableCrmDeals' => 'Y'
+		'enableCrmDeals' => 'Y',
+		'crmPrefixType' => 'SHORT',
 	]
 ];
 
