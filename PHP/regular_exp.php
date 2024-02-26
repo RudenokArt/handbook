@@ -10,5 +10,11 @@ echo preg_replace('#ab+#', 'x', 'ababababa');
 echo preg_replace('#ab*#', 'x', 'ababababa');
 // Повтор ноль или более раз
 echo preg_replace('#ab?#', 'x', 'ababababa');
-// группировка символов
+// Повтор указанное количество (2) раз
+echo preg_replace('#(ab){2}#', 'x', 'ababa');
+// Группировка символов
 echo preg_replace('#a(ba)+#', 'x', 'ababa');
+// Экранирование символа
+echo preg_replace('#b\.#', 'x', 'abab.a');
+// Являются спецсимволами: $ ^ . * + ? \ / {} [] () |
+// Не являются спецсимволами: @ : , ' " ; - _ = < > % # ~ ` & !
