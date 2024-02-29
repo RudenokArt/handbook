@@ -20,6 +20,16 @@ echo preg_replace('#\S#', 'x', 'a1 b2	c3e4');
 echo preg_replace('#a[bcd]#', 'x', 'abacadae');
 // Группа сиволов от b до d
 echo preg_replace('#a[b-d]#', 'x', 'abacadae');
+// Инверсирование символов (все символы кроме группы от a до b)
+echo preg_replace('#a[^b-d]#', 'x', 'abacadae');
+// Вся кирилица без ё
+echo preg_replace('#[а-я]#u', 'x', 'Лёлик и Болек');
+//вся кирилица с ё
+echo preg_replace('#[а-яё]#u', 'x', 'Лёлик и Болек');
+// Вся кирилица с заглавными и ё
+echo preg_replace('#[аА-яЯё]#u', 'x', 'Лёлик и Болек');
+// Спецсимволы внутри [] становятся обычными символами
+echo preg_replace('#[x/y]#u', 'z', 'text/type');
 // Повтор один или более раз
 echo preg_replace('#ab+#', 'x', 'ababababa');
 // Повтор ноль один или более раз 
