@@ -8,6 +8,10 @@ class LocalEventHandler {
     file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test/log.json', json_encode($arr));
   } 
 }
+// Регистрация обработчика события
+AddEventHandler('main', 'OnBeforeEventSend', function  ($arr=false) {
+  file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($arr));
+});
 
 // Регистрация обработчика события при установке модуля
 registerModuleDependences('documentgenerator', 'onBeforeProcessDocument', $this->MODULE_ID, 'DocumentGeneratorHandler', 'customizeDocument');
