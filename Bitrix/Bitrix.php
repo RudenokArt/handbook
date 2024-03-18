@@ -3,11 +3,7 @@
 // ?bitrix_include_areas=Y
 
 // custom debugger;
-\Tools\Debugger::jsonLog(['install']);
-// error
-if (!$add->isSuccess()) {
-  print_r($add->getErrorMessages());
-}
+file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($list));
 
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
