@@ -13,6 +13,15 @@ require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 // Подключение файла php
 get_template_part('core/AdminRouter');
 
+
+// Добавить логотип в тему 
+add_action('after_setup_theme', static function () {
+	add_theme_support('custom-logo', []);
+});
+
+// Получить URL логотипа:
+wp_get_attachment_url(get_theme_mod('custom_logo'));
+
 // Путь до темы (php path);
 get_template_directory();
 

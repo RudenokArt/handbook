@@ -17,6 +17,12 @@ echo preg_replace('#b\.#', 'x', 'abab.a');
 // Для ограничения жадности нужно добавить знак "?"
 echo preg_replace('#a.*?c#', 'x', 'abcabcabc');
 
+// ИЛИ
+echo preg_replace('#(te)|(bo)#', 'x', 'ten green bottle');
+
+// Экранирование ограничителя
+echo preg_replace('#al \##', 'al N', 'deal # 10');
+
 
 
 // ===== ЗАМЕНЫ =====
