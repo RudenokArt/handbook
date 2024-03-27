@@ -65,17 +65,56 @@ CCrmOwnerType::getFieldsInfo(
 // пользовательские поля сделок 
 Bitrix\Main\UserFieldTable::getList(['filter' => ['ENTITY_ID' => 'CRM_DEAL']])->fetchAll();
 
-// ПЕРЕЗАПИСЬ ПОЛЕЙ ДОКУМЕНТА В МОМЕНТ ГЕНЕРАЦИИ
-\Bitrix\Main\EventManager::getInstance()->addEventHandler('documentgenerator', 'onBeforeProcessDocument', 'onBeforeProcessDocument');
-function onBeforeProcessDocument($event) {
-  $document = $event->getParameter('document');
-  lib\Debugger::singleLog_txt(json_encode(get_class_methods($document)));
-  $document->setValues(['sig' => '${sig}']);
-  /** @var \Bitrix\DocumentGenerator\Document $document */
-  // добавить дополнительные описания полей
-  // $document->setFields($newFields);
-  // добавить значения полей
-  //$document->setValues(['someField' => 'myCustomValue']);
-  // получить список полей и их текущих значений
-  //$fields = $document->getFields();
+
+
+// ==== КАСТОМНОЕ ПОЛЕ (CUSTOM FIELD) ===============================
+// в инсталяторе:
+\Bitrix\Main\EventManager::getInstance()->registerEventHandlerCompatible(
+  'main', 'onUserTypeBuildList',
+  $this->MODULE_ID,
+  'Bitrix\Sievert\ObjectContactListField',
+  'getUserTypeDescription'
+);
+// include.php
+use Bitrix\Main\Loader;
+Loader::registerAutoLoadClasses(
+  'sievert.migrations', [
+    'Bitrix\Sievert\ObjectContactListField' => 'lib/ObjectContactListField.php',
+  ]
+);
+// В классе lib/ObjectContactListField.php:
+namespace Bitrix\Sievert;
+class ObjectContactListField extends \Bitrix\Main\UserField\Types\BaseType {
+  public const  USER_TYPE_ID = 'ObjectContactListField';
+  public const RENDER_COMPONENT = 'sievert:object_contact_list_field';
+  public static function getDescription(): array {
+    return [
+      'DESCRIPTION' => 'ObjectContactListField',
+      'BASE_TYPE' => \CUserTypeManager::BASE_TYPE_STRING
+    ];
+
+  }
+  public static function getDbColumnType(): string {
+    return 'text';
+  }
 }
+// в классе компонента object_contact_list_field
+class ObjectContactListFieldUfComponent extends Bitrix\Main\Component\BaseUfComponent {
+  protected static function getUserTypeId(): string {
+    return Bitrix\Sievert\ObjectContactListField::USER_TYPE_ID;
+  }
+  protected function prepareResult(): void {
+    if ($this->additionalParameters['mode'] == 'main.view' or $this->additionalParameters == 'main.edit') {
+      $this->additionalParameters['mode'] = '.default';
+    } else {
+      $this->additionalParameters['mode'] = 'empty';
+    }
+  }
+}
+// В шаблоне компонента object_contact_list_field
+?><input
+value="<?php echo $arResult['userField']['VALUE']; ?>"
+name="<?php echo $arResult['userField']['FIELD_NAME']?>"
+id="contactListFieldInput"
+type="text"><?php 
+// ==============================================================

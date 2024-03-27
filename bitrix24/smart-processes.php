@@ -1,5 +1,5 @@
 <?php
-// Получить элемент смарт-процесса ( 168 - тип смартпроцесса)
+// Получить элемент смарт-процесса ( 168 - тип смартпроцесса, 30 - id смартпроцесса)
 
 $type = \Bitrix\Crm\Service\Container::getInstance()->getFactory(168);
 
@@ -23,7 +23,7 @@ $parentRelations = Bitrix\Crm\Service\Container::getInstance()->getRelationManag
 
 foreach ($parentRelations as $relation) {
 
-if ($relation->getEntityTypeId() === 168) { // 168 - id смарт-процесса
+if ($relation->getEntityTypeId() === 168) { // 168 - тип смартпроцесса
 
 $arr[] =  $relation->getEntityId(); // id элемента смарт-процесса
 
