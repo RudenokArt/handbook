@@ -6,17 +6,6 @@ echo preg_match('#ab#', 'aaaaaaabbbbbbbbb');
 // Количество всех совпадений
 echo preg_match_all('#a.b#', 'acbadbaebafb');
 
-// Поиск с карманами - каждой группе в круглых скобках соответствуюет отдельный карман.
-// В указанную переменную попадет массив с найденными карманами.
-// При этом в нулевом элементе массива будет лежать найденная строка,
-// в первом элементе - первый карман,
-// во втором элементе - второй карман
-preg_match('#(a.c)(b.d)#', 'aaaaaaaabcbcdbbbb', $pocket);
-print_r($pocket);
-// Все совпадения на карманы
-preg_match_all('#a.b#', 'acbadbaebafb', $pocket);
-print_r($pocket);
-
 // Простая замена
 echo preg_replace('#a#', 'x', 'ababababa');
 
@@ -29,7 +18,7 @@ echo preg_replace('#a(ba)+#', 'x', 'ababa');
 echo preg_replace('#a.*?c#', 'x', 'abcabcabc');
 
 // ИЛИ
-echo preg_replace('#(te)|(bo)#', 'x', 'ten green bottle');
+echo preg_replace('#(te)|(bo)#', 'x', 'ten green bottles');
 
 // Экранирование ограничителя
 echo preg_replace('#al \##', 'al N', 'deal # 10');
@@ -40,6 +29,46 @@ echo preg_replace('#b\.#', 'x', 'abab.a');
 // Являются спецсимволами: $ ^ . * + ? \ / {} [] () |
 // Не являются спецсимволами: @ : , ' " ; - _ = < > % # ~ ` & !
 
+
+// ===== КАРМАНЫ =====
+// Поиск с карманами - каждой группе в круглых скобках соответствуюет отдельный карман.
+// В указанную переменную попадет массив с найденными карманами.
+// При этом в нулевом элементе массива будет лежать найденная строка,
+// в первом элементе - первый карман,
+// во втором элементе - второй карман
+preg_match('#(a.c)(b.d)#', 'aaaaaaaabcbcdbbbb', $pocket);
+print_r($pocket);
+// Именованные карманы (в виде ассоциативного массива)
+preg_match('#(?<hours>\d\d):(?<minutes>\d\d)#', '17:20', $arTime);
+print_r($arTime);
+
+// Все совпадения на карманы
+preg_match_all('#a.b#', 'acbadbaebafb', $pocket);
+print_r($pocket);
+
+// Скобки () выполняют две функции - группировка символов и функцию кармана.
+preg_match_all('#(abc)+#', 'abcabcabcd', $pocket);
+print_r($pocket);
+
+// Группировка без карманов (?:)
+preg_match_all('#(?:abc)+#', 'abcabcabcd', $pocket);
+print_r($pocket);
+
+// Замена вместо карманов ($1 - индекс кармана)
+echo preg_replace('#(abc)(def)#', '$1_replacement_', 'abcdefg');
+
+// Использование результатов кармана в этой же регулярке (\1 - индекс кармана)
+echo preg_replace('#(.)\1#', 'XXX', 'abccdeefg');
+// Использование результатов именованного кармана в этой же регулярке (k<sumbol> - индекс кармана)
+//  Варианты синтаксиса: \k{name}  \k'name'
+echo preg_replace('#(?<sumbol>.)\k<sumbol>#', 'XXX', 'abccdeefg');
+
+preg_match_all('#(?|19(..)|20(..))#', '1990-2024', $pocket);
+print_r($pocket);
+
+// Общий номер карманов
+preg_match_all('#(?|19(..)|20(..))#', '1990-2024', $pocket);
+print_r($pocket);
 
 
 // ===== ЗАМЕНЫ =====
