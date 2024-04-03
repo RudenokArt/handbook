@@ -16,6 +16,8 @@ echo preg_replace('#a(ba)+#', 'x', 'ababa');
 // По умолчанию регулярки закхватывают максимум символов от a до c
 // Для ограничения жадности нужно добавить знак "?"
 echo preg_replace('#a.*?c#', 'x', 'abcabcabc');
+// Ограничение жадности через модификатор
+echo preg_replace('#a.*c#U', 'x', 'abcabcabc');
 
 // ИЛИ
 echo preg_replace('#(te)|(bo)#', 'x', 'ten green bottles');
@@ -43,7 +45,7 @@ echo preg_replace('#(ab){2}#', 'x', 'ababa');
 
 // ===== ЗАМЕНЫ =====
 // . (точка) - любой символ 
-// для кирилицы - две точки
+// для кирилицы - использовать модификатор 'u'
 echo preg_replace('#b.b#', 'x', 'ababababa');
 // Любая цифра \d
 echo preg_replace('#\d#', 'x', 'a1b2c3e4');
@@ -136,3 +138,11 @@ echo preg_replace_callback('#c(de)f#', function ($pocket) {
 	print_r($pocket);
 	return 'DE';
 }, 'abcdefg_abcdefg');
+
+// ===== МОДИФИКАТОРЫ =====
+// Игнорирование регистра
+echo preg_replace('#abc#i', '123', 'ABCDE');
+// Работа с юникодом
+echo preg_replace('#АБВ.#u', '123', 'АБВГДЕ');
+// Ограничение жадности
+echo preg_replace('#a.*c#U', 'x', 'abcabcabc');
