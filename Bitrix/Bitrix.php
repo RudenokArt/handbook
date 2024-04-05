@@ -19,6 +19,10 @@ $this->getComponent()->getPath();
 // получить путь к компоненту в классе компонента
 $this->getPath();
 
+// Установка и получение пользовательских опция (модуль, название, значение)
+CUserOptions::SetOption('sn', 'checkin_checkout', $limit);
+CUserOptions::GetOption('sn', 'checkin_checkout');
+
 // получить список стран
 print_r(GetCountryArray(LANGUAGE_ID));
 

@@ -19,3 +19,7 @@ INNER JOIN `tags` ON `products_tags`.`tag_id`=`tags`.`id`
 -- Импортировать БД из консоли:
 -- mysql -u root -p elfbar-vapes < elfbar_vapes_wp_34pcs.sql
 -- mysql -u rudenok -p rudenok < elfbar_vapes_wp_34pcs.sql
+
+-- Удалить базу даных
+
+DROP DATABASE `b24-os`

@@ -6,6 +6,8 @@
  Author: art
  */
 
+// Очистка текста поста:
+ sanitize_textarea_field($str);
 
 // Подключить пролог без шапки
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
@@ -13,14 +15,19 @@ require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 // Подключение файла php
 get_template_part('core/AdminRouter');
 
+// Включить поддержку миниатюр
+add_theme_support( 'post-thumbnails' );
 
-// Добавить логотип в тему 
+// Включить поддержку логотипа
 add_action('after_setup_theme', static function () {
 	add_theme_support('custom-logo', []);
 });
 
 // Получить URL логотипа:
 wp_get_attachment_url(get_theme_mod('custom_logo'));
+
+// Получить favicon
+echo  get_site_icon_url();
 
 // Путь до темы (php path);
 get_template_directory();
