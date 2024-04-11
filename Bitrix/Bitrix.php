@@ -31,7 +31,7 @@ $bbTextParser = new CTextParser();
 $messages[$key]['MESSAGE'] = $bbTextParser->convertText($value['MESSAGE']);
 
 // ===== Получение файла по id =====
-$file=CFile::GetFileArray($id)['SRC'];
+$file = CFile::GetFileArray($id)['SRC'];
 
 // ===== Получить ссылку на файл ===== 
 CBitrixComponent::includeComponentClass('bitrix:main.file.input'); 
