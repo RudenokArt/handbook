@@ -15,7 +15,6 @@ Bitrix\Crm\Model\Dynamic\TypeTable::getList();
 // Таблица связи инвойсов и контактов:
 // b_crm_entity_contact
 
-
 // Статусы сделок
 Bitrix\Crm\StatusTable::getList();
 
@@ -27,6 +26,9 @@ Bitrix\Crm\Category\DealCategory::getAll(true);
 
 // Связь сделок и контактов
 \Bitrix\Crm\Binding\DealContactTable::getList();
+
+// Связь контактов и компаний
+Bitrix\Crm\Binding\ContactCompanyTable::getList();
 
 // Телефоны и email контактов
 \Bitrix\Crm\FieldMultiTable::getList();
