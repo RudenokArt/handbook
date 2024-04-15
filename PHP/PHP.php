@@ -22,6 +22,18 @@ echo $var;
 // Перенос строки:
 echo $value.PHP_EOL;
 
+// Мгновенная установка cookie
+setcookie('test', 'test2');
+$_COOKIE['test'] = 'test2';
+
+// Установка cookie на час
+setcookie('test', 'test2', time()+3600);
+var_dump($_COOKIE);
+
+// Мгновенное удаление cookie
+setcookie('test', '', time());
+unset($_COOKIE['test']);
+var_dump($_COOKIE);
 
 // Принудительное преобразование типа: 
 $var = (string) true; // выведет "1" (строку)
