@@ -21,6 +21,8 @@ if (isset($_GET['date_to']) and $_GET['date_to']) {
   ->add('1D');
 }
 
+// Фильтер из timestamp -30 days 
+$filter = ['>DATE' => (new \Bitrix\Main\Type\DateTime())->add('-30D'),]
 
 function reportFilterDate () {
   if ($_GET['F_DATE_TYPE']=='month') {
