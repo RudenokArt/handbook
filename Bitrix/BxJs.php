@@ -13,7 +13,7 @@
 <!-- Кнопки (уши) горизонтальной прокрутки -->
 <?php \Bitrix\Main\UI\Extension::load("ui.ears"); ?>
 <script>
-    const ears = new  BX.UI.Ears({
+  const ears = new  BX.UI.Ears({
     container: document.querySelector('#checkin_checkout-table-container'),
     smallSize: true,
     noScrollbar: true

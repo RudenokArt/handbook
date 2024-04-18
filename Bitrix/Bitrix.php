@@ -80,8 +80,7 @@ print_r($localStorage->get('main_event'));
 ], ];
 
 // ========= Отложенный вывод контента или компонента ==============
-$APPLICATION->ShowViewContent('rus_bank_approved_order'); // собственно вывод - метка для подстановки ?>
-<?php
+$APPLICATION->ShowViewContent('rus_bank_approved_order'); // собственно вывод - метка для подстановки 
 ob_start(); // старт отложенного вывода 
 $APPLICATION->IncludeComponent(
   "vetliva:bank_russia",
