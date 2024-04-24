@@ -1,4 +1,5 @@
 <?php 
+
 $deals_filter = [
 	'CATEGORY_ID' => $arResult['support_funnel'],
 	'ID' => $deals_ids,
