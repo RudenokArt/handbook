@@ -24,6 +24,9 @@ Bitrix\Crm\Category\DealCategory::getAll(true);
 // Все сделки по контакту: 
 \Bitrix\Crm\Binding\DealContactTable::getContactDealIDs($contact_id);
 
+// Все контакты по сделки
+\Bitrix\Crm\Binding\DealContactTable::getDealContactIDs($dealId);
+
 // Связь сделок и контактов
 \Bitrix\Crm\Binding\DealContactTable::getList();
 
