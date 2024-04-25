@@ -7,7 +7,7 @@
  */
 
 // Очистка текста поста:
- sanitize_textarea_field($str);
+ sanitize_text_field($str);
 
 // Подключить пролог без шапки
 require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
