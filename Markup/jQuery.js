@@ -10,6 +10,9 @@ $('body').delegate('#timeline_activity_add_form', 'submit', function (e) {
   console.log('submit');
 });
 
+// Ближайший родитель
+$(this).closest('form').trigger('submit');
+
 
 // Событие загрузки html
 $(document).ready(function () {
