@@ -1,2 +1,8 @@
 # Вывод ошибок
 php_value display_errors 1
+
+# Редирект всех запросов в index.php (для движка)
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !\.(js|css|ico|jpg|png|gif)$
+RewriteRule .+ index.php
