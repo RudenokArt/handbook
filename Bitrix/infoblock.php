@@ -1,6 +1,47 @@
 <?php 
 
-// ========== INFOBLOCKS ==========
+// ===== СВОИЙСТВА ИНФОБЛОКОВ =====
+
+
+// Создать свойство типа "Money"
+$arFields = Array(
+  "NAME" => "Leasingrate",
+  "ACTIVE" => "Y",
+  "SORT" => "100",
+  "CODE" => "LEASING_RATE",
+  "PROPERTY_TYPE" => "S",
+  "USER_TYPE" => "Money",
+  "IBLOCK_ID" => 15
+);
+$ibp = new CIBlockProperty;
+$PropID = $ibp->Add($arFields);
+
+// Создать свойство типа список
+$arFields = Array(
+  "NAME" => "moose",
+  "ACTIVE" => "Y",
+  "SORT" => "100",
+  "CODE" => "MOOSE",
+  "PROPERTY_TYPE" => "L",
+  "IBLOCK_ID" => 14
+);
+$arFields["VALUES"][0] = Array(
+  "VALUE" => "moose",
+  "DEF" => "N",
+  "SORT" => "100"
+);
+$arFields["VALUES"][1] = Array(
+  "VALUE" => "frame",
+  "DEF" => "N",
+  "SORT" => "200"
+);
+$arFields["VALUES"][2] = Array(
+  "VALUE" => "install",
+  "DEF" => "N",
+  "SORT" => "300"
+);
+$ibp = new CIBlockProperty;
+$PropID = $ibp->Add($arFields);
 
 // Сложный фильтр 
 
@@ -70,4 +111,4 @@ $GLOBALS['main_event_filter'] = [ // Фильтр по свойству
 ];
 
 
- ?>
+?>
