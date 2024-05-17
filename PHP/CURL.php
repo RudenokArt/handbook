@@ -25,3 +25,18 @@ if ($re) {
 
 // Парсинг с обработкой ошибок и с переходом по редиректам
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+
+
+// POST параметры запроса
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, 'fortest/test.php');
+curl_setopt($curl, CURLOPT_POST, 1);
+$data = ['name1'=>'value1', 'name2'=>'value2'];
+curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$re = curl_exec($curl);
+if ($re) {
+	print_r(json_decode($re, true));
+} else {
+	echo curl_error($curl);
+}
