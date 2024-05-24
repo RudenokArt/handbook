@@ -18,3 +18,13 @@ $(this).closest('form').trigger('submit');
 $(document).ready(function () {
     /* body... */
 });
+
+
+// Создание элемента
+var plusButton = $('<a>', {
+  class: 'main-buttons-item-sublink crm-menu-plus-btn',
+  href: '/crm/quote/edit/0/?deal_id=' + dealId,
+  title: "Neues Angebot",
+  onclick: "BX.onCustomEvent(window, 'CrmCreateQuoteFromDeal'); return false;",
+});
+$(this).append(plusButton);
