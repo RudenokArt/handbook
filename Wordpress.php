@@ -6,6 +6,8 @@
  Author: art
  */
 
+ // https://underscores.me/ Генератор тем
+
 // Очистка текста поста:
  sanitize_text_field($str);
 
