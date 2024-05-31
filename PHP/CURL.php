@@ -40,3 +40,7 @@ if ($re) {
 } else {
 	echo curl_error($curl);
 }
+
+// Отключить проверку SSL
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, FALSE);
