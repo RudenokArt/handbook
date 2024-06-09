@@ -23,15 +23,21 @@ $APPLICATION->GetCurDir();
 $APPLICATION->GetMenu('top', false, false, '/');
 
 // jQuery
-CJSCore::Init(array("jquery"));
+\CJSCore::Init(array("jquery"));
 // bootstrap
 \Bitrix\Main\UI\Extension::load("ui.bootstrap4");
 
 // jQuery + bootstrap
-CJSCore::Init(['jquery', 'ui.bootstrap4']);
+\CJSCore::Init(['jquery', 'ui.bootstrap4']);
 // font-awesome
 $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
 ?>
+
+<style>
+  button:active, button:focus {
+    outline: none !important;
+  }
+</style>
 
 <!-- CALENDAR - DATEPICKER -->
 <?php CJSCore::Init(array('date')); ?>
