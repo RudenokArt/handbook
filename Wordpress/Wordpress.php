@@ -59,6 +59,9 @@ add_action( 'wp_enqueue_scripts', static function () {
 // Очистка текста поста:
  sanitize_text_field($str);
 
+// получить url миниатюры поста
+ get_the_post_thumbnail_url($postId);
+
 
 // SQL запрос к БД
  $sql=$wpdb->get_results('SELECT `post_content` FROM `wp_posts`');

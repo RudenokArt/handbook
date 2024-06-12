@@ -46,3 +46,29 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
   <input type="text" name="INPUTNAME" onclick="BX.calendar({node: this, field: this, bTime: false});" class="ui-ctl-element ui-ctl-textbox">
 </div>
 
+
+<!-- СЕЛЕКТОР КОМПАНИЙ  -->
+<?php $APPLICATION->IncludeComponent(
+  'bitrix:main.user.selector',
+  '',
+  [
+    "ID" => "mail_client_config_queue",
+    "API_VERSION" => 3,
+    "INPUT_NAME" => "company",
+    "USE_SYMBOLIC_ID" => true,
+    "BUTTON_SELECT_CAPTION" => 'push',
+    "SELECTOR_OPTIONS" => 
+    [
+      'enableAll' => 'N',
+      'userSearchArea' => 'I',
+      'multiple' => 'N',
+      'enableSonetgroups' => 'N',
+      'enableUsers' => 'N',
+      'enableAll' => 'N',
+      'enableDepartments' => 'N',
+      'enableCrm' => 'Y',
+      'enableCrmCompanies' => 'Y',
+    ]
+  ]
+); ?>
+
