@@ -36,6 +36,7 @@ add_filter( 'show_admin_bar', '__return_false' );
 add_action( 'wp_enqueue_scripts', static function () {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 	wp_enqueue_script('jquery');
+	 wp_enqueue_style('dashicons');
 	wp_enqueue_style('bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
 	wp_enqueue_script('bootstrap_js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', [], false, ['in_footer' => true]);
 	wp_enqueue_script( 'script_js', get_template_directory_uri() . '/js/script.js');
