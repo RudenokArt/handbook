@@ -3,29 +3,85 @@
 // ========== HIGHLOADBLOCKS ==========
 
 // подключить модуль highload
-use Bitrix\Main\Loader;
-Loader::IncludeModule('highloadblock');
+Bitrix\Main\Loader::includeModule('highloadblock');
 
-// создать highload
-$hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
-  'NAME' => 'TasksPremium',
-  'TABLE_NAME' => 'tasks_premium', 
-));
+// Создание highload блока с кастомными полями.
+function hlBlockInstall () {
 
-// создать highload с кастомными полями
-$hl_create = Bitrix\Highloadblock\HighloadBlockTable::add(array(
-  'NAME' => 'DealAward',
-  'TABLE_NAME' => 'deal_award', 
-));
-$hl_id = $hl_create->getId();
-$arFields = Array(
-  "ENTITY_ID" => "HLBLOCK_".$hl_id,
-  "FIELD_NAME" => "UF_TITLE",
-  "USER_TYPE_ID" => "string",
-  "EDIT_FORM_LABEL" => Array("ru"=>"заголовок", "en"=>"title")
-);
-$obUserField  = new CUserTypeEntity;
-$obUserField->Add($arFields);
+  $hlCheck = \Bitrix\Highloadblock\HighloadBlockTable::getList([
+    'filter'=> [
+      'TABLE_NAME' => 'b_happe_timetable_holidays',
+    ],
+  ])->Fetch();
+  if ($hlCheck) {
+    return;
+  }
+
+  $hlCreate = \Bitrix\Highloadblock\HighloadBlockTable::add(array(
+    'NAME' => 'HappeTimetableHolidays',
+    'TABLE_NAME' => 'b_happe_timetable_holidays', 
+  ));
+
+  $arLangs = Array(
+    'ru' => 'Happe - Расписание праздников',
+    'en' => 'Happe - holidays timetable',
+    'de' => 'Happe - Feiertagsfahrplan',
+  );
+
+  if ($hlCreate->isSuccess()) {
+    $hlId = $hlCreate->getId();
+    foreach($arLangs as $lang_key => $lang_val){
+      \Bitrix\Highloadblock\HighloadBlockLangTable::add(array(
+        'ID' => $hlId,
+        'LID' => $lang_key,
+        'NAME' => $lang_val
+      ));
+    }
+  } else {
+    $errors = $hlCreate->getErrorMessages();
+    file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($errors)); 
+  }
+
+  $arFields = Array(
+    "ENTITY_ID" => "HLBLOCK_".$hlId,
+    'FIELD_NAME' => 'UF_HAPPE_TIMETABLE_HOLIDAY_TITLE',
+    'USER_TYPE_ID' => 'string',
+    'MULTIPLE'=> 'N',
+    'EDIT_FORM_LABEL' => array(
+      'ru' => 'Название',
+      'en' => 'Title',
+      'de' => 'Titel',
+    ),
+    'LIST_COLUMN_LABEL' => array(
+      'ru' => 'Название',
+      'en' => 'Title',
+      'de' => 'Titel',
+    ),
+  );
+  $obUserField  = new CUserTypeEntity;
+  $obUserField->Add($arFields);
+
+  $arFields = Array(
+    "ENTITY_ID" => "HLBLOCK_".$hlId,
+    'FIELD_NAME' => 'UF_HAPPE_TIMETABLE_HOLIDAY_DATE',
+    'USER_TYPE_ID' => 'date',
+    'MULTIPLE'=> 'N',
+    'EDIT_FORM_LABEL' => array(
+      'ru' => 'Дата',
+      'en' => 'Date',
+      'de' => 'Datum',
+    ),
+    'LIST_COLUMN_LABEL' => array(
+      'ru' => 'Дата',
+      'en' => 'Date',
+      'de' => 'Datum',
+    ),
+  );
+  $obUserField  = new CUserTypeEntity;
+  $obUserField->Add($arFields);
+}
+
+
 
 // Удалить highload по символьному коду
 $hl = \Bitrix\Highloadblock\HighloadBlockTable::getList([
