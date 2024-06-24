@@ -8,7 +8,7 @@ class LocalEventHandler {
     file_put_contents($_SERVER['DOCUMENT_ROOT'].'/test/log.json', json_encode($arr));
   } 
 }
-// Регистрация обработчика события
+// Регистрация обработчика события с ананимной функцией
 AddEventHandler('main', 'OnBeforeEventSend', function  ($arr=false) {
   file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($arr));
 });
@@ -16,9 +16,9 @@ AddEventHandler('main', 'OnBeforeEventSend', function  ($arr=false) {
 // Регистрация обработчика события при установке модуля
 registerModuleDependences('documentgenerator', 'onBeforeProcessDocument', $this->MODULE_ID, 'DocumentGeneratorHandler', 'customizeDocument');
 class DocumentGeneratorHandler {
-  public static function customizeDocument($event)
+  public static function customizeDocument($document)
   { 
-    $event->setValues(['signature' => '${signature}']);
+    $document->setValues(['signature' => '${signature}']);
     // // // добавить дополнительные описания полей
     // // // $document->setFields($newFields);
     // // // добавить значения полей
