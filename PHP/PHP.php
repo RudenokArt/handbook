@@ -78,7 +78,7 @@ print_r($test->getFileName());
 
 // ГЕНЕРАТОР ПАРОЛЕЙ
 function passwordGenerator(){
-  $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+  $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMOPQRSTUVWXYZ123456789';
   $numChars = strlen($chars);
   $string = '';
   for ($i = 0; $i < 10; $i++) {
