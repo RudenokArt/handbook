@@ -70,5 +70,21 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
       'enableCrmCompanies' => 'Y',
     ]
   ]
-); ?>
+); 
 
+// селект для сделок, лидов и т.п.
+CModule::IncludeModule('crm');
+$fieldIdentifier='COMPANY_ID';
+$GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
+  '',
+  array(
+    'ENTITY_TYPE' => ['COMPANY','LEAD'],
+    'INPUT_NAME' => $fieldIdentifier,
+    'INPUT_VALUE' => 'company',
+    'FORM_NAME' => "",
+    'MULTIPLE' => 'N',
+    'FILTER'=>'Y',
+  ),
+  false,
+  array('HIDE_ICONS' => 'Y')
+); 
