@@ -40,6 +40,8 @@ add_action('after_setup_theme', static function () {
 	add_theme_support('menus');
 // Включить поддержку миниатюр
 	add_theme_support('post-thumbnails');
+// Папка с языковыми файлами
+	load_theme_textdomain( 'cloud-app', get_template_directory() . '/lang' );
 });
 
 
