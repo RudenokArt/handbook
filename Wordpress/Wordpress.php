@@ -55,9 +55,6 @@ add_action('after_setup_theme', static function () {
  get_stylesheet_directory_uri();
  get_template_directory_uri(); // для дочерних тем
 
-// Получить слаг текущей страницы
- $current_page_slug = get_post()->post_name;
-
 // Очистка текста поста:
  sanitize_text_field($str);
 

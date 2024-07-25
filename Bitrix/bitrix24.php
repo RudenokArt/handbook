@@ -1,8 +1,12 @@
 <?php 
 
+// Авторизовать юзера
+define('NOT_CHECK_PERMISSIONS', true);
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
+var_dump($USER->Authorize(1));
+
 // Копировать родительскую задачу:
 // ?PARENT_ID=26516&COPY=26516&TEMPLATE=Y
-
 
 // отключить авторизацию на странице
 define('NOT_CHECK_PERMISSIONS', true);
