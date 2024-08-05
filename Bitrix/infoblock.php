@@ -2,6 +2,9 @@
 
 // ===== СВОИЙСТВА ИНФОБЛОКОВ =====
 
+// класс свойства "деньги"
+// /bitrix/modules/currency/lib/integration/iblockmoneyproperty.php
+// Баг: // 'CheckFields' => [$className, 'checkFields'],
 
 // Создать свойство типа "Money"
 $arFields = Array(
