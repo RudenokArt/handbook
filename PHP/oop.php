@@ -53,3 +53,24 @@ echo $auto1->{$methods[1]}();
 $methods = ['m1'=>'getModel', 'm2'=>'getBrand'];
 $auto1 = new Auto();
 echo $auto1->{$methods['m2']}();
+
+
+// ===== ЦЕПОЧКА МЕТОДОВ =====
+class Auto {
+	function __construct() {
+		$this->model = 'Kalina';
+	}
+	public function getModel () {
+		return $this->model;
+	}
+	public function setModelIndex ($index) {
+		$this->model = $this->model.'-'.$index;
+		return $this;
+	}
+	public function setModelGeneration ($generation) {
+		$this->model = $this->model.'_'.$generation;
+		return $this;
+	}
+}
+$auto1 = new Auto();
+echo $auto1->setModelGeneration(1)->setModelIndex(1119)->model;

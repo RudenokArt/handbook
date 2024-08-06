@@ -1,2 +1,6 @@
 Рекурсивно поменять владельца файлов и папок
 chown -R bitrix:bitrix local/
+
+Удалить папку
+sudo rm -R wp-content/
+
