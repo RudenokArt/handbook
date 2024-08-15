@@ -14,6 +14,10 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/epilog_after.php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
 
+// Page title & favorite star
+\Bitrix\UI\Toolbar\Facade\Toolbar::DeleteFavoriteStar();
+$APPLICATION->SetTitle("Absent replacement");
+
 // Вставить компонент
 $APPLICATION->IncludeComponent('exxagate:messenger', '', []);
 

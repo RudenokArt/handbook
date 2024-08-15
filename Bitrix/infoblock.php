@@ -2,6 +2,28 @@
 
 // ===== СВОИЙСТВА ИНФОБЛОКОВ =====
 
+// создать свойство "Привязка к сотруднику" с проверкой на существование
+$iblockId = CIBlock::GetList([], [
+  'CODE' => 'absence',
+])->Fetch()['ID'];
+$prop = CIBlockProperty::GetList([], [
+  "CODE" => "SIEVERT_ABSENT_REPLACEMENT",
+  'IBLOCK_ID' => $iblockId,
+])->Fetch();
+if (!$prop) {
+  $arFields = Array(
+    "NAME" => "Replacement for absent employee",
+    "ACTIVE" => "Y",
+    "SORT" => "100",
+    "CODE" => "SIEVERT_ABSENT_REPLACEMENT",
+    "PROPERTY_TYPE" => "S",
+    "USER_TYPE" => "employee",
+    "IBLOCK_ID" => $iblockId,
+  );
+  $ibp = new CIBlockProperty;
+  $PropID = $ibp->Add($arFields);
+}
+
 // класс свойства "деньги"
 // /bitrix/modules/currency/lib/integration/iblockmoneyproperty.php
 // Баг: // 'CheckFields' => [$className, 'checkFields'],

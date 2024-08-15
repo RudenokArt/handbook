@@ -1,5 +1,54 @@
 <?php
 
+// ===== ПЕРЕДАЧ ОБЪЕКТА ПО ССЫЛКЕ =====
+class Auto {
+	public $model = 'Lada Kalina 1118'.PHP_EOL;
+}
+$car1 = new Auto;
+$car2 = $car1;
+echo $car1->model;
+echo $car2->model;
+$car1->model = 'Lada Kalina 1119'.PHP_EOL;
+echo $car1->model;
+echo $car2->model;
+
+// ===== ПЕРЕОПРЕДЕЛЕНИЕ МЕТОДА РОДИТЕЛЬСКОГО КЛАССА =====
+class Auto {
+	protected function getModel () {
+		return 'Lada Kalina';
+	}
+}
+class Car extends Auto {
+	public function getModel () {
+		return parent::getModel(). ' - 1119';
+	}
+}
+
+// ===== ПЕРЕОПРЕДЕЛЕНИЕ КОНСТРУКТОРА РОДИТЕЛЬСКОГО КЛАССА =====
+class Auto {
+	protected $brand;
+	function __construct () {
+		$this->brand = 'Lada';
+	}
+	public function getBrand () {return $this->brand;}
+}
+class Car extends Auto {
+	function __construct () {
+		parent::__construct();
+		$this->model = 'Kalina';
+	}
+	public function getModel () {return $this->model;}
+}
+
+$myCar = new Car();
+echo $myCar->getModel();
+echo $myCar->getBrand();
+
+// ===== МОДИФИКАТОРЫ ДОСТУПА =====
+public // наследуется не инкапсулируется
+private // не наследуется инкапсулируется
+protected // наследуется инкапсулируется
+
 // ===== ПЕРЕМЕННЫЕ НАЗВАНИЯ СВОЙСТВ =====
 class Auto {
 	function __construct() {
