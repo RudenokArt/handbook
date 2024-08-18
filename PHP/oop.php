@@ -1,5 +1,22 @@
 <?php
 
+// ===== ИСПОЛЬЗОВАНИЕ КЛАССОВ ВНУТРИ ДРУГИХ КЛАССОВ =====
+class Auto {
+	public function getFuelLevel () {
+		return '50 liters';
+	}
+}
+class Peugeot {
+	public function __construct() {
+		$this->auto = new Auto;
+	}
+	public function showFuelLevel () {
+		return $this->auto->getFuelLevel();
+	}
+}
+$myCar = new Peugeot;
+echo $myCar->showFuelLevel();
+
 // ===== ПЕРЕДАЧ ОБЪЕКТА ПО ССЫЛКЕ =====
 class Auto {
 	public $model = 'Lada Kalina 1118'.PHP_EOL;

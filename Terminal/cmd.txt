@@ -2,5 +2,5 @@
 chown -R bitrix:bitrix local/
 
 Удалить папку
-sudo rm -R wp-content/
+rm -R wp-content/
 
