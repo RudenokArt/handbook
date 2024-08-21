@@ -20,6 +20,9 @@ $this->getComponent()->getPath();
 // получить путь к компоненту в классе компонента
 $this->getPath();
 
+// Запуск бизнес процесса
+CBPDocument::startWorkflow($bpId, ['crm', 'CCrmDocumentDeal', 'DEAL_'.$dealId], [], $errors);
+
 // Установка и получение пользовательских опция (модуль, название, значение)
 CUserOptions::SetOption('sn', 'checkin_checkout', $limit);
 CUserOptions::GetOption('sn', 'checkin_checkout');

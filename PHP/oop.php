@@ -1,5 +1,6 @@
 <?php
 
+
 // ===== ИСПОЛЬЗОВАНИЕ КЛАССОВ ВНУТРИ ДРУГИХ КЛАССОВ =====
 class Auto {
 	public function getFuelLevel () {
@@ -17,7 +18,25 @@ class Peugeot {
 $myCar = new Peugeot;
 echo $myCar->showFuelLevel();
 
+// ===== ПЕРЕДАЧА ОБЪЕКТА ПАРАМЕТРОМ =====
+class Auto {
+	public function __construct ($brand, $model) {
+		$this->brand = $brand;
+		$this->model = $model;
+	}
+}
+class Car {
+	function getFullTitle ($object) {
+		return $object->brand . ' '. $object->model;
+	}
+}
+$auto1 = new Auto('Renault', 'Clio');
+$car1 = new Car();
+echo $car1->getFullTitle($auto1);
+
 // ===== ПЕРЕДАЧ ОБЪЕКТА ПО ССЫЛКЕ =====
+// Объекты не копируются а передаются по ссылке. 
+// Обе переменные ссылаются на один и тот же объект
 class Auto {
 	public $model = 'Lada Kalina 1118'.PHP_EOL;
 }
@@ -122,6 +141,7 @@ echo $auto1->{$methods['m2']}();
 
 
 // ===== ЦЕПОЧКА МЕТОДОВ =====
+// метод должен возвращать $this
 class Auto {
 	function __construct() {
 		$this->model = 'Kalina';
@@ -140,3 +160,18 @@ class Auto {
 }
 $auto1 = new Auto();
 echo $auto1->setModelGeneration(1)->setModelIndex(1119)->model;
+
+// ===== СРАВНЕНИЕ ОБЪЕКТОВ =====
+// При использовании оператора == для сравнения двух объектов выполняется сравнение свойств объектов: два объекта равны, если они имеют одинаковые свойства и их значения (значения свойств сравниваются через ==) и являются экземплярами одного и того же класса.
+// При сравнении через ===, переменные, содержащие объекты, считаются равными только тогда, когда они ссылаются на один и тот же экземпляр одного и того же класса.
+class Auto {
+	public function __construct ($brand, $model) {
+		$this->brand = $brand;
+		$this->model = $model;
+	}
+}
+$auto1 = new Auto('Renault', 'Clio');
+$car1 = new Auto('Renault', 'Clio');
+var_dump($auto1 == $car1);
+var_dump($auto1 === $car1);
+
