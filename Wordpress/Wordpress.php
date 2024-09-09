@@ -44,6 +44,8 @@ add_action('after_setup_theme', static function () {
 	load_theme_textdomain( 'cloud-app', get_template_directory() . '/lang' );
 });
 
+// JSON DECODE
+json_decode(stripslashes($_COOKIE['tourists']));
 
 // Подключение файла php
  get_template_part('core/AdminRouter');
