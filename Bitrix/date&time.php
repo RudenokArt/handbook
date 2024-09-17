@@ -7,6 +7,13 @@
 $arr['date']['date_to'] = date('Y-m-d', mktime(0, 0, 0, $arr['date']['month'], 1, $arr['date']['year']));
 $arr['date']['date_from'] = date('Y-m-t', mktime(0, 0, 0, $arr['date']['month'], 1, $arr['date']['year']));
 
+// Фильтр D7 с ... по ...
+$arr = \Bitrix\Sn\PlanTable::getList([
+  'filter' => [
+    '>=BEGIN_DATE' => $period['beginDate']->toString(),
+    '<=CLOSE_DATE' => $period['closeDate']->toString(),
+  ],
+])->fetchAll();
 
 // Фильтр из GET параметров
 if (isset($_GET['filter']['>=DATE_CREATE'])) {

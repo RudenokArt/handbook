@@ -172,6 +172,67 @@ class Auto {
 }
 $auto1 = new Auto('Renault', 'Clio');
 $car1 = new Auto('Renault', 'Clio');
+$car2 = $car1;
 var_dump($auto1 == $car1);
 var_dump($auto1 === $car1);
+var_dump($car1 === $car2);
 
+// ===== ПРОВЕРКА НА ПРИНАДЛЕЖНОСТЬ КЛАССУ =====
+class Auto {};
+class Track {};
+$car = new Auto();
+$cargo = new Track();
+var_dump($car instanceof Auto);
+var_dump($cargo instanceof Auto);
+// для объектов дочерних классов будет выполняться проверка 
+// по отношению к родительским с положительным результатом (но не наоборот!)
+class Auto {};
+class Track extends Auto {};
+$car = new Auto();
+$cargo = new Track();
+var_dump($car instanceof Auto);
+var_dump($cargo instanceof Auto);
+var_dump($car instanceof Track);
+
+// Контроль типов (классов) при работе с объектами
+class Auto {
+	public $model = 'Ford F150';
+};
+class Track {
+	public function getModel (Auto $auto) {
+		return $auto->model;
+	}
+};
+$car = new Auto();
+$cargo = new Track();
+echo $cargo->getModel($car);
+
+// ===== СТАТИЧЕСКИЕ СВОЙСТВА И МЕТОДЫ =====
+// Статические свойства у объектов одного класса общие
+class Auto {
+	public static $brend;
+	public $model;
+};
+$car1 = new Auto();
+$car2 = new Auto();
+$car1::$brend = 'Renault';
+echo $car1::$brend.' - ';
+echo $car2::$brend;
+
+// Статические методы могут использовать только статические свойства
+// Обычные методы могу использовать как статические так и обычные свойства
+class Auto {
+	public static $brend;
+	public $model;
+	public static function getBrend () {
+		return self::$brend;
+	}
+	public function getModel () {
+		return self::$brend.'-'.$this->model;
+	}
+};
+$car = new Auto();
+$car::$brend = 'Renault';
+$car->model = 'Clio';
+echo $car::getBrend().' / ';
+echo $car->getModel();
