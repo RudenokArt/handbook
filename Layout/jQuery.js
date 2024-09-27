@@ -26,5 +26,6 @@ var plusButton = $('<a>', {
   href: '/crm/quote/edit/0/?deal_id=' + dealId,
   title: "Neues Angebot",
   onclick: "BX.onCustomEvent(window, 'CrmCreateQuoteFromDeal'); return false;",
+  html: 'test',
 });
 $(this).append(plusButton);
