@@ -87,6 +87,28 @@ function onBeforeProcessDocument($event) {
   //$fields = $document->getFields();
 }
 
+// ТАБЛИЧНЫЕ ДАННЫЕ ПРИ ГЕНЕРАЦИИ ДОКУМЕНТА 
+// ($arr - ассоциативный массив [поле => значение])
+$object = 'table';
+    $options = [
+      'ITEM_NAME' => 'table',
+      'ITEM_PROVIDER' => \Bitrix\DocumentGenerator\DataProvider\HashDataProvider::class,
+    ];
+    $resultValues[$object] = new \Bitrix\DocumentGenerator\DataProvider\ArrayDataProvider($arr, $options);
+    foreach ($arr as $key => $value) {
+      foreach ($value as $key1 => $value1) {
+        $resultValues[$key1] =  'table.table.'.$key1;
+      }
+    }
+    $resultFields[$object] = [
+      'PROVIDER' => \Bitrix\DocumentGenerator\DataProvider\ArrayDataProvider::class,
+      'OPTIONS' => $options,
+      'VALUE' => $arr,
+    ];
+    $resultFields['image'] = ['TYPE' => \Bitrix\DocumentGenerator\DataProvider::FIELD_TYPE_IMAGE];
+    $document->setFields($resultFields);
+    $document->setValues($resultValues);
+
 
 // Добавление вкладки в crm сущность (сделку) 
 // можно из модуля!

@@ -127,3 +127,194 @@ class Track extends Cargo implements iAuto {
 }
 $car = new Track('Dodge Ram');
 echo $car->getModel();
+
+// Проверка интерфейса на существование
+interface iAuto {
+	const WHEELS = 4;
+}
+var_dump(interface_exists('iAuto'));
+
+// Массив объявленных интерфейсов
+interface iAuto {
+	const WHEELS = 4;
+}
+print_r(get_declared_interfaces());
+
+
+
+// ===== ТРЕЙТЫ =====
+// Трейт представляет собой набор свойств и методов, которые можно включить в другой класс.
+// Экземпляр трейта нельзя создать - трейты предназначены только для подключения к другим классам.
+// В классе можно использовать не один, а несколько трейтов.
+trait Auto {
+	public function getModel () {
+		return $this->model;
+	}
+}
+trait Track {
+	public function getCapacity () {
+		return $this->capacity;
+	}
+}
+class Cargo {
+	use Auto, Track;
+	function __construct($model, $capacity){
+		$this->model = $model;
+		$this->capacity = $capacity;
+	}
+}
+
+$car = new Cargo ('Dodge Ram', 500);
+echo $car->getModel();
+echo $car->getCapacity();
+
+// Разрешение конфликтов в трейтах, когда два трейта имеют одноименные методы.
+// С помощью оператора insteadof указываем использовать метод одного трейта,
+// метод второго трейта оказывается недоступным.
+trait Auto {
+	public function getModel () {
+		return $this->model;
+	}
+}
+trait Track {
+	public function getModel () {
+		return 'model: '.$this->model;
+	}
+}
+class Cargo {
+	use Auto, Track {
+		Track::getModel insteadof Auto;
+	}
+	function __construct($model){
+		$this->model = $model;
+	}
+}
+
+$car = new Cargo ('Dodge Ram', 500);
+echo $car->getModel();
+
+// Можно использовать и метод второго трейта, переименовав его через ключевое слово as
+// Использовать ключевое слово as без определения главного метода через insteadof нельзя
+
+trait Auto {
+	public function getModel () {
+		return $this->model;
+	}
+}
+trait Track {
+	public function getModel () {
+		return 'model: '.$this->model;
+	}
+}
+class Cargo {
+	use Auto, Track {
+		Track::getModel insteadof Auto;
+		Auto::getModel as getModel_A;
+		Track::getModel as getModel_T;
+	}
+	function __construct($model){
+		$this->model = $model;
+	}
+}
+$car = new Cargo ('Dodge Ram', 500);
+echo $car->getModel_A().PHP_EOL;
+echo $car->getModel_T();
+
+// В использующем трейт классе будут доступны как публичные, так и приватные методы и свойства трейта
+// При необходимости, в самом классе можно этот модификатор поменять на другой.
+// Для этого в теле use после ключевого слова as нужно указать новый модификатор.
+trait Auto {
+	private function getModel () {
+		return $this->model;
+	}
+}
+class Cargo {
+	use Auto {
+		Auto::getModel as public;
+	}
+	function __construct($model){
+		$this->model = $model;
+	}
+}
+$car = new Cargo ('Dodge Ram');
+echo $car->getModel();
+
+// Приоритет методов
+// Если в классе и в трейте есть одноименный метод, то метод класса переопределит метод трейта
+trait Auto {
+	public function getModel () {
+		return $this->model;
+	}
+}
+class Cargo {
+	use Auto;
+	public function getModel () {
+		return $this->model.' from class';
+	}
+	function __construct($model){
+		$this->model = $model;
+	}
+}
+$car = new Cargo ('Dodge Ram');
+echo $car->getModel();
+
+// Если имеется конфликт имен методов трейта и методов родительского класса,
+// то методы трейта имеют приоритет
+trait Auto {
+	public function getModel () {
+		return $this->model.' - trait';
+	}
+}
+class Track {
+	public function getModel () {
+		return $this->model.' - parent';
+	}
+}
+class Cargo extends Track {
+	use Auto;
+	function __construct($model){
+		$this->model = $model;
+	}
+}
+$car = new Cargo ('Dodge Ram');
+echo $car->getModel();
+
+// В трейтах можно некоторые методы объявлять абстрактными.
+// В этом случае класс, использующий этот трейт, обязан будет реализовать такой метод.
+trait Auto {
+	abstract public function getModel();
+}
+class Track {
+	use Auto;
+	function __construct ($model) {
+		$this->model = $model;
+	}
+	public function getModel () {
+		return $this->model;
+	}
+}
+$car = new Track ('Dodge Ram');
+echo $car->getModel();
+
+// Трейты в трейтах
+trait Auto {
+	public function getModel () {
+		return $this->model;
+	}
+}
+trait Cargo {
+	use Auto;
+	function __construct ($model) {
+		$this->model = $model;
+	}
+}
+class Track {
+	use Cargo;
+}
+$car = new Track ('Dodge Ram');
+echo $car->getModel();
+
+// Проверка трейта на существование
+var_dump(trait_exists('Cargo'));
+// Получить объявленные трейты
+print_r(get_declared_traits());
