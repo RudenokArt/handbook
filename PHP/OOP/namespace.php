@@ -22,3 +22,43 @@ echo (new Track);
 // ИЛИ
 namespace Transport;
 echo (new Auto\Track);
+
+// ===== КОМАНДА use =====
+
+use Transport\Auto\Cargo;
+echo (new Cargo);
+// Эквивалентно:
+echo (new Transport\Auto\Cargo);
+
+// Псевдоним класса
+// Используют во избежания конфликта имен
+use Machine\Transport\Auto\Cargo as MTACargo;
+echo (new MTACargo);
+
+// ===== АВТОЗАГРУЗКА КЛАССОВ =====
+
+// /core/lib/auto.php
+namespace  Core\Lib;
+class Auto {
+	function __toString () {
+		return 'class Auto';
+	}
+}
+// /index.php
+spl_autoload_register();
+echo (new Core\Lib\Auto);
+
+// СВОЯ АВТОЗАГРУЗКА КЛАССОВ
+// /core/lib/auto.php
+namespace  Machine\Transport;
+class Auto {
+	function __toString () {
+		return 'class Auto';
+	}
+}
+// /index.php
+spl_autoload_register(function ($class) {
+	$class = array_pop(explode('\\', $class));
+	require 'core\lib\\'.$class.'.php';
+});
+echo (new Machine\Transport\Auto);
