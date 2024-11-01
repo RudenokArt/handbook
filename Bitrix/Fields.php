@@ -13,8 +13,9 @@ if (!$field) {
   $aUserFields_bind = array(
     'ENTITY_ID' => 'CRM_DEAL',
     'FIELD_NAME' => 'UF_LEASING_PERIOD',
-    'USER_TYPE_ID' => 'double',
+    'USER_TYPE_ID' => 'crm',
     'MULTIPLE'=> 'N',
+    'SHOW_FILTER' => 'I',
     'SETTINGS' => ['CONTACT' => 'Y'],
     'EDIT_FORM_LABEL' => array(
       'ru' => 'Период лизинга',
