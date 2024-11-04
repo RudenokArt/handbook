@@ -1,6 +1,5 @@
-CrmDealObjectProjectField
 <input
-value="<?php echo 'CrmDealObjectProjectField'; ?>"
-name="CrmDealObjectProjectField"
-id="CrmDealObjectProjectField"
+value="<?php echo $arResult['userField']['VALUE']; ?>"
+name="<?php echo $arResult['userField']['FIELD_NAME']?>"
+id="contactListFieldInput"
 type="text">

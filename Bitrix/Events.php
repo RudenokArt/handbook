@@ -90,24 +90,24 @@ function onBeforeProcessDocument($event) {
 // ТАБЛИЧНЫЕ ДАННЫЕ ПРИ ГЕНЕРАЦИИ ДОКУМЕНТА 
 // ($arr - ассоциативный массив [поле => значение])
 $object = 'table';
-    $options = [
-      'ITEM_NAME' => 'table',
-      'ITEM_PROVIDER' => \Bitrix\DocumentGenerator\DataProvider\HashDataProvider::class,
-    ];
-    $resultValues[$object] = new \Bitrix\DocumentGenerator\DataProvider\ArrayDataProvider($arr, $options);
-    foreach ($arr as $key => $value) {
-      foreach ($value as $key1 => $value1) {
-        $resultValues[$key1] =  'table.table.'.$key1;
-      }
-    }
-    $resultFields[$object] = [
-      'PROVIDER' => \Bitrix\DocumentGenerator\DataProvider\ArrayDataProvider::class,
-      'OPTIONS' => $options,
-      'VALUE' => $arr,
-    ];
-    $resultFields['image'] = ['TYPE' => \Bitrix\DocumentGenerator\DataProvider::FIELD_TYPE_IMAGE];
-    $document->setFields($resultFields);
-    $document->setValues($resultValues);
+$options = [
+  'ITEM_NAME' => 'table',
+  'ITEM_PROVIDER' => \Bitrix\DocumentGenerator\DataProvider\HashDataProvider::class,
+];
+$resultValues[$object] = new \Bitrix\DocumentGenerator\DataProvider\ArrayDataProvider($arr, $options);
+foreach ($arr as $key => $value) {
+  foreach ($value as $key1 => $value1) {
+    $resultValues[$key1] =  'table.table.'.$key1;
+  }
+}
+$resultFields[$object] = [
+  'PROVIDER' => \Bitrix\DocumentGenerator\DataProvider\ArrayDataProvider::class,
+  'OPTIONS' => $options,
+  'VALUE' => $arr,
+];
+$resultFields['image'] = ['TYPE' => \Bitrix\DocumentGenerator\DataProvider::FIELD_TYPE_IMAGE];
+$document->setFields($resultFields);
+$document->setValues($resultValues);
 
 
 // Добавление вкладки в crm сущность (сделку) 
@@ -135,3 +135,43 @@ Bitrix\Main\EventManager::getInstance()->addEventHandler(
   ]);
 }
 );
+
+
+// ===== Подписка на  событие ORM  (init.php) =====
+Bitrix\Main\ORM\EventManager::getInstance()->addEventHandler(
+  '\Bitrix\Sievert\ObjectDealTable',
+  'OnAfterAdd',
+  function ($e) {
+    file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode([
+      'arFields' => $e->getParameter('fields'),
+    ]));
+  }
+);
+
+
+// ===== Подписка на  событие ORM  из Модуля =====
+
+// install/index.php - DoInstall()
+Bitrix\Main\ORM\EventManager::getInstance()->registerEventHandler(
+  '\Bitrix\Sievert\ObjectDealTable',
+  'OnAfterAdd',
+  $this->MODULE_ID,
+  'Bitrix\Sievert\CrmDealObjectProjectField',
+  'OnAfterObjectAddOrRemoveHandler'
+);
+// DoUninstall()
+Bitrix\Main\ORM\EventManager::getInstance()->UnRegisterEventHandler(
+  '\Bitrix\Sievert\ObjectDealTable',
+  'OnAfterAdd',
+  $this->MODULE_ID,
+  'Bitrix\Sievert\CrmDealObjectProjectField',
+  'OnAfterObjectAddOrRemoveHandler'
+);
+// lib/CrmDealObjectProjectField.php
+public static function OnAfterObjectAddOrRemoveHandler ($e) {
+  file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode([
+    'test' => 'test2',
+    'arFields' => $e->getParameter('fields'),
+  ]));
+}
+// ========================================================
