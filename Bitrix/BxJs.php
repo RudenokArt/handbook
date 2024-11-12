@@ -10,6 +10,12 @@
   });
 </script>
 
+<script>
+  BX.ready(function(){
+    //...code
+  });
+</script>
+
 <!-- Кнопки (уши) горизонтальной прокрутки -->
 <?php \Bitrix\Main\UI\Extension::load("ui.ears"); ?>
 <script>
@@ -19,10 +25,26 @@
     noScrollbar: true
   });
   ears.init();
+
 </script>
 
-
+<!-- Виджет TagSelector -->
+<?php \Bitrix\Main\UI\Extension::load('ui.entity-selector'); ?>
 <script>
+  var tagSelector = new BX.UI.EntitySelector.TagSelector({
+    dialogOptions: {
+      items: [
+        { id: 1, entityId: 'false', title: 'User 1', tabs: 'users' },
+        { id: 2, entityId: 'false', title: 'User 2', tabs: 'users' },
+        ],
+      tabs: [
+        { id: 'users', title: 'users' }
+        ],
+      showAvatars: false,
+      dropdownMode: true
+    }
+  });
+  tagSelector.renderTo(document.getElementById('container'));
 
 // Битриксовый алерт
   BX.UI.Dialogs.MessageBox.alert('Access denied!');
