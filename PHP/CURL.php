@@ -26,6 +26,13 @@ if ($re) {
 // Парсинг с обработкой ошибок и с переходом по редиректам
 curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
 
+// Установка COOKIE
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, 'fortest/');
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_COOKIE, 'name=test2');
+$re = curl_exec($curl);
+echo $re;
 
 // POST параметры запроса
 $curl = curl_init();

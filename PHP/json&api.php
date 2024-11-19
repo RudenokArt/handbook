@@ -1,4 +1,38 @@
 <?php
+// Правильно отдать json (для api)
+header('Content-Type: application/json');
+echo $json;
+
+// создать JSON
+$json = addslashes(
+  json_encode(
+    $arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
+  )
+);
+// Отловить ошибку JSON парсинга
+switch (json_last_error()) {
+  case JSON_ERROR_NONE:
+  echo 'ошибок нет';
+  break;
+  case JSON_ERROR_DEPTH:
+  echo 'достигнута максимальная глубина стека';
+  break;
+  case JSON_ERROR_STATE_MISMATCH:
+  echo 'некорректные разряды или несоответствие режимов';
+  break;
+  case JSON_ERROR_CTRL_CHAR:
+  echo 'некорректный управляющий символ';
+  break;
+  case JSON_ERROR_SYNTAX:
+  echo 'синтаксическая ошибка, некорректный JSON';
+  break;
+  case JSON_ERROR_UTF8:
+  echo 'некорректные символы UTF-8, возможно неверно закодирован';
+  break;
+  default:
+  echo 'неизвестная ошибка';
+  break;
+}
 
 // PHP-IMAP
 // yum install php-imap - установка библиотеки

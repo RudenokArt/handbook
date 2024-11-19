@@ -55,12 +55,6 @@ header('Location: ?page_number='.$_GET['page_number']);
 echo '<meta http-equiv="refresh" content="2; url=index.php" />';
 echo '<script>setTimeout(function(){document.location.href="index.php";},2000);</script>';
 
-// JSON
-$json = addslashes(
-  json_encode(
-    $arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES
-  )
-);
 
 // image to base64
 $base64imageTinkoffLogo = base64_encode(file_get_contents(__DIR__.'/img/tink-logo.jpg'));

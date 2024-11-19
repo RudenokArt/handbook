@@ -43,13 +43,6 @@ $APPLICATION->SetAdditionalCSS("/bitrix/css/main/font-awesome.css");
   }
 </style>
 
-<!-- CALENDAR - DATEPICKER -->
-<?php CJSCore::Init(array('date')); ?>
-<div class="ui-ctl ui-ctl-after-icon">
-  <div class="ui-ctl-after ui-ctl-icon-calendar"></div>
-  <input type="text" name="INPUTNAME" onclick="BX.calendar({node: this, field: this, bTime: false});" class="ui-ctl-element ui-ctl-textbox">
-</div>
-
 
 <!-- СЕЛЕКТОР КОМПАНИЙ  -->
 <?php $APPLICATION->IncludeComponent(
