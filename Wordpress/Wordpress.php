@@ -10,42 +10,42 @@
 
 
 // Подключить пролог без шапки
-require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
+ require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 
 // Отключить админ-бар в публичной части
-add_filter( 'show_admin_bar', '__return_false' );
+ add_filter( 'show_admin_bar', '__return_false' );
 
 // Получить URL логотипа:
  wp_get_attachment_url(get_theme_mod('custom_logo'));
 // Получить favicon
  echo  get_site_icon_url();
 
-// подключение скриптов и стилей
-add_action( 'wp_enqueue_scripts', static function () {
-	wp_enqueue_style( 'style', get_stylesheet_uri() );
+ // подключение скриптов и стилей
+ add_action( 'wp_enqueue_scripts', static function () {
+	wp_enqueue_style( 'default', get_stylesheet_uri() );
 	wp_enqueue_script('jquery');
-	 wp_enqueue_style('dashicons');
+	wp_enqueue_style('dashicons');
 	wp_enqueue_style('bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
 	wp_enqueue_script('bootstrap_js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', [], false, ['in_footer' => true]);
-	wp_enqueue_script( 'script_js', get_template_directory_uri() . '/js/script.js');
-	wp_enqueue_style( 'style_css', get_stylesheet_directory_uri() . '/css/style.css' );
+	wp_enqueue_script( 'script_js', get_template_directory_uri() . '/js/script.js', ['bootstrap_js'], false, ['in_footer' => true]);
+	wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/css/style.css', ['bootstrap_css'] );
 });
 
-add_action('after_setup_theme', static function () {
+ add_action('after_setup_theme', static function () {
 // Включить поддержку логотипа
-	add_theme_support('custom-logo', []);
+ 	add_theme_support('custom-logo', []);
 // Поддержка title
-	add_theme_support('title_tag');
+ 	add_theme_support('title_tag');
 // Поддержка меню
-	add_theme_support('menus');
+ 	add_theme_support('menus');
 // Включить поддержку миниатюр
-	add_theme_support('post-thumbnails');
+ 	add_theme_support('post-thumbnails');
 // Папка с языковыми файлами
-	load_theme_textdomain( 'cloud-app', get_template_directory() . '/lang' );
-});
+ 	load_theme_textdomain( 'cloud-app', get_template_directory() . '/lang' );
+ });
 
 // JSON DECODE
-json_decode(stripslashes($_COOKIE['tourists']));
+ json_decode(stripslashes($_COOKIE['tourists']));
 
 // Подключение файла php
  get_template_part('core/AdminRouter');
