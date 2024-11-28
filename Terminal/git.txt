@@ -1,4 +1,5 @@
 sudo yum install git	Установка git на centos7
+git branch --move dev act_dev  переименовать ветку
 git checkout –b version_3.0	Новая ветка
 git checkout -b task_1537 b5ebad61a7cb787b0b543d2c2940d781089d51ef	Новая ветка от определенного коммита
 git push -u origin your_branch	отправить новую ветку в удаленный репозиторий
@@ -16,9 +17,11 @@ git pull origin master --allow-unrelated-histories	Синхронизация н
 git clone https://github.com/RudenokArt/20200808-constructor	Копировать удаленный репозиторий в текущую папку
 sftp lintest@135.181.165.50	подключиться по sftp
 git init 	Инициализировать репозиторий
+
 git remote add origin https://...	подключить к удаленному
 git reset —hard origin/master	синхронизировать с удаленным репозиторием
 git remote rm origin	Отключить удаленный репозиторий
+
 git remote -v	Просмотр удаленных репозиториев
 D:\OpenServer\domains\vetliva-new_design>git remote add vetliva1 https://github.com/RudenokArt/Vetliva-1/ 	Добавить удаленный репозиторий
 git rm --cached bitrix/admin/error_log	Удалить файл из отслеживания
