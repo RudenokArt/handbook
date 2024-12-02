@@ -7,7 +7,7 @@ file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($list
 
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
-CModule::IncludeModule("iblock")
+\CModule::IncludeModule("iblock")
 
 // Автозагрузка классов в init.php
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [

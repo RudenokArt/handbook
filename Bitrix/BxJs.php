@@ -1,5 +1,15 @@
 <!-- BITRIX VUE 3 -->
-<?php \Bitrix\Main\UI\Extension::load("ui.vue3"); ?>
+<?php \Bitrix\Main\UI\Extension::load("ui.vue"); ?>
+<div id="app">{{ message }}</div>
+<script>
+  BX.Vue.createApp({
+    data () {
+      return {
+        message: 'hello',
+      };
+    }
+  }).mount('#app');
+</script>
 
 <!-- BITRIX VUE -->
 <?php \Bitrix\Main\UI\Extension::load("ui.vue"); ?>
