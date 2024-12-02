@@ -1,5 +1,5 @@
 <?php 
-
+// composer require phpoffice/phpword - Установка через композер
 
 include_once $_SERVER['DOCUMENT_ROOT'].'/vendor/autoload.php';
 $phpWord = new  \PhpOffice\PhpWord\PhpWord(); 

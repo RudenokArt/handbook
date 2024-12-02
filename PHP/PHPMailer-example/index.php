@@ -1,5 +1,5 @@
 <?php 
-
+// composer require phpmailer/phpmailer - установка
 include_once 'vendor/autoload.php';
 $mail = new PHPMailer\PHPMailer\PHPMailer;
 $mail->CharSet = 'utf-8';
