@@ -27,3 +27,6 @@ D:\OpenServer\domains\vetliva-new_design>git remote add vetliva1 https://github.
 git rm --cached bitrix/admin/error_log	Удалить файл из отслеживания
 git add -f bitrix/admin/task_management.php	Добавить файл в отслеживание
 ESC и Shift+ zz	выйти из git pull
+
+
+git log --name-only - просмотр файлов коммита
