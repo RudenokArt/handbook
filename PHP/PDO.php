@@ -76,3 +76,15 @@ $res->execute();
 while ($row = $res->fetch()) {
 	$arr[] = $row;
 }
+
+// Выборка одной колонки
+$res = $pdo->prepare('SELECT login FROM users');
+$res->execute();
+while ($row = $res->fetchColumn()) {
+	$arr[] = $row;
+}
+
+// Выборка всех рядов
+$res = $pdo->prepare('SELECT * FROM users');
+$res->execute();
+$arr = $res->fetchAll();
