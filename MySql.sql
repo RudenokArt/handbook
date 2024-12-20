@@ -1,3 +1,12 @@
+-- Таблица с внешним ключем и каскадным удалением
+create table if not exists itachsoft_asterisk_tranks_users_groups (
+   ID int(16) not null auto_increment,
+   TRANKS_GROUP int(16),
+   USERS_DEPARTMENT int(16),
+   primary key (ID),
+   FOREIGN KEY (TRANKS_GROUP) REFERENCES itachsoft_asterisk_tranks_groups (ID) ON DELETE CASCADE
+);
+
 -- Добавить индекс
 ALTER TABLE `products` ADD INDEX(`category_id`);
 -- Добавить внешний ключ
