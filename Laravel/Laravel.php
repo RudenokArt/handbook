@@ -1,4 +1,6 @@
 <?php 
+// Запуск сервера
+// php artisan serve
 
 // PHPMailer
 // composer require phpmailer/phpmailer - установка

@@ -52,4 +52,9 @@ $route = Route::current()->getName();
 $name = Route::currentRouteName(); 
 $action = Route::currentRouteAction();
 
+// Роут для контроллера
+Route::get('/news', ['App\Http\Controllers\NewsController', 'getList']);
+// или так:
+Route::get('/news', [NewsController::class, 'getList']);
+
 ?>
