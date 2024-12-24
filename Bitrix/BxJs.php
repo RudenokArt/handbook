@@ -46,12 +46,26 @@
       items: [
         { id: 1, entityId: 'false', title: 'User 1', tabs: 'users' },
         { id: 2, entityId: 'false', title: 'User 2', tabs: 'users' },
-        ],
+      ],
       tabs: [
         { id: 'users', title: 'users' }
-        ],
+      ],
       showAvatars: false,
       dropdownMode: true
+    }
+  });
+  tagSelector.renderTo(document.getElementById('container'));
+// <!-- Виджет TagSelector для юзеров и отделов -->
+  var tagSelector = new BX.UI.EntitySelector.TagSelector({
+    dialogOptions: {
+      entities: [
+        {
+          id: 'department',
+          options: {
+            selectMode: 'usersAndDepartments',
+          },
+        },
+      ],
     }
   });
   tagSelector.renderTo(document.getElementById('container'));
