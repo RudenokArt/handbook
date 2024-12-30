@@ -1,35 +1,46 @@
 <?php 
 
+// Системное уведомление
+CIMMessenger::Add([
+	'NOTIFY_TITLE' => 'Message title',
+	'MESSAGE' => 'Message text',
+	'MESSAGE_TYPE' => IM_MESSAGE_SYSTEM,
+	'TO_USER_ID' => $toUserId,
+	'FROM_USER_ID' => 0,
+	'NOTIFY_TYPE' => IM_NOTIFY_SYSTEM,
+	'NOTIFY_MODULE' => 'main',
+	'NOTIFY_EVENT' => 'manage',
+]);
 
 // Отправить сообщение от пользвателя копльзователю
-\CIMMessage::Add(array(  
-	'FROM_USER_ID' => 4,  
-	'TO_USER_ID' => 1, 
-	'MESSAGE' => 'one more message', 
-));  
+\CIMMessage::Add([ 
+	'FROM_USER_ID' => $fromUserId,  
+	'TO_USER_ID' => $toUserId, 
+	'MESSAGE' => $NOTIFICATION, 
+]);
 
-
+// ===== LEGACY =====
 
 CIMChat::getCrmChatId('DEAL|123');
 $params = [
-'filter' => ['=CHAT_ID' => $chatId, '>AUTHOR_ID' => 0],
-'order' => ['ID' => 'DESC']
+	'filter' => ['=CHAT_ID' => $chatId, '>AUTHOR_ID' => 0],
+	'order' => ['ID' => 'DESC']
 ];
 
 $rsMessages = Bitrix\Im\Model\MessageTable::getList($params);
 $messages = $rsMessages->fetchAll();
 $userId = Bitrix\Imopenlines\Widget\User::register([
-'NAME' => $contact['NAME'],
-'LAST_NAME' => $contact['LAST_NAME'],
-'AVATAR' => CFile::getPath($contact['PHOTO'])
+	'NAME' => $contact['NAME'],
+	'LAST_NAME' => $contact['LAST_NAME'],
+	'AVATAR' => CFile::getPath($contact['PHOTO'])
 ])['ID'];
 
 (new CIMChat)->addUser($chatId, $userId);
 CIMChat::getChatData(['ID' => $chatId])['userInChat'][$chatId];
 CIMChat::addMessage([
-'TO_CHAT_ID' => $chatId,
-'FROM_USER_ID' => $userId,
-'MESSAGE' => 'mess'
+	'TO_CHAT_ID' => $chatId,
+	'FROM_USER_ID' => $userId,
+	'MESSAGE' => 'mess'
 ]);
 
 (new Bitrix\Im\User($userId))->isExists()
@@ -37,12 +48,12 @@ CIMChat::addMessage([
 ?>
 <script>
 	
-BX.PULL.subscribe({
-	moduleId: 'im',
-	callback: function (data) {
-		console.log(data);
-	}.bind(this)
-});
+	BX.PULL.subscribe({
+		moduleId: 'im',
+		callback: function (data) {
+			console.log(data);
+		}.bind(this)
+	});
 
 </script>
 
