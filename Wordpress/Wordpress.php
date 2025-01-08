@@ -1,5 +1,4 @@
-<?php 
-
+<?php
 // РЕГИСТРАЦИЯ ТЕМЫ В STYLE.CSS
 /**
  * Theme Name:  theme1
@@ -8,7 +7,13 @@
 
 // https://underscores.me/ Генератор тем
 
-
+// Пагинация
+ echo paginate_links( array(
+ 	'base' => site_url() . '/news/%_%',
+ 	'format' => '?page_N=%#%',
+ 	'total' => $query->max_num_pages,
+ 	'current' => $current_page,
+ ) );
 // Подключить пролог без шапки
  require($_SERVER['DOCUMENT_ROOT'].'/wp-load.php');
 
@@ -22,14 +27,14 @@
 
  // подключение скриптов и стилей
  add_action( 'wp_enqueue_scripts', static function () {
-	wp_enqueue_style( 'default', get_stylesheet_uri() );
-	wp_enqueue_script('jquery');
-	wp_enqueue_style('dashicons');
-	wp_enqueue_style('bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
-	wp_enqueue_script('bootstrap_js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', [], false, ['in_footer' => true]);
-	wp_enqueue_script( 'script_js', get_template_directory_uri() . '/js/script.js', ['bootstrap_js'], false, ['in_footer' => true]);
-	wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/css/style.css', ['bootstrap_css'] );
-});
+ 	wp_enqueue_style( 'default', get_stylesheet_uri() );
+ 	wp_enqueue_script('jquery');
+ 	wp_enqueue_style('dashicons');
+ 	wp_enqueue_style('bootstrap_css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
+ 	wp_enqueue_script('bootstrap_js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js', [], false, ['in_footer' => true]);
+ 	wp_enqueue_script( 'script_js', get_template_directory_uri() . '/js/script.js', ['bootstrap_js'], false, ['in_footer' => true]);
+ 	wp_enqueue_style( 'style', get_stylesheet_directory_uri() . '/css/style.css', ['bootstrap_css'] );
+ });
 
  add_action('after_setup_theme', static function () {
 // Включить поддержку логотипа
@@ -63,10 +68,19 @@
 // получить url миниатюры поста
  get_the_post_thumbnail_url($postId);
 
+// 
+ echo paginate_links( array(
+ 	'base' => site_url() . '/news/%_%',
+ 	'format' => '?page_N=%#%',
+ 	'total' => $query->max_num_pages,
+ 	'current' => $current_page,
+ ));
+
 
 // SQL запрос к БД
  $sql=$wpdb->get_results('SELECT `post_content` FROM `wp_posts`');
  print_r($sql);
+
 
 
 
