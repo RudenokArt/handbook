@@ -83,3 +83,33 @@ $GLOBALS["APPLICATION"]->IncludeComponent('bitrix:crm.entity.selector',
   false,
   array('HIDE_ICONS' => 'Y')
 ); 
+
+
+// ДОБАВЛЕНИЕ ПУНКТОВ В ОСНОВНОЕ МЕНЮ БИТРИКС-24
+\Bitrix\Main\Config\Option::set('intranet', 'left_menu_preset', 'custom');
+$items = \Bitrix\Main\Config\Option::get('intranet', 'left_menu_custom_preset_items');
+if (!$items) {
+  $items = [];
+} else {
+  $items = unserialize($items);
+}
+$items[] = [
+  'LINK' => '/notifications/',
+  'TEXT' => 'MODULE_NAME',
+  'ID' => 'itachsoft.notifications',
+];
+$items = serialize($items);
+\Bitrix\Main\Config\Option::set('intranet', 'left_menu_custom_preset_items', $items, 's1');
+
+// УДАЛЕНИЕ КАСТОМНЫХ ПУНКТОВ ИЗ ОСНОВНОГО МЕНЮ БИТРИКС-24
+$items = \Bitrix\Main\Config\Option::get('intranet', 'left_menu_custom_preset_items');
+$items = unserialize($items);
+foreach ($items as $key => $value) {
+  if ($value['ID'] == 'itachsoft.notifications') {
+    unset($items[$key]);
+  }
+}
+$items = serialize($items);
+\Bitrix\Main\Config\Option::set('intranet', 'left_menu_custom_preset_items', $items, 's1');
+$items = \Bitrix\Main\Config\Option::get('intranet', 'left_menu_custom_preset_items');
+$items = unserialize($items);

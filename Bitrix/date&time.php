@@ -2,6 +2,13 @@
 
 // ========== DATE & TIME ==========
 
+// Запись (ORM):
+$bonus = \Itachsoft\Loyalitysystem\ContactBonusTable::add([
+  'CONTACT_ID' => 1,
+  'QUANTITY' => 10,
+  'ACTIVE_FROM' => new \Bitrix\Main\Type\DateTime('2024-01-5 12:00:00', 'Y-m-d H:i:s'),
+  'ACTIVE_TO' => new \Bitrix\Main\Type\DateTime('2024-10-5 12:00:00', 'Y-m-d H:i:s'),
+]);
 
 // Первый и последний день месяца:
 $arr['date']['date_to'] = date('Y-m-d', mktime(0, 0, 0, $arr['date']['month'], 1, $arr['date']['year']));
