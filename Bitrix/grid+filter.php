@@ -19,6 +19,24 @@ $arResult['FILTER'][] =
 		'userSearchArea' => 'I'
 	]
 ];
+// crm contacts
+[
+			'id' => 'CONTACT_NAME',
+			'name' => getMessage('CONTACT_NAME'),
+			'type' => 'entity_selector',
+			'params' => [
+				'multiple' => 'Y',
+				'dialogOptions' => [
+					'entities' => [
+						[
+							'id' => 'contact',
+							'dynamicLoad' => true,
+							'dynamicSearch' => true
+						]
+					]
+				]
+			]
+		], 
 
 // CRM deals
 $arResult['FILTER'][] = [

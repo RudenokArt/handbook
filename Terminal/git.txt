@@ -12,6 +12,7 @@ git checkout -b task_3435 origin/task_3435	Принять ветку из уда
 git branch -d version1	удалить локально ветку version1
 git checkout main	перейти в ветку main
 git merge version_3.0	слить ветку в текущую
+git merge --abort отменить слияние при кофликте
 
 git reset Отменить git add
 git reset --hard 2030931	Возврат репозитория в состояние коммита

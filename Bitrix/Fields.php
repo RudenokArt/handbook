@@ -29,6 +29,7 @@ if (!$field) {
     ),
   );
   $oUserTypeEntity->Add($aUserFields_bind);
+}
 
 // Добавить пользовательское поле тип CRM
   $oUserTypeEntity = new CUserTypeEntity();
