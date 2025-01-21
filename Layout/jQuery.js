@@ -1,3 +1,5 @@
+// Загрука разметки
+$( selector ).load( url, data, complete );
 
 // Серилизация формы
 $.post('phpfile.php', $('#loginForm').serialize(), function (data) {

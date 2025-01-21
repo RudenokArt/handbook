@@ -114,3 +114,25 @@ function getSourceList () { // получить источники лидов ч
 CCrmProductRow::GetList(); // Получить товары по сделке/лиду
 CCatalogSKU::getOffersList($arr); // получить торговые предложения
 
+
+$MESS["MOBILE"] = "Мобильный телефон";
+$MESS["MOBILE_SHORT"] = "Мобильный";
+$MESS["MOBILE_ABBR"] = "Моб.";
+$MESS["WORK"] = "Рабочий телефон";
+$MESS["WORK_SHORT"] = "Рабочий";
+$MESS["WORK_ABBR"] = "Раб.";
+$MESS["FAX"] = "Номер факса";
+$MESS["FAX_SHORT"] = "Факс";
+$MESS["FAX_ABBR"] = "Факс";
+$MESS["HOME"] = "Домашний телефон";
+$MESS["HOME_SHORT"] = "Домашний";
+$MESS["HOME_ABBR"] = "Дом.";
+$MESS["PAGER"] = "Номер пейджера";
+$MESS["PAGER_SHORT"] = "Пейджер";
+$MESS["PAGER_ABBR"] = "Пейдж.";
+$MESS["MAILING"] = "Телефон для рассылок";
+$MESS["MAILING_SHORT"] = "Для рассылок";
+$MESS["MAILING_ABBR"] = "Расс.";
+$MESS["OTHER"] = "Другой телефон";
+$MESS["OTHER_SHORT"] = "Другой";
+$MESS["OTHER_ABBR"] = "Др.";

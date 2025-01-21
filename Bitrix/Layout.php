@@ -27,7 +27,7 @@ $APPLICATION->GetCurDir();
 $APPLICATION->GetMenu('top', false, false, '/');
 
 // jQuery
-\CJSCore::Init(array("jquery"));
+\CJSCore::Init(['jquery', ]);
 // bootstrap
 \Bitrix\Main\UI\Extension::load("ui.bootstrap4");
 
