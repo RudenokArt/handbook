@@ -1,5 +1,12 @@
 <?php
 
+// Тригернуть события кодом
+use Bitrix\Main\Event;
+$event = new Event("crm", "OnAfterCrmContactUpdate", [
+  'ID' => 6,
+  "UF_LOYALITYSYSTEM_CRM_CONTACT_TAKE_PART" => true,
+]);
+
 // Регистрация обработчика события
 \Bitrix\Main\Loader::includeModule('crm');
 AddEventHandler('crm', 'OnAfterCrmDealUpdate', 'LocalEventHandler::OnAfterCrmDealUpdate');

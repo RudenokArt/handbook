@@ -11,7 +11,7 @@ $formData = $request->getPostList()->toArray(); // POST
 
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
-\CModule::IncludeModule("iblock")
+\CModule::IncludeModule("iblock");
 
 // Автозагрузка классов в init.php
 Bitrix\Main\Loader::registerAutoLoadClasses(null, [

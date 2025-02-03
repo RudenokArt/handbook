@@ -102,7 +102,7 @@ $entity_data_class = $items->getDataClass();
 $rsData = $entity_data_class::getList(['filter'=>[]]);
 $arr = [];
 foreach ($rsData as $key => $value) {
-  array_push($arr, $value);
+  $arr[] = $value;
 }
 
 // добавить элемент в highload блок
