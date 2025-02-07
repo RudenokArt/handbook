@@ -14,7 +14,7 @@ $arResult['nav']->allowAllRecords(true)
 
 $page = $arResult['nav']->getCurrentPage();
 $limit = $arResult['nav']->getPageSize();
-$offset = ($page-1) * $limit;
+$offset = $arResult['nav']->getOffset();
 $order = $grid_options->getSorting();
 $filter = [];
 $filterOption = new Bitrix\Main\UI\Filter\Options($arResult['gridID']);

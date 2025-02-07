@@ -8,6 +8,7 @@ file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($list
 // REQUEST
 $request = \Bitrix\Main\Context::getCurrent()->getRequest();
 $formData = $request->getPostList()->toArray(); // POST
+$arResult['TYPE'] = $request->getQuery('add_rule'); // GET-параметр
 
 // Подключить модуль
 \Bitrix\Main\Loader::includeModule('crm');
