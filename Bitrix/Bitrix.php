@@ -4,6 +4,8 @@
 
 // custom debugger;
 file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($list));
+// bitrix debugger;
+\Bitrix\Main\Diag\Debug::writeToFile(6, 'contact', 'local/test/test.log');
 
 // REQUEST
 $request = \Bitrix\Main\Context::getCurrent()->getRequest();

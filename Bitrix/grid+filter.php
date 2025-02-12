@@ -134,7 +134,12 @@ Toolbar::addFilter([
 	// Получить выбранные строки грида
 	gridObject.instance.getRows().getSelectedIds();
 
-	// 
+	// Получить и перезапустить грид из слайдера не зная его ID
+	var grids = top.BX.Main.gridManager.data;
+	var gridObject = grids[0];
+	if (gridObject.hasOwnProperty('instance')){
+		gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
+	}
 
 	// перезагрузить родительский грид из слайдера
 	var gridObject = top.BX.Main.gridManager.getById('tinkoff_operations_list');

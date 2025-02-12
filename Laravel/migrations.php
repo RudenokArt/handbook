@@ -26,3 +26,24 @@ use Illuminate\Database\DBAL\TimestampType;
 		'timestamp' => TimestampType::class,
 	],
 ],
+
+// Переименование столбца
+Schema::table('posts', function (Blueprint $table) {
+	$table->renameColumn('created_by', 'created_by_id');
+});
+
+// Значение по умолчанию
+Schema::create('posts', function (Blueprint $table) {
+	$table->string('desc')->default('some value');
+});
+
+// Удаление таблицы
+Schema::table('posts', function (Blueprint $table) {
+  // Schema::drop('posts');
+	Schema::dropIfExists('posts');
+});
+
+// Переименование таблицы
+Schema::table('posts', function (Blueprint $table) {
+	Schema::rename('posts', 'articles');
+});
