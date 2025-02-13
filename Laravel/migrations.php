@@ -47,3 +47,15 @@ Schema::table('posts', function (Blueprint $table) {
 Schema::table('posts', function (Blueprint $table) {
 	Schema::rename('posts', 'articles');
 });
+
+// Откат последней миграции (!последней команды):
+// php artisan migrate:rollback
+
+// Несколько шагов назад
+// php artisan migrate:rollback --step=5
+
+// Отмена всех
+// php artisan migrate:reset
+
+// Перезапуск
+// php artisan migrate:refresh
