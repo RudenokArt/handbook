@@ -34,8 +34,6 @@ class OrdersSeeder extends Seeder
   }
 
 
-
-?>
-
+// php artisan db:seed
 // Полное перестроение БД с перезапуском всех сидеров
-php artisan migrate:fresh --seed
+// php artisan migrate:fresh --seed
