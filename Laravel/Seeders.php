@@ -37,3 +37,19 @@ class OrdersSeeder extends Seeder
 // php artisan db:seed
 // Полное перестроение БД с перезапуском всех сидеров
 // php artisan migrate:fresh --seed
+
+
+  // Заполнение случайными данными:
+  use Illuminate\Support\Str;
+  DB::table('posts')->insert([
+    [
+      'title' => Str::random(10),
+      'text'  => Str::random(50),
+      'created_by_id' => 1,
+    ],
+    [
+      'title' => Str::random(10),
+      'text'  => Str::random(50),
+      'created_by_id' => 1,
+    ],
+  ]);
