@@ -23,3 +23,26 @@ dump($posts->toSql());
 // Через dump() или dd()
 $posts = DB::table('posts')->where('id', '>', 1);
 $posts->dump();
+
+// Поля выборки через QB в Laravel
+$posts = DB::table('posts')->select('title', 'text')->get();
+
+// Переименование столбцов при выборке
+$posts = DB::table('posts')->select('title', 'text as detailText')->get();
+
+// Условия where при выборке через QB (=, <, >, ,!=)
+$posts = DB::table('posts')->select('title')->where('id', '>', 1)->get();
+
+// Логическое AND
+$posts = DB::table('posts')->select('id', 'title')
+->where('id', '<', 8)->where('id', '>', 1)->get();
+
+// Логическое ИЛИ
+$posts = DB::table('posts')->select('id', 'title')
+->where('id', '=', 8)->orWhere('id', '=', 1)->get();
+
+// Сложное условие
+$posts = DB::table('posts')->select('id', 'title')
+		->where('id', '=', 8)->orWhere(function($query){
+			$query->where('id', '<', 3)->where('id', '>', 1);
+		})->get();
