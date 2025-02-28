@@ -43,6 +43,12 @@ $posts = DB::table('posts')->select('id', 'title')
 
 // Сложное условие
 $posts = DB::table('posts')->select('id', 'title')
-		->where('id', '=', 8)->orWhere(function($query){
-			$query->where('id', '<', 3)->where('id', '>', 1);
-		})->get();
+->where('id', '=', 8)->orWhere(function($query){
+	$query->where('id', '<', 3)->where('id', '>', 1);
+})->get();
+
+// Получение одной строки
+$posts = DB::table('posts')->where('id', '>', 2)->first();
+
+// Получение одного столбца в одной колонке
+$posts = DB::table('posts')->where('id', 2)->value('title');
