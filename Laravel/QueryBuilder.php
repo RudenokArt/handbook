@@ -52,3 +52,21 @@ $posts = DB::table('posts')->where('id', '>', 2)->first();
 
 // Получение одного столбца в одной колонке
 $posts = DB::table('posts')->where('id', 2)->value('title');
+
+// Получение коллекции значений столбца
+$posts = DB::table('posts')->where('id', '>', 2)->pluck('title');
+
+// whereBetween 
+$posts = DB::table('posts')->whereBetween('id', [1, 4])->get();
+// whereNotBetween
+$posts = DB::table('posts')->whereNotBetween('id', [3, 4])->get();
+
+// whereIn
+$posts = DB::table('posts')->whereIn('id', [3, 4, 5, ])->get();
+// whereNotIn
+$posts = DB::table('posts')->whereNotIn('id', [3, 4, 5, 6, ])->get();
+
+// whereNull
+$posts = DB::table('posts')->whereNull('id')->get();
+// whereNotNull
+$posts = DB::table('posts')->whereNotNull('id')->get();
