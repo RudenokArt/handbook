@@ -70,3 +70,11 @@ $posts = DB::table('posts')->whereNotIn('id', [3, 4, 5, 6, ])->get();
 $posts = DB::table('posts')->whereNull('id')->get();
 // whereNotNull
 $posts = DB::table('posts')->whereNotNull('id')->get();
+
+// Динамическое условие
+$posts = DB::table('posts')->whereId(5)->get();
+$posts = DB::table('posts')->whereTitle('title 1')->get();
+
+// Комбинация динамических условия (and, or)
+$posts = DB::table('posts')->whereIdAndTitle(3, 'title 1')->get();
+$posts = DB::table('posts')->whereIdOrTitle(1, 'title 1')->get();

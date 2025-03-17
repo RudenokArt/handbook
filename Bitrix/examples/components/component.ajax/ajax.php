@@ -9,6 +9,13 @@ class CustomAjaxController extends Controller {
 	public static function testAjaxAction() {
 		return 'testAjaxData';
 	}
-
+	// Если надо отклчить авторизацию для определенных методов
+		public function configureActions(){
+		return [
+			'testAjax' => [
+				'prefilters' => [],
+			],
+		];
+	}
 	
 }
