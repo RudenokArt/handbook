@@ -78,3 +78,21 @@ $posts = DB::table('posts')->whereTitle('title 1')->get();
 // Комбинация динамических условия (and, or)
 $posts = DB::table('posts')->whereIdAndTitle(3, 'title 1')->get();
 $posts = DB::table('posts')->whereIdOrTitle(1, 'title 1')->get();
+
+// Сортировка
+$posts = DB::table('posts')->orderBy('id', 'desc')->get();
+// По дате (created_by) по возрастанию
+$posts = DB::table('posts')->oldest()->get();
+// По дате (created_by) по убыванию
+$posts = DB::table('posts')->latest()->get();
+// По дате (date) по возрастанию
+$posts = DB::table('posts')->oldest('date')->get();
+// сортировка в случайном порядке
+$posts = DB::table('posts')->inRandomOrder()->get();
+$posts = DB::table('posts')->inRandomOrder()->first();
+
+// Количество записей (limit)
+$posts = DB::table('posts')->take(5)->get();
+
+// limit & offset - количество записей со сдвигом
+$posts = DB::table('posts')->skip(2)->take(3)->get();
