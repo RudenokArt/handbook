@@ -96,3 +96,55 @@ $posts = DB::table('posts')->take(5)->get();
 
 // limit & offset - количество записей со сдвигом
 $posts = DB::table('posts')->skip(2)->take(3)->get();
+
+// Вставка данных
+$posts = DB::table('posts')->insert([
+	'title' => 'any title',
+	'text' => 'any text',
+	'created_by_id' => 1,
+]);
+// Вставить запись и получить id
+$id = DB::table('posts')->insertGetId([
+	'title' => 'any title',
+	'text' => 'any text',
+	'created_by_id' => 1,
+]);
+// Массовая вставка
+DB::table('posts')->insert([
+	'title' => 'any title1',
+	'text' => 'any text',
+	'created_by_id' => 1,
+], [
+	'title' => 'any title2',
+	'text' => 'any text',
+	'created_by_id' => 1,
+]);
+
+// UPDATE
+DB::table('posts')->where('id', 3)->update([
+	'title' => 'title-3',
+]);
+// Обновить несколько записей
+DB::table('posts')->where('id', '>', 3)->update([
+	'title' => 'title->3',
+]);
+// Обновить все записи
+DB::table('posts')->update([
+	'title' => 'title->3',
+]);
+
+// Инкремент и декремент данных
+DB::table('posts')->where('id', 1)->increment('likes', 5);
+DB::table('posts')->where('id', 1)->decrement('likes', 3);
+
+// Удаление записи
+DB::table('posts')->where('id', 1)->delete();
+// Удаление записей
+DB::table('posts')->where('id', '<', 5)->delete();
+// Очистка таблицы
+DB::table('posts')->delete();
+
+// JOIN
+$posts = DB::table('posts')
+->leftJoin('users', 'posts.created_by_id', '=', 'users.id')
+->get();

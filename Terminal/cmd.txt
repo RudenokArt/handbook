@@ -20,3 +20,21 @@ ls -a
 
 Просмотр подкаталога
 ls /home
+
+Копирование файла (что копируем (файл 500.html), куда копируем (в папку bitrix))
+cp 500.html bitrix
+
+Копирование директории (папку test в папку bitrix)
+cp -R test bitrix
+
+Удаление файла
+rm test.txt
+
+Удаление директории
+rm -R test
+
+Создание файла
+touch test.txt
+
+Переименовать файл
+mv test.txt text.txt
