@@ -33,3 +33,28 @@ $post = [
 // Получение записей по id
 $dbRes = Post::find([11, 12, 13]);
 $dbRes = Post::find(10)->first();
+
+// Добавление записи
+$post = new Post;
+$post->title = 'newtitle';
+$post->text = 'newtext';
+$post->save();
+
+// Изменение записи
+$post = Post::find(10);
+$post->title = 'anyTitle10';
+$post->save();
+
+// Удаление записи
+$post = Post::find(5);
+$post->delete();
+// или
+$post = Post::destroy(11);
+
+
+// Групповое удаление
+$post = Post::where('id', '<', 10)->delete();
+// или
+$post = Post::destroy(11, 12, 13);
+// или
+$post = Post::destroy([11, 12, 13]);

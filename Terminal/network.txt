@@ -1,0 +1,12 @@
+Проверить включен ли ssh
+systemctl status ssh
+systemctl status sshd
+
+Включить ssh
+systemctl start ssh
+systemctl start sshd
+systemctl enable ssh
+systemctl enable sshd
+
+Посмотреть интерфейсы
+ip addr
