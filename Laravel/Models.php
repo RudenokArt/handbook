@@ -58,3 +58,4 @@ $post = Post::where('id', '<', 10)->delete();
 $post = Post::destroy(11, 12, 13);
 // или
 $post = Post::destroy([11, 12, 13]);
+

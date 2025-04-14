@@ -4,6 +4,8 @@ echo $this->getFolder();
 
 // путь к папке шаблона
 echo SITE_TEMPLATE_PATH; 
+// текущий шаблон сайта
+$APPLICATION->GetTemplatePath('.');
 
 // подключить пролог и эпилог
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");

@@ -10,6 +10,10 @@
 	}
 );
 
+// Получение корзины текущего пользователя 
+$fuser = \Bitrix\Sale\Fuser::getId();
+$basket = \Bitrix\Sale\Basket::loadItemsForFUser($fuser, SITE_ID);
+
 // получение позиций корзины
 $basketItems = $basket->getBasketItems();
 foreach ($basketItems as $basketItem) {
