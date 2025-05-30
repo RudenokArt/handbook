@@ -6,7 +6,9 @@
 file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($list));
 
 // bitrix debugger;
-\Bitrix\Main\Diag\Debug::writeToFile($value, 'contact', 'local/test/test.log');
+\Bitrix\Main\Diag\Debug::writeToFile($fields, 'fields', 'test/debug.log');
+use \Bitrix\Main\Diag\Debug;
+Debug::writeToFile($fields, 'fields', 'test/debug.log');
 
 // REQUEST
 $request = \Bitrix\Main\Context::getCurrent()->getRequest();
@@ -120,6 +122,18 @@ function agentCreate () { // Создать агента
 function deleteAgent () { // удалить агента
   CAgent::RemoveAgent('CodeReview::setTask();');
 }
+
+
+
+$res = CEvent::Send(
+    "SALE_NEW_ORDER", 
+    "s1", 
+    array(
+        "EMAIL" => "RudenokArt@yandex.ru",
+        "MESSAGE" => "Это текст сообщения",
+    )
+);
+var_dump($res);
 
 
 ?>

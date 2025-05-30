@@ -41,7 +41,10 @@ formdata.set('ident_min_age', 0);
 formdata.set('security', '150a8800fe');
 formdata.set('reference_id', '9');
 formdata.set('action', 'woocommerce_gzd_create_shipment_label_submit');
+// массивом
 console.log(Array.from(formdata));
+// объектом
+console.log(Object.fromEntries(formdata.entries()))
 
 // ===== FETCH POST + ЗАГРУЗКА ФАЙЛОВ =====
 

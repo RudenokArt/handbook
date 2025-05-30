@@ -148,3 +148,18 @@ DB::table('posts')->delete();
 $posts = DB::table('posts')
 ->leftJoin('users', 'posts.created_by_id', '=', 'users.id')
 ->get();
+
+// Пагинация
+$dbRes = DB::table('posts')->paginate(5);
+foreach ($dbRes as $key => $value) {
+	$posts[] = [
+		'id' => $value->id,
+		'title' => $value->title,
+		'text' => $value->text,
+	];
+}
+return view('news.list', [
+	'lastPage' => $dbRes->lastPage(),
+	'currentPage' => $dbRes->currentPage(),
+	'list' => $posts,
+]);

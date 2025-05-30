@@ -85,7 +85,7 @@
   <?php // Отправить push
   CPullStack::AddShared([
     'module_id' => 'crm',
-    'command' => '',
+    'command' => '',``
     'params' => [],
   ]);
 

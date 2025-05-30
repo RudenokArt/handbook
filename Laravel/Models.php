@@ -59,3 +59,18 @@ $post = Post::destroy(11, 12, 13);
 // или
 $post = Post::destroy([11, 12, 13]);
 
+
+// Пагинация 
+$dbRes = Post::paginate(5);
+foreach ($dbRes as $key => $value) {
+	$posts[] = [
+		'id' => $value->id,
+		'title' => $value->title,
+		'text' => $value->text,
+	];
+}
+return view('news.list', [
+	'lastPage' => $dbRes->lastPage(),
+	'currentPage' => $dbRes->currentPage(),
+	'list' => $posts,
+]);

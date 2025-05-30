@@ -25,4 +25,10 @@ return [
 // в шаблоне или контроллере:
 print_r(Config::get('constants.user_roles'));
 
+// ===== Отладка SQL =====
+DB::enableQueryLog();
+// ... код ...
+$queries = DB::getQueryLog();
+dump($queries);
+
 

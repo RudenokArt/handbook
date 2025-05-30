@@ -22,7 +22,7 @@ $opt = [
 try {
 	$pdo = new PDO($dsn, $user, $pass, $opt);
 	echo 'DB is connected';
-} catch(PDOException $e) {
+} catch(Throwable $e) {
 	echo "Connection failed: " . $e->getMessage();
 }
 

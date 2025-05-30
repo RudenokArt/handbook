@@ -5,6 +5,9 @@
 // объект Request
 \Bitrix\Main\Application::getInstance()->getContext()->getRequest()->getQuery('id');
 
+// Сайты
+ \Bitrix\Main\SiteTable::getList();
+
 // ПОЛЬЗОВАТЕЛИ
 \Bitrix\Main\GroupTable(); // группы пользователей
 \Bitrix\Main\UserGroupTable(); // привязка пользователей к группам
