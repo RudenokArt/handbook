@@ -21,22 +21,22 @@ $arResult['FILTER'][] =
 ];
 // crm contacts
 [
-			'id' => 'CONTACT_NAME',
-			'name' => getMessage('CONTACT_NAME'),
-			'type' => 'entity_selector',
-			'params' => [
-				'multiple' => 'Y',
-				'dialogOptions' => [
-					'entities' => [
-						[
-							'id' => 'contact',
-							'dynamicLoad' => true,
-							'dynamicSearch' => true
-						]
-					]
+	'id' => 'CONTACT_NAME',
+	'name' => getMessage('CONTACT_NAME'),
+	'type' => 'entity_selector',
+	'params' => [
+		'multiple' => 'Y',
+		'dialogOptions' => [
+			'entities' => [
+				[
+					'id' => 'contact',
+					'dynamicLoad' => true,
+					'dynamicSearch' => true
 				]
 			]
-		], 
+		]
+	]
+], 
 
 // CRM deals
 $arResult['FILTER'][] = [
@@ -155,6 +155,14 @@ Toolbar::addFilter([
 			gridObject.instance.reloadTable('POST', {apply_filter: 'N', clear_nav: 'N'});
 		}
 	});
+
+
+	// Перезагрузка грида в табе карточки сущности 
+
+	var grid = BX.Main.gridManager.getInstanceById('itachsoft_loyalitysystem_member_list');
+	grid.reload(BX.Grid.Utils.addUrlParams('/local/components/itachsoft/loyalitysystem.member_list/lazyload.ajax.php', {
+		[grid.getId()]: 'page-${page}'
+	}))
 
 </script>
 

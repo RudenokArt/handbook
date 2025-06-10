@@ -1,3 +1,6 @@
+{{-- Создание компонента с классом из консоли --}}
+php artisan make:component Banner
+
 <!-- \resources\views\components\layout.blade.php -->
 <x-footer/>
 <!-- resources\views\components\footer.blade.php -->
@@ -24,3 +27,12 @@
 	</x-slot>
 </x-banner>
 
+Передача данных из класса компонента в представление:
+<div>{{$text}}</div> в представлении
+<?php // в Классе:
+	// public function render(): View|Closure|string{
+		return view('components.banner', [
+			'text' => 'some text',
+		]);
+	// }
+?>

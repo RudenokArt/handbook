@@ -6,7 +6,7 @@ print_r($arResult);
 <script>
 	testAjaxRequest();
 	async function testAjaxRequest () {
-		var re = await BX.ajax.runComponentAction(
+		var res = await BX.ajax.runComponentAction(
 			'docbrown:example-ajax',
 			'testAjax',
 			{
@@ -16,7 +16,7 @@ print_r($arResult);
 			).then(function (result) {
 				return result.data;
 			});
-			console.log(re);
+			console.log(res);
 		}
 
 	</script>
