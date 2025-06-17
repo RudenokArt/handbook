@@ -1,0 +1,7 @@
+li.current-menu-item>a{
+	color: red;
+	text-decoration: none;
+}
+li.menu-item>a{
+	text-decoration: none;
+}

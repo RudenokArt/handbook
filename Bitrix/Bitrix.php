@@ -118,6 +118,17 @@ function agentCreate () { // Создать агента
     "Y", // агент активен
     "03.02.2022 16:30:00", // дата первого запуска
     "");
+
+  $installTime = (new \Bitrix\Main\Type\DateTime())->format('d.m.Y H:i:s');
+  CAgent::AddAgent(
+    "\Itachsoft\Loyalitysystem\Services\BonusService::lifeTimeControl();",
+    "itachsoft.loyalitysystem",
+    "N",
+    3600,
+    $installTime,
+    "Y",
+    $installTime,
+    "");
 }
 function deleteAgent () { // удалить агента
   CAgent::RemoveAgent('CodeReview::setTask();');
@@ -126,12 +137,12 @@ function deleteAgent () { // удалить агента
 
 
 $res = CEvent::Send(
-    "SALE_NEW_ORDER", 
-    "s1", 
-    array(
-        "EMAIL" => "RudenokArt@yandex.ru",
-        "MESSAGE" => "Это текст сообщения",
-    )
+  "SALE_NEW_ORDER", 
+  "s1", 
+  array(
+    "EMAIL" => "RudenokArt@yandex.ru",
+    "MESSAGE" => "Это текст сообщения",
+  )
 );
 var_dump($res);
 
