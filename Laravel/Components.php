@@ -1,5 +1,11 @@
-{{-- Создание компонента с классом из консоли --}}
+Создание компонента с классом из консоли:
 php artisan make:component Banner
+
+Можно создать только файл представления:
+php artisan make:component Banner --view
+
+Можно создать компонент в подпапке:
+php artisan make:component Header/Banner
 
 <!-- \resources\views\components\layout.blade.php -->
 <x-footer/>
@@ -36,3 +42,27 @@ php artisan make:component Banner
 		]);
 	// }
 ?>
+
+Передача данных из БД в классе компоненнта:
+<pre><?php print_r($categories);?></pre>  в представлении
+<?php // в Классе:
+	// use App\Models\Category;
+	// public function render(): View|Closure|string{
+		return view('components.banner', [
+			'categories' => $categories,
+		]);
+	// }
+?>
+
+Передача строки в класс компонента:
+<x-layout>
+	<x-banner message="test message"></x-banner>
+	<h1>Company</h1>
+</x-layout>
+
+Передача переменной в класс компонента:
+<x-layout>
+	@php $message = 'test message2' @endphp
+	<x-banner :message="$message"></x-banner>
+	<h1>Company</h1>
+</x-layout>

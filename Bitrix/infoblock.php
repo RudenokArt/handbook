@@ -1,5 +1,12 @@
 <?php 
 
+// Получить SEO инфоблока
+$obSeoProps = new \Bitrix\Iblock\InheritedProperty\IblockValues($iblockId);
+$arSeoProps = $obSeoProps->getValues();
+// Получить SEO элемента
+$ipropElementValues = new \Bitrix\Iblock\InheritedProperty\ElementValues($iblockId, $elementId);
+$pageProperties = $ipropElementValues->getValues();
+
 // получить URL элемента инфоблока по маске
 $item['DETAIL_PAGE_URL'] = CIBlock::ReplaceDetailUrl(
   $item['DETAIL_PAGE_URL'], 

@@ -1,4 +1,13 @@
 <?php 
+// Номер телефона для регистрации
+$arResult['user'] = \Bitrix\Main\UserPhoneAuthTable::getList([
+  'filter' => [
+    'USER_ID' => $USER->GetID(),
+  ],
+  'select' => [
+    'USER_ID', 'PHONE_NUMBER',
+  ],
+])->fetch(); 
 
 // ========== USER ==========
 

@@ -9,6 +9,7 @@ file_put_contents($_SERVER['DOCUMENT_ROOT'].'/local/log.json', json_encode($list
 \Bitrix\Main\Diag\Debug::writeToFile($fields, 'fields', 'test/debug.log');
 use \Bitrix\Main\Diag\Debug;
 Debug::writeToFile($fields, 'fields', 'test/debug.log');
+\Bitrix\Main\Diag\Debug::writeToFile($arResult['ITEMS'], 'items', 'local/debug.log');
 
 // REQUEST
 $request = \Bitrix\Main\Context::getCurrent()->getRequest();
